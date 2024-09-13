@@ -44,7 +44,6 @@ public class Player extends Entity {
             right2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("player/boy_right_2.png")));
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Failed to load player images", e);
-            e.printStackTrace();
         }
     }
 
@@ -62,28 +61,30 @@ public class Player extends Entity {
             direction = "right";
             x += speed;
         }
+
+        spriteCounter++;
+        if (spriteCounter > 12) {
+            if (spriteNum == 1) {
+                spriteNum = 2;
+            } else if (spriteNum == 2) {
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
+        }
     }
 
     public void draw(Graphics2D g2) {
-        BufferedImage image;
+        BufferedImage image = null;
 
         switch (direction) {
-            case "up" -> {
-                image = up1;
-                g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-            }
-            case "down" -> {
-                image = down1;
-                g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-            }
-            case "left" -> {
-                image = left1;
-                g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-            }
-            case "right" -> {
-                image = right1;
-                g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
-            }
+            case "up" -> image = (spriteNum == 1) ? up1 : up2;
+            case "down" -> image = (spriteNum == 1) ? down1 : down2;
+            case "left" -> image = (spriteNum == 1) ? left1 : left2;
+            case "right" -> image = (spriteNum == 1) ? right1 : right2;
+        }
+
+        if (image != null) {
+            g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
         }
     }
 }
