@@ -28,6 +28,12 @@ public class Player extends Entity {
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidArea.width = 32;
+        solidArea.height = 48;
+
         setDefaultValues();
         getPlayerImage();
     }
@@ -55,18 +61,38 @@ public class Player extends Entity {
     }
 
     public void update() {
-        if (keyH.upPressed) {
-            direction = "up";
-            worldY -= speed;
-        } else if (keyH.downPressed) {
-            direction = "down";
-            worldY += speed;
-        } else if (keyH.leftPressed) {
-            direction = "left";
-            worldX -= speed;
-        } else if (keyH.rightPressed) {
-            direction = "right";
-            worldX += speed;
+        if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+            if (keyH.upPressed) {
+                direction = "up";
+            } else if (keyH.downPressed) {
+                direction = "down";
+            } else if (keyH.leftPressed) {
+                direction = "left";
+            } else {
+                direction = "right";
+            }
+
+            // Collision Detection
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+
+            // If collision is false, then update the player's position
+            if (!collisionOn) {
+                switch (direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                }
+            }
         }
 
         spriteCounter++;
