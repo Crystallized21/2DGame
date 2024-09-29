@@ -3,6 +3,8 @@ package main;
 import javax.swing.*;
 
 public class Main {
+    // TODO: Replace all catch exceptions with proper logging
+
     public static void main(String[] args) {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
