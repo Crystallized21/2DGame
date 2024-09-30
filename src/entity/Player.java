@@ -19,6 +19,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
     public int hasKey = 0;
+    int standCounter = 0;
 
     private static final Logger logger = Logger.getLogger(Player.class.getName());
 
@@ -100,16 +101,22 @@ public class Player extends Entity {
                         break;
                 }
             }
-        }
-
-        spriteCounter++;
-        if (spriteCounter > 12) {
-            if (spriteNum == 1) {
-                spriteNum = 2;
-            } else if (spriteNum == 2) {
-                spriteNum = 1;
+            spriteCounter++;
+            if (spriteCounter > 12) {
+                if (spriteNum == 1) {
+                    spriteNum = 2;
+                } else if (spriteNum == 2) {
+                    spriteNum = 1;
+                }
+                spriteCounter = 0;
             }
-            spriteCounter = 0;
+        }
+        else {
+            standCounter++;
+            if (standCounter == 20) {
+                spriteNum = 1;
+                standCounter = 0;
+            }
         }
     }
 
