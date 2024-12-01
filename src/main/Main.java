@@ -1,11 +1,17 @@
 package main;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 public class Main {
     // TODO: Replace all catch exceptions with proper logging
 
     public static void main(String[] args) {
+        // Initialize the graphics context
+        initializeGraphics();
+
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
@@ -20,5 +26,25 @@ public class Main {
 
         gamePanel.setUpGame();
         gamePanel.startGameThread();
+    }
+
+    private static void initializeGraphics() {
+        // Create a dummy BufferedImage to initialize the graphics context
+        BufferedImage dummyImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = dummyImage.createGraphics();
+
+        // Set default rendering hints
+        RenderingHints defaultHints = new RenderingHints(null);
+        g2.setRenderingHints(defaultHints);
+
+        AffineTransform defaultTransform = new AffineTransform();
+        g2.setTransform(defaultTransform);
+
+        // Draw a line to force the graphics context to initialize
+        g2.drawLine(0, 0, 1, 1);
+        g2.drawString("Debug", 0, 0);
+
+        // Dispose of the graphics context
+        g2.dispose();
     }
 }
