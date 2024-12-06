@@ -115,7 +115,7 @@ public class UI {
     public void drawMessage() {
         int initialMessageX = -gp.tileSize; // Start off-screen to the left
         int finalMessageX = gp.tileSize; // Final position
-        int messageY = gp.tileSize * 4;
+        int baseMessageY = gp.tileSize * 4;
 
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
 
@@ -123,20 +123,28 @@ public class UI {
             if (message.get(i) != null) {
                 int counter = messageCounter.get(i);
 
-                // Ease-in and ease-out function
+                // Ease-in function
                 double t = Math.min(1, counter / 10.0); // Adjust the duration here to make it faster
-                double easeInOut = t * t * (3 - 2 * t);
+                double easeIn = t * t;
 
-                // Slide-in animation with ease-in and ease-out effect
-                int messageX = initialMessageX + (int) ((finalMessageX - initialMessageX) * easeInOut);
+                // Slide-in animation with ease-in effect
+                int messageX = initialMessageX + (int) ((finalMessageX - initialMessageX) * easeIn);
 
                 // Fade-out effect
                 float alpha = 1.0f;
-                if (counter > 150) { // Start fading out after 2.5 seconds (150 frames)
+                if (counter > 150) {
                     alpha = Math.max(0, 1.0f - (counter - 150) / 30.0f); // Fade out over 30 frames
                 }
 
                 g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+
+                // Calculate the Y position with the move-up effect and ease-in
+                int messageY = baseMessageY + (i * 50);
+                if (counter > 167) {
+                    double moveUpT = Math.min(1, (counter - 167) / 10.0); // Faster move-up duration
+                    double moveUpEaseIn = moveUpT * moveUpT;
+                    messageY -= (int) (moveUpEaseIn * 50);
+                }
 
                 g2.setColor(Color.black);
                 g2.drawString(message.get(i), messageX + 2, messageY + 2);
@@ -149,12 +157,12 @@ public class UI {
 
                 // Increment the counter
                 messageCounter.set(i, counter + 1);
-                messageY += 50;
 
                 // Remove message after it fades out
                 if (counter > 180) {
                     message.remove(i);
                     messageCounter.remove(i);
+                    i--; // Adjust the index after removal
                 }
             }
         }
