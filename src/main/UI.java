@@ -113,13 +113,30 @@ public class UI {
     }
 
     public void drawMessage() {
-        int messageX = gp.tileSize;
+        int initialMessageX = -gp.tileSize; // Start off-screen to the left
+        int finalMessageX = gp.tileSize; // Final position
         int messageY = gp.tileSize * 4;
 
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
 
         for (int i = 0; i < message.size(); i++) {
             if (message.get(i) != null) {
+                int counter = messageCounter.get(i);
+
+                // Ease-in and ease-out function
+                double t = Math.min(1, counter / 10.0); // Adjust the duration here to make it faster
+                double easeInOut = t * t * (3 - 2 * t);
+
+                // Slide-in animation with ease-in and ease-out effect
+                int messageX = initialMessageX + (int) ((finalMessageX - initialMessageX) * easeInOut);
+
+                // Fade-out effect
+                float alpha = 1.0f;
+                if (counter > 150) { // Start fading out after 2.5 seconds (150 frames)
+                    alpha = Math.max(0, 1.0f - (counter - 150) / 30.0f); // Fade out over 30 frames
+                }
+
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
 
                 g2.setColor(Color.black);
                 g2.drawString(message.get(i), messageX + 2, messageY + 2);
@@ -127,11 +144,15 @@ public class UI {
                 g2.setColor(Color.white);
                 g2.drawString(message.get(i), messageX, messageY);
 
-                int counter = messageCounter.get(i) + 1; // Increment the counter
-                messageCounter.set(i, counter); // Update the counter in the list
+                // Reset the composite
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
+
+                // Increment the counter
+                messageCounter.set(i, counter + 1);
                 messageY += 50;
 
-                if (messageCounter.get(i) > 180) {
+                // Remove message after it fades out
+                if (counter > 180) {
                     message.remove(i);
                     messageCounter.remove(i);
                 }
