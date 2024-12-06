@@ -14,6 +14,7 @@ public class OBJ_Key extends Entity {
         super(gp);
 
         name = "Key";
+        description = "[ " + name + " ]\nIt's a key.\nIt might open something.";
         down1 = setup("objects/key", gp.tileSize, gp.tileSize);
         solidArea.x = 5;
     }
