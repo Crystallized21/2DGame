@@ -42,7 +42,7 @@ public class EventHandler {
 
         if (canTouchEvent) {
             if (hit(27, 16, "right")) damagePit(27, 16, gp.dialogueState);
-//            if (hit(23, 19, "any")) damagePit(27, 16, gp.dialogueState);
+            if (hit(23, 19, "any")) damagePit(27, 16, gp.dialogueState);
 //            if (hit(27, 16, "right")) teleport(gp.dialogueState);
             if (hit(23, 12, "up")) healingPool(23, 12, gp.dialogueState);
         }
@@ -89,6 +89,7 @@ public class EventHandler {
             gp.playSE(2);
             gp.ui.currentDialogue = "You drank from the pool and feel refreshed! \nYour life has been restored!";
             gp.player.life = gp.player.maxLife;
+            gp.aSetter.setMonster();
         }
     }
 
