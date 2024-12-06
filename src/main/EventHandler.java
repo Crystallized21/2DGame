@@ -32,7 +32,7 @@ public class EventHandler {
     }
 
     public void checkEvent() {
-        // Check if th player character is more than 1 tile away from the previous event
+        // Check if the player character is more than 1 tile away from the previous event
         int xDistance = Math.abs(gp.player.worldX - previousEventX);
         int yDistance = Math.abs(gp.player.worldY - previousEventY);
         int distance = Math.max(xDistance, yDistance);
@@ -42,8 +42,8 @@ public class EventHandler {
 
         if (canTouchEvent) {
             if (hit(27, 16, "right")) damagePit(27, 16, gp.dialogueState);
-            if (hit(23, 19, "any")) damagePit(27, 16, gp.dialogueState);
-//          if (hit(27, 16, "right")) teleport(gp.dialogueState);
+//            if (hit(23, 19, "any")) damagePit(27, 16, gp.dialogueState);
+//            if (hit(27, 16, "right")) teleport(gp.dialogueState);
             if (hit(23, 12, "up")) healingPool(23, 12, gp.dialogueState);
         }
     }
@@ -75,6 +75,7 @@ public class EventHandler {
 
     public void damagePit(int col, int row, int gameState) {
         gp.gameState = gameState;
+        gp.playSE(6);
         gp.ui.currentDialogue = "You fell into a pit!";
         gp.player.life -= 1;
         eventRect[col][row].eventDone = true;
@@ -84,6 +85,8 @@ public class EventHandler {
     public void healingPool(int col, int row, int gameState) {
         if (gp.keyH.enterPressed) {
             gp.gameState = gameState;
+            gp.player.attackCanceled = true;
+            gp.playSE(2);
             gp.ui.currentDialogue = "You drank from the pool and feel refreshed! \nYour life has been restored!";
             gp.player.life = gp.player.maxLife;
         }
