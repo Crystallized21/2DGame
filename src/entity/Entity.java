@@ -48,6 +48,7 @@ public class Entity {
     public int life;
     public int maxMana;
     public int mana;
+    public int ammo;
     public int level;
     public int strength;
     public int dexterity;
@@ -120,19 +121,7 @@ public class Entity {
         boolean contactPlayer = gp.cChecker.checkPlayer(this);
 
         if (this.type == type_monster && contactPlayer) {
-            if (!gp.player.invincible) {
-                // Give damage to the player
-                gp.playSE(6);
-
-                int damage = attack - gp.player.defense;
-                if (damage < 0) {
-                    damage = 0;
-                }
-                gp.player.life -= damage;
-
-                gp.player.life -= 1;
-                gp.player.invincible = true;
-            }
+            damagePlayer(attack);
         }
 
         if (!collisionOn) {
@@ -168,6 +157,24 @@ public class Entity {
                 invincibleCounter = 0;
             }
         }
+
+        if (shootAvailableCounter < 30) {
+            shootAvailableCounter++;
+        }
+    }
+
+    public void damagePlayer(int attack) {
+        // Give damage to the player
+        gp.playSE(6);
+
+        int damage = attack - gp.player.defense;
+        if (damage < 0) {
+            damage = 0;
+        }
+        gp.player.life -= damage;
+
+        gp.player.life -= 1;
+        gp.player.invincible = true;
     }
 
     public void draw(Graphics2D g2) {
