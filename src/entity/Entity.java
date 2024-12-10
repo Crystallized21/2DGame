@@ -83,9 +83,11 @@ public class Entity {
         this.gp = gp;
     }
 
-    public void setAction() {}
+    public void setAction() {
+    }
 
-    public void damageReaction() {}
+    public void damageReaction() {
+    }
 
     public void speak() {
         if (dialogues[dialogueIndex] == null) {
@@ -110,7 +112,8 @@ public class Entity {
         }
     }
 
-    public void use(Entity entity) {}
+    public void use(Entity entity) {
+    }
 
     public void checkDrop() {
 
@@ -218,22 +221,19 @@ public class Entity {
     }
 
     public void damagePlayer(int attack) {
-        // TODO: Figure out why this shit doesnt work, the method gets called a bajillion times
-        //  when the monster is going into the player, when the player is standing still.
+        if (!gp.player.invincible) {
+            // Give damage to the player
+            gp.playSE(6);
 
-        System.out.println("hit");
+            int damage = attack - gp.player.defense;
+            if (damage < 0) {
+                damage = 0;
+            }
+            gp.player.life -= damage;
 
-        // Give damage to the player
-        gp.playSE(6);
-
-        int damage = attack - gp.player.defense;
-        if (damage < 0) {
-            damage = 0;
+            gp.player.life -= 1;
+            gp.player.invincible = true;
         }
-        gp.player.life -= damage;
-
-        gp.player.life -= 1;
-        gp.player.invincible = true;
     }
 
     public void draw(Graphics2D g2) {
@@ -312,7 +312,7 @@ public class Entity {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
 
-    public BufferedImage setup(String imagePath, int width , int height) {
+    public BufferedImage setup(String imagePath, int width, int height) {
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 
