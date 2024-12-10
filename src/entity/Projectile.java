@@ -2,6 +2,8 @@ package entity;
 
 import main.GamePanel;
 
+import java.awt.*;
+
 public class Projectile extends Entity {
 
     Entity user;
@@ -26,6 +28,7 @@ public class Projectile extends Entity {
 
             if (monsterIndex != 999) {
                 gp.player.damageMonster(monsterIndex, attack);
+                generateParticle(user.projectile, gp.monster[monsterIndex]);
                 alive = false;
             }
         }
@@ -34,6 +37,7 @@ public class Projectile extends Entity {
 
             if (!gp.player.invincible && contactPlayer) {
                 damagePlayer(attack);
+                generateParticle(user.projectile, gp.player);
                 alive = false;
             }
         }
@@ -73,4 +77,24 @@ public class Projectile extends Entity {
         return false;
     }
     public void subtractResource(Entity user) {}
+
+    public Color getParticleColor() {
+        Color color = new Color(240, 50, 0);
+        return color;
+    }
+
+    public int getParticleSize() {
+        int size = 10;
+        return size;
+    }
+
+    public int getParticleSpeed() {
+        int speed = 1;
+        return speed;
+    }
+
+    public int getParticleMaxLife() {
+        int maxLife = 20;
+        return maxLife;
+    }
 }
