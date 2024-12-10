@@ -218,6 +218,11 @@ public class Entity {
     }
 
     public void damagePlayer(int attack) {
+        // TODO: Figure out why this shit doesnt work, the method gets called a bajillion times
+        //  when the monster is going into the player, when the player is standing still.
+
+        System.out.println("hit");
+
         // Give damage to the player
         gp.playSE(6);
 
