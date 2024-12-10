@@ -151,6 +151,8 @@ public class Entity {
     }
 
     public void generateParticle(Entity generator, Entity target) {
+        // TODO: Make particle generation more dynamic and random
+
         Color color = generator.getParticleColor();
         int size = generator.getParticleSize();
         int speed = generator.getParticleSpeed();

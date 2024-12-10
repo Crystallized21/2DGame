@@ -6,13 +6,13 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class Main {
-    // TODO: Replace all catch exceptions with proper logging
+    public static JFrame window;
 
     public static void main(String[] args) {
         // Initialize the graphics context
         initializeGraphics();
 
-        JFrame window = new JFrame();
+        window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setTitle("2D Adventure");

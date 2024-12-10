@@ -250,8 +250,12 @@ public class UI {
                 g2.drawString(">", x - gp.tileSize, y);
             }
         } else if (titleScreenState == 1) {
-            // Class Selection Screen
+            // Background
+            // TODO: Make this better, somehow.
+            g2.setColor(new Color(0, 0, 0));
+            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
+            // Class Selection Screen
             g2.setColor(Color.white);
             g2.setFont(g2.getFont().deriveFont(42F));
 
@@ -324,7 +328,7 @@ public class UI {
 
     public void drawCharacterScreen() {
         // Frame
-        final int frameX = gp.tileSize;
+        final int frameX = gp.tileSize * 2;
         final int frameY = gp.tileSize;
         final int frameWidth = gp.tileSize * 5;
         final int frameHeight = gp.tileSize * 10;
@@ -425,7 +429,7 @@ public class UI {
 
     public void drawInventory() {
         // Frame
-        int frameX = gp.tileSize * 9;
+        int frameX = gp.tileSize * 12;
         int frameY = gp.tileSize;
         int frameWidth = gp.tileSize * 6;
         int frameHeight = gp.tileSize * 5;
