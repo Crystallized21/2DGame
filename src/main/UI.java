@@ -64,6 +64,7 @@ public class UI {
 
         g2.setFont(maruMonica);
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.white);
 
         // Title State Logic
@@ -86,8 +87,13 @@ public class UI {
             drawPlayerLife();
             drawDialogueScreen();
         }
+        // Options State
         if (gp.gameState == gp.optionsState) {
             drawOptionsScreen();
+        }
+        // Game Over State
+        if (gp.gameState == gp.gameOverState) {
+            drawGameOverScreen();
         }
 
         // Character State
@@ -148,7 +154,7 @@ public class UI {
 
     public void drawMessage() {
         int initialMessageX = -gp.tileSize; // Start off-screen to the left
-        int finalMessageX = gp.tileSize; // Final position
+        int finalMessageX = (int) (gp.tileSize / 1.4); // Final position
         int baseMessageY = gp.tileSize * 4;
 
         g2.setFont(g2.getFont().deriveFont(Font.BOLD, 32F));
@@ -493,6 +499,47 @@ public class UI {
                 g2.drawString(line, textX, textY);
                 textY += 32;
             }
+        }
+    }
+
+    public void drawGameOverScreen() {
+        g2.setColor(new Color(0, 0, 0, 150));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        int x;
+        int y;
+        String text;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 110F));
+
+        text = "Game Over";
+        // Draw Shadow
+        g2.setColor(Color.black);
+        x = getXforCenteredText(text);
+        y = gp.tileSize * 4;
+        g2.drawString(text, x, y);
+
+        // Main Text
+        g2.setColor(Color.white);
+        g2.drawString(text, x - 4, y - 4);
+
+        // Retry
+        g2.setFont(g2.getFont().deriveFont(50F));
+        text = "Retry";
+        x = getXforCenteredText(text);
+        y += gp.tileSize * 4;
+        g2.drawString(text, x, y);
+        if (commandNum == 0) {
+            g2.drawString(">", x - 40, y);
+        }
+
+        // Back to Title Screen
+        g2.setFont(g2.getFont().deriveFont(50F));
+        text = "Quit";
+        x = getXforCenteredText(text);
+        y += 55;
+        g2.drawString(text, x, y);
+        if (commandNum == 1) {
+            g2.drawString(">", x - 40, y);
         }
     }
 
