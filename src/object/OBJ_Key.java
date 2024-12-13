@@ -17,5 +17,6 @@ public class OBJ_Key extends Entity {
         description = "[ " + name + " ]\nIt's a key.\nIt might open something.";
         down1 = setup("objects/key", gp.tileSize, gp.tileSize);
         solidArea.x = 5;
+        price = 100;
     }
 }
