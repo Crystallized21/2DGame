@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Initialize the graphics context
+        // TODO: Tabbing out of the game causes the game to have high FPS
         initializeGraphics();
 
         window = new JFrame();
