@@ -167,8 +167,8 @@ public class Player extends Entity {
             contactInMonster(monsterIndex);
 
             // Check Interactive Tile collision
-            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
-            damageInteractiveTile(iTileIndex);
+            // TODO: This is suspicious.
+            gp.cChecker.checkEntity(this, gp.iTile);
 
             int projectileIndex = gp.cChecker.checkEntity(this, gp.projectile);
             damageProjectile(projectileIndex);
