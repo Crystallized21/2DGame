@@ -17,6 +17,7 @@ public class OBJ_Key extends Entity {
         down1 = setup("objects/key", gp.tileSize, gp.tileSize);
         solidArea.x = 5;
         price = 100;
+        stackable = true;
     }
 
     public boolean use(Entity entity) {
