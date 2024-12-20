@@ -6,7 +6,7 @@ import main.GamePanel;
 public class OBJ_Tent extends Entity {
     
     /* TODO: Extend the functionality of this such as inn or houses
-    *   Maybe like having the player touch the bed talk to the innkeepper
+    *   Maybe like having the player touch the bed talk to the innkeeper
     *   to sleep.*/
     
     GamePanel gp;
