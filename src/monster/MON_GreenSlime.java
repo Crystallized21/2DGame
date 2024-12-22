@@ -50,69 +50,27 @@ public class MON_GreenSlime extends Entity {
         right1 = setup("monster/greenslime_down_1", gp.tileSize, gp.tileSize);
         right2 = setup("monster/greenslime_down_2", gp.tileSize, gp.tileSize);
     }
-
-    public void update() {
-        super.update();
-
+    
+    public void setAction() {
         int xDistance = Math.abs(worldX - gp.player.worldX);
         int yDistance = Math.abs(worldY - gp.player.worldY);
         int tileDistance = (xDistance + yDistance) / gp.tileSize;
 
-        if (!onPath && tileDistance < 5) {
-            int i = new Random().nextInt(100) + 1;
-            if (i > 50) {
-                onPath = true;
-            }
-        }
-        // If the monster is on the path and the player is far away, stop following the player
-        if (onPath && tileDistance > 20) {
-            onPath = false;
-        }
-    }
-
-    public void setAction() {
         if (onPath) {
-            int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
-            int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
-            searchPath(goalCol, goalRow);
+            // If the monster is on the path and the player are far away, stop following the player
+            checkStopChasing(gp.player, 15, 100);
+            
+            // Search a path to the player
+            searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
+            
+            // Check if it can it shoot a projectile
+            checkProjectile(200, 30);
+        } else {
+            // Check if the player is near
+            checkStartChasing(gp.player, 5, 100);
 
-            int i = new Random().nextInt(200) + 1;
-            if (i > 197 && !projectile.alive && shootAvailableCounter == 30) {
-                projectile.set(worldX, worldY, direction, true, this);
-                
-                // Check Vacancy
-                for (int j = 0; j < gp.projectile[1].length; j++) {
-                    if (gp.projectile[gp.currentMap][j] == null) {
-                        gp.projectile[gp.currentMap][j] = projectile;
-                        break;
-                    }
-                }
-                
-                shootAvailableCounter = 0;
-            }
-        }
-        else {
-            actionLockCounter++;
-            if (actionLockCounter == 120) {
-                Random random = new Random();
-                // Pick a random number between 1 and 100
-                int i = random.nextInt(100) + 1;
-
-                if (i <= 25) {
-                    direction = "up";
-                }
-                if (i > 25 && i <= 50) {
-                    direction = "down";
-                }
-                if (i > 50 && i <= 75) {
-                    direction = "left";
-                }
-                if (i > 75) {
-                    direction = "right";
-                }
-
-                actionLockCounter = 0;
-            }
+            // Get a random direction if the monster is not on the path
+            getRandomDirection();
         }
     }
 

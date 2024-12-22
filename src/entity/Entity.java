@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class Entity {
     GamePanel gp;
@@ -120,6 +121,31 @@ public class Entity {
 
     public int getRow() {
         return (worldY + solidArea.y) / gp.tileSize;
+    }
+    
+    public int getXDistance(Entity target) {
+        int xDistance = Math.abs(worldX - target.worldX);
+        return xDistance;
+    }
+
+    public int getYDistance(Entity target) {
+        int yDistance = Math.abs(worldY - target.worldY);
+        return yDistance;
+    }
+
+    public int getTileDistance(Entity target) {
+        int tileDistance = (getXDistance(target) + getYDistance(target)) / gp.tileSize;
+        return tileDistance;
+    }
+
+    public int getGoalCol(Entity target) {
+        int goalCol = (target.worldX + target.solidArea.x) / gp.tileSize;
+        return goalCol;
+    }
+
+    public int getGoalRow(Entity target) {
+        int goalRow = (target.worldY + target.solidArea.y) / gp.tileSize;
+        return goalRow;
     }
 
     public void setAction() {}
@@ -293,6 +319,66 @@ public class Entity {
 
         if (shootAvailableCounter < 30) {
             shootAvailableCounter++;
+        }
+    }
+
+    // TODO: Prob rename this to something better
+    public void checkProjectile(int rate, int shotInterval) {
+        // Check if it can it shoot a projectile
+        int i = new Random().nextInt(rate);
+        if (i == 0 && !projectile.alive && shootAvailableCounter == shotInterval) {
+            projectile.set(worldX, worldY, direction, true, this);
+
+            // Check Vacancy
+            for (int j = 0; j < gp.projectile[1].length; j++) {
+                if (gp.projectile[gp.currentMap][j] == null) {
+                    gp.projectile[gp.currentMap][j] = projectile;
+                    break;
+                }
+            }
+
+            shootAvailableCounter = 0;
+        }
+    }
+
+    // TODO: Prob rename this to something better
+    public void checkStartChasing(Entity target, int distance, int rate) {
+        // Check if the player is near
+        if (getTileDistance(target) < distance) {
+            int i = new Random().nextInt(rate);
+
+            if (i == 0) {
+                onPath = true;
+            }
+        }
+    }
+    
+    // TODO: Prob rename this to something better
+    public void checkStopChasing(Entity target, int distance, int rate) {
+        // If the monster is on the path and the player are far away, stop following the player
+        if (getTileDistance(target) > distance) {
+            int i = new Random().nextInt(rate);
+
+            if (i == 0) {
+                onPath = false;
+            }
+        }
+    }
+    
+    public void getRandomDirection() {
+        // Get a random direction if the monster is not on the path
+        actionLockCounter++;
+        if (actionLockCounter == 120) {
+            Random random = new Random();
+            // Pick a random number between 1 and 100
+            int i = random.nextInt(100) + 1;
+
+            if (i <= 25) direction = "up";
+            if (i > 25 && i <= 50) direction = "down";
+            if (i > 50 && i <= 75) direction = "left";
+            if (i > 75) direction = "right";
+
+            actionLockCounter = 0;
         }
     }
 
