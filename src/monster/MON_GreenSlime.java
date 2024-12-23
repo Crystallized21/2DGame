@@ -52,10 +52,6 @@ public class MON_GreenSlime extends Entity {
     }
     
     public void setAction() {
-        int xDistance = Math.abs(worldX - gp.player.worldX);
-        int yDistance = Math.abs(worldY - gp.player.worldY);
-        int tileDistance = (xDistance + yDistance) / gp.tileSize;
-
         if (onPath) {
             // If the monster is on the path and the player are far away, stop following the player
             checkStopChasing(gp.player, 15, 100);
