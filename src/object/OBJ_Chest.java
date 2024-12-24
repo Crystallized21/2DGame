@@ -5,7 +5,7 @@ import main.GamePanel;
 
 public class OBJ_Chest extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
 
     public OBJ_Chest(GamePanel gp) {
         super(gp);
@@ -37,12 +37,12 @@ public class OBJ_Chest extends Entity {
             gp.playSE(3);
 
             StringBuilder sb = new StringBuilder();
-            sb.append("You opened the and found " + loot.name + "!");
+            sb.append("You opened the and found ").append(loot.name).append("!");
 
             if (!gp.player.canObtainItem(loot)) {
                 sb.append("\n...But your inventory is full.");
             } else {
-                sb.append("\nYou obtained " + loot.name + "!");
+                sb.append("\nYou obtained ").append(loot.name).append("!");
                 down1 = image2;
                 opened = true;
             }

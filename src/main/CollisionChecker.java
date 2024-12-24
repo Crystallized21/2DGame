@@ -4,7 +4,7 @@ import entity.Entity;
 
 public class CollisionChecker {
 
-    GamePanel gp;
+    final GamePanel gp;
 
     public CollisionChecker(GamePanel gp) {
         this.gp = gp;
@@ -24,10 +24,6 @@ public class CollisionChecker {
         int tileNum1, tileNum2;
         
         // Use a temporal direction when an entity is being knocked back
-        String direction = entity.direction;
-        if (entity.knockBack) {
-            direction = entity.knockBackDirection;
-        }
 
         switch (entity.direction) {
             case "up":

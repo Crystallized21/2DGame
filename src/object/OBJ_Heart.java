@@ -4,7 +4,7 @@ import entity.Entity;
 import main.GamePanel;
 
 public class OBJ_Heart extends Entity {
-    GamePanel gp;
+    final GamePanel gp;
 
     public OBJ_Heart(GamePanel gp) {
         super(gp);

@@ -13,14 +13,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class UI {
-    GamePanel gp;
+    final GamePanel gp;
     Graphics2D g2;
     public Font maruMonica;
     Font purisaB;
     BufferedImage heart_full, heart_half, heart_blank, crystal_full, crystal_blank, coin;
     public boolean messageOn = false;
-    ArrayList<String> message = new ArrayList<>();
-    ArrayList<Integer> messageCounter = new ArrayList<>();
+    final ArrayList<String> message = new ArrayList<>();
+    final ArrayList<Integer> messageCounter = new ArrayList<>();
     public boolean gameFinished = false;
     public String currentDialogue = "";
     public int commandNum = 0;
@@ -162,7 +162,6 @@ public class UI {
 
         // Draw Current Mana
         x = (gp.tileSize / 2) - 5;
-        y = (int) (gp.tileSize * 1.5);
         i = 0;
 
         while (i < gp.player.mana) {
@@ -218,7 +217,7 @@ public class UI {
                 // Increment the counter
                 messageCounter.set(i, counter + 1);
 
-                // Remove message after it fades out
+                // Remove a message after it fades out
                 if (counter > 180) {
                     message.remove(i);
                     messageCounter.remove(i);
@@ -458,12 +457,12 @@ public class UI {
     }
 
     public void drawInventory(Entity entity, boolean cursor) {
-        int frameX = 0;
-        int frameY = 0;
-        int frameWidth = 0;
-        int frameHeight = 0;
-        int slotCol = 0;
-        int slotRow = 0;
+        int frameX;
+        int frameY;
+        int frameWidth;
+        int frameHeight;
+        int slotCol;
+        int slotRow;
 
         if (entity == gp.player) {
             frameX = gp.tileSize * 12;
@@ -543,20 +542,18 @@ public class UI {
             g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
             // Draw Item Description
-            int dFrameX = frameX;
             int dFrameY = frameY + frameHeight;
-            int dFrameWidth = frameWidth;
             int dFrameHeight = gp.tileSize * 3;
 
             // Draw Description Text
-            int textX = dFrameX + 20;
+            int textX = frameX + 20;
             int textY = dFrameY + gp.tileSize;
             g2.setFont(g2.getFont().deriveFont(28F));
 
             int itemIndex = getItemIndexOnSlot(slotCol, slotRow);
 
             if (itemIndex < entity.inventory.size()) {
-                drawSubtitleWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+                drawSubtitleWindow(frameX, dFrameY, frameWidth, dFrameHeight);
                 for (String line : entity.inventory.get(itemIndex).description.split("\n")) {
                     g2.drawString(line, textX, textY);
                     textY += 32;
@@ -654,7 +651,7 @@ public class UI {
             if (gp.keyH.enterPressed) {
                 if (!gp.fullScreenOn) {
                     gp.fullScreenOn = true;
-                } else if (gp.fullScreenOn) {
+                } else {
                     gp.fullScreenOn = false;
                 }
                 subState = 1;
@@ -708,7 +705,7 @@ public class UI {
             }
         }
 
-        // Full Screen Check Box
+        // Full-Screen Check Box
         textX = (int) (frameX + gp.tileSize * 4.5);
         textY = frameY + gp.tileSize * 2 + 24;
         g2.setStroke(new BasicStroke(3));
@@ -777,7 +774,6 @@ public class UI {
         g2.drawString("Pause", textX, textY);
         textY += gp.tileSize;
         g2.drawString("Options", textX, textY);
-        textY += gp.tileSize;
 
         textX = frameX + gp.tileSize * 6;
         textY = frameY + gp.tileSize * 2;
@@ -792,7 +788,6 @@ public class UI {
         g2.drawString("P", textX, textY);
         textY += gp.tileSize;
         g2.drawString("ESC", textX, textY);
-        textY += gp.tileSize;
 
         // Back Button
         textX = frameX + gp.tileSize;
@@ -934,9 +929,6 @@ public class UI {
 
         // Draw Player's Coin Window
         x = gp.tileSize * 12;
-        y = gp.tileSize * 9;
-        width = gp.tileSize * 6;
-        height = gp.tileSize * 2;
         drawSubtitleWindow(x, y, width, height);
         g2.drawString("Your Coin(s): " + gp.player.coin, x + 24, y + 60);
 
@@ -994,9 +986,6 @@ public class UI {
 
         // Draw Player's Coin Window
         x = gp.tileSize * 12;
-        y = gp.tileSize * 9;
-        width = gp.tileSize * 6;
-        height = gp.tileSize * 2;
         drawSubtitleWindow(x, y, width, height);
         g2.drawString("Your Coin(s): " + gp.player.coin, x + 24, y + 60);
 
@@ -1059,8 +1048,7 @@ public class UI {
     }
 
     public int getItemIndexOnSlot(int slotCol, int slotRow) {
-        int itemIndex = slotCol + (slotRow * 5);
-        return itemIndex;
+        return slotCol + (slotRow * 5);
     }
 
     public void drawSubtitleWindow(int x, int y, int width, int height) {
@@ -1076,13 +1064,11 @@ public class UI {
 
     public int getXforCenteredText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = gp.screenWidth / 2 - length / 2;
-        return x;
+        return gp.screenWidth / 2 - length / 2;
     }
 
     public int getXforAlignToRightText(String text, int tailX) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = tailX - length;
-        return x;
+        return tailX - length;
     }
 }

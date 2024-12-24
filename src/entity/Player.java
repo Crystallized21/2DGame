@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class Player extends Entity {
 
-    KeyHandler keyH;
+    final KeyHandler keyH;
     public final int screenX;
     public final int screenY;
     int standCounter = 0;
@@ -198,7 +198,7 @@ public class Player extends Entity {
                 knockBackCounter = 0;
                 knockBack = false;
                 speed = defaultSpeed;
-            } else if (!collisionOn) {
+            } else {
                 switch (knockBackDirection) {
                     case "up":
                         worldY -= speed;
@@ -327,7 +327,7 @@ public class Player extends Entity {
             gp.playSE(10);
         }
 
-        // Must be outside of if statement.
+        // Must be outside if statement.
         if (invincible) {
             invincibleCounter++;
             if (invincibleCounter > 60) {
@@ -540,7 +540,7 @@ public class Player extends Entity {
     public boolean canObtainItem(Entity item) {
         boolean canObtain = false;
 
-        // Check if item is stackable
+        // Check if the item is stackable
         if (item.stackable) {
             int index = searchItemInInventory(item.name);
 
@@ -548,7 +548,7 @@ public class Player extends Entity {
                 inventory.get(index).amount++;
                 canObtain = true;
             } else {
-                // This is a new item so no need to check for stackable
+                // This is a new item, so no need to check for stackable
                 if (inventory.size() != maxInventorySize) {
                     inventory.add(item);
                     canObtain = true;

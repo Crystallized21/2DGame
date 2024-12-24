@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Entity {
-    GamePanel gp;
+    final GamePanel gp;
 
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2, 
@@ -22,7 +22,7 @@ public class Entity {
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collision = false;
-    String[] dialogues = new String[20];
+    final String[] dialogues = new String[20];
     public Entity attacker;
     public String knockBackDirection;
 
@@ -81,7 +81,7 @@ public class Entity {
     public Projectile projectile;
 
     // Item Attributes
-    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final ArrayList<Entity> inventory = new ArrayList<>();
     public final int maxInventorySize = 20;
     public int value;
     public int attackValue;
@@ -136,28 +136,23 @@ public class Entity {
     }
     
     public int getXDistance(Entity target) {
-        int xDistance = Math.abs(worldX - target.worldX);
-        return xDistance;
+        return Math.abs(worldX - target.worldX);
     }
 
     public int getYDistance(Entity target) {
-        int yDistance = Math.abs(worldY - target.worldY);
-        return yDistance;
+        return Math.abs(worldY - target.worldY);
     }
 
     public int getTileDistance(Entity target) {
-        int tileDistance = (getXDistance(target) + getYDistance(target)) / gp.tileSize;
-        return tileDistance;
+        return (getXDistance(target) + getYDistance(target)) / gp.tileSize;
     }
 
     public int getGoalCol(Entity target) {
-        int goalCol = (target.worldX + target.solidArea.x) / gp.tileSize;
-        return goalCol;
+        return (target.worldX + target.solidArea.x) / gp.tileSize;
     }
 
     public int getGoalRow(Entity target) {
-        int goalRow = (target.worldY + target.solidArea.y) / gp.tileSize;
-        return goalRow;
+        return (target.worldY + target.solidArea.y) / gp.tileSize;
     }
 
     public void setLoot(Entity loot) {}
@@ -209,23 +204,19 @@ public class Entity {
     }
 
     public Color getParticleColor() {
-        Color color = null;
-        return color;
+        return null;
     }
 
     public int getParticleSize() {
-        int size = 0;
-        return size;
+        return 0;
     }
 
     public int getParticleSpeed() {
-        int speed = 0;
-        return speed;
+        return 0;
     }
 
     public int getParticleMaxLife() {
-        int maxLife = 0;
-        return maxLife;
+        return 0;
     }
 
     public void generateParticle(Entity generator, Entity target) {
@@ -268,7 +259,7 @@ public class Entity {
                 knockBackCounter = 0;
                 knockBack = false;
                 speed = defaultSpeed;
-            } else if (!collisionOn) {
+            } else {
                 switch (knockBackDirection) {
                     case "up":
                         worldY -= speed;
@@ -360,7 +351,7 @@ public class Entity {
     
     // TODO: Prob rename this to something better
     public void checkStopChasing(Entity target, int distance, int rate) {
-        // If the monster is on the path and the player are far away, stop following the player
+        // If the monster is on the path and the player is far away, stop following the player
         if (getTileDistance(target) > distance) {
             int i = new Random().nextInt(rate);
 
@@ -388,24 +379,14 @@ public class Entity {
     }
 
     public String getOppositeDirection(String direction) {
-        String oppositeDirection = "";
-        
-        switch (direction) {
-            case "up":
-                oppositeDirection = "down";
-                break;
-            case "down":
-                oppositeDirection = "up";
-                break;
-            case "left":
-                oppositeDirection = "right";
-                break;
-            case "right":
-                oppositeDirection = "left";
-                break;
-        }
-        
-        return oppositeDirection;
+
+        return switch (direction) {
+            case "up" -> "down";
+            case "down" -> "up";
+            case "left" -> "right";
+            case "right" -> "left";
+            default -> "";
+        };
     }
 
     public void attacking() {
@@ -422,7 +403,7 @@ public class Entity {
             int solidAreaWidth = solidArea.width;
             int solidAreaHeight = solidArea.height;
 
-            // Adjust the players world position for the attack area
+            // Adjust the player's world position for the attack area
             switch (direction) {
                 case "up": worldY -= attackArea.height; break;
                 case "down": worldY += attackArea.height; break;
@@ -505,7 +486,7 @@ public class Entity {
 
     // TODO: Prob rename this to something better
     public void checkProjectile(int rate, int shotInterval) {
-        // Check if it can it shoot a projectile
+        // Check if it can shoot a projectile
         int i = new Random().nextInt(rate);
         if (i == 0 && !projectile.alive && shotAvailableCounter == shotInterval) {
             projectile.set(worldX, worldY, direction, true, this);
@@ -701,12 +682,12 @@ public class Entity {
         int startCol = (worldX + solidArea.x) / gp.tileSize;
         int startRow = (worldY + solidArea.y) / gp.tileSize;
 
-        gp.pFinder.setNodes(startCol, startRow, goalCol, goalRow, this);
+        gp.pFinder.setNodes(startCol, startRow, goalCol, goalRow);
 
         if (gp.pFinder.search()) {
             // Next worldX and worldY
-            int nextX = gp.pFinder.pathList.get(0).col * gp.tileSize;
-            int nextY = gp.pFinder.pathList.get(0).row * gp.tileSize;
+            int nextX = gp.pFinder.pathList.getFirst().col * gp.tileSize;
+            int nextY = gp.pFinder.pathList.getFirst().row * gp.tileSize;
 
             // Entity's solid area position
             int enLeftX = worldX + solidArea.x;
@@ -756,9 +737,9 @@ public class Entity {
                 }
             }
 
-            // If th entity reaches the goal, stop the path
-            int nextCol = gp.pFinder.pathList.get(0).col;
-            int nextRow = gp.pFinder.pathList.get(0).row;
+            // If the entity reaches the goal, stop the path
+            int nextCol = gp.pFinder.pathList.getFirst().col;
+            int nextRow = gp.pFinder.pathList.getFirst().row;
             if (nextCol == goalCol && nextRow == goalRow) {
                 onPath = false;
             }

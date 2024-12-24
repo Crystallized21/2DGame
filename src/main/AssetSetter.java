@@ -8,7 +8,7 @@ import object.*;
 import tile_interactive.IT_DryTree;
 
 public class AssetSetter {
-    GamePanel gp;
+    final GamePanel gp;
 
     public AssetSetter(GamePanel gp) {
         this.gp = gp;
@@ -114,8 +114,7 @@ public class AssetSetter {
         gp.monster[mapNum][i].worldY = gp.tileSize * 33;
         i++;
 
-        mapNum = 1;
-        // Place Different Monster Here for new map
+        // Place Different Monster Here for a new map
     }
 
     public void setInteractiveTile() {

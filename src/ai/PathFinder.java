@@ -1,15 +1,14 @@
 package ai;
 
-import entity.Entity;
 import main.GamePanel;
 
 import java.util.ArrayList;
 
 public class PathFinder {
-    GamePanel gp;
+    final GamePanel gp;
     Node[][] node;
-    ArrayList<Node> openList = new ArrayList<>();
-    public ArrayList<Node> pathList = new ArrayList<>();
+    final ArrayList<Node> openList = new ArrayList<>();
+    public final ArrayList<Node> pathList = new ArrayList<>();
     Node startNode, goalNode, currentNode;
     boolean goalReached = false;
     int step = 0;
@@ -59,7 +58,7 @@ public class PathFinder {
         step = 0;
     }
 
-    public void setNodes(int startCol, int startRow, int goalCol, int goalRow, Entity entity) {
+    public void setNodes(int startCol, int startRow, int goalCol, int goalRow) {
         resetNodes();
 
         // Set start and goal nodes
@@ -158,7 +157,7 @@ public class PathFinder {
             }
 
             // If there is no node with the lowest F cost, break the loop
-            if (openList.size() == 0) {
+            if (openList.isEmpty()) {
                 break;
             }
 
@@ -187,7 +186,7 @@ public class PathFinder {
         Node current = goalNode;
 
         while (current != startNode) {
-            pathList.add(0, current);
+            pathList.addFirst(current);
             current = current.parent;
         }
     }

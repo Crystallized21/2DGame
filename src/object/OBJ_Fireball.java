@@ -6,7 +6,7 @@ import main.GamePanel;
 
 public class OBJ_Fireball extends Projectile {
 
-    GamePanel gp;
+    final GamePanel gp;
 
     public OBJ_Fireball(GamePanel gp) {
         super(gp);

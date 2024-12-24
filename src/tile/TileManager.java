@@ -5,7 +5,6 @@ import main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,18 +13,19 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class TileManager {
-    GamePanel gp;
+    final GamePanel gp;
     public Tile[] tile;
     public int[][][] mapTileNum;
     boolean drawPath = true;
-    ArrayList<String> fileNames = new ArrayList<>();
-    ArrayList<String> collisionStatus = new ArrayList<>();
+    final ArrayList<String> fileNames = new ArrayList<>();
+    final ArrayList<String> collisionStatus = new ArrayList<>();
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
 
         // Read Tile Data file
         InputStream is = getClass().getResourceAsStream("/maps/tiledata.txt");
+        assert is != null;
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
         // Get tile names and collision status from the file
@@ -41,12 +41,13 @@ public class TileManager {
             throw new RuntimeException(e);
         }
 
-        // Initialize the tile array
+        // Initialise the tile array
         tile = new Tile[fileNames.size()];
         getTileImage();
 
         // Get the world's max column and row
         is = getClass().getResourceAsStream("/maps/worldmap.txt");
+        assert is != null;
         br = new BufferedReader(new InputStreamReader(is));
 
         try {
@@ -76,11 +77,7 @@ public class TileManager {
 
             // Get the file name and collision status
             fileName = fileNames.get(i);
-            if (collisionStatus.get(i).equals("true")) {
-                collision = true;
-            } else {
-                collision = false;
-            }
+            collision = collisionStatus.get(i).equals("true");
 
             setup(i, fileName, collision);
         }
@@ -165,7 +162,7 @@ public class TileManager {
 
         }
 
-        // Draw the path, if needed or something idk
+        // Draw the path, if needed or something IDK
 
 //        if (drawPath) {
 //            g2.setColor(new Color(255, 0, 0, 70));

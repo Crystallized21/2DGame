@@ -5,7 +5,7 @@ import main.GamePanel;
 
 public class OBJ_ManaCrystal extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
 
     public OBJ_ManaCrystal(GamePanel gp) {
         super(gp);

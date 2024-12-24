@@ -8,57 +8,33 @@ import java.io.*;
 
 public class SaveLoad {
 
-    GamePanel gp;
+    final GamePanel gp;
 
     public SaveLoad(GamePanel gp) {
         this.gp = gp;
     }
 
     public Entity getObject(String itemName) {
-        Entity obj = null;
 
-        switch (itemName) {
-            case "Woodcutter's Axe":
-                obj = new OBJ_Axe(gp);
-                break;
-            case "Boots":
-                obj = new OBJ_Boots(gp);
-                break;
-            case "Key":
-                obj = new OBJ_Key(gp);
-                break;
-            case "Lantern":
-                obj = new OBJ_Lantern(gp);
-                break;
-            case "Red Potion":
-                obj = new OBJ_Potion_Red(gp);
-                break;
-            case "Blue Shield":
-                obj = new OBJ_Shield_Blue(gp);
-                break;
-            case "Wood Shield":
-                obj = new OBJ_Shield_Wood(gp);
-                break;
-            case "Normal Sword":
-                obj = new OBJ_Sword_Normal(gp);
-                break;
-            case "Tent":
-                obj = new OBJ_Tent(gp);
-                break;
-            case "Door":
-                obj = new OBJ_Door(gp);
-                break;
-            case "Chest":
-                obj = new OBJ_Chest(gp);
-                break;
-        }
-
-        return obj;
+        return switch (itemName) {
+            case "Woodcutter's Axe" -> new OBJ_Axe(gp);
+            case "Boots" -> new OBJ_Boots(gp);
+            case "Key" -> new OBJ_Key(gp);
+            case "Lantern" -> new OBJ_Lantern(gp);
+            case "Red Potion" -> new OBJ_Potion_Red(gp);
+            case "Blue Shield" -> new OBJ_Shield_Blue(gp);
+            case "Wood Shield" -> new OBJ_Shield_Wood(gp);
+            case "Normal Sword" -> new OBJ_Sword_Normal(gp);
+            case "Tent" -> new OBJ_Tent(gp);
+            case "Door" -> new OBJ_Door(gp);
+            case "Chest" -> new OBJ_Chest(gp);
+            default -> null;
+        };
     }
 
     public void save() {
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("save.dat"));
 
             DataStorage ds = new DataStorage();
 
@@ -118,7 +94,7 @@ public class SaveLoad {
 
     public void load() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("save.dat"));
 
             // Read the DataStorage object
             DataStorage ds = (DataStorage) ois.readObject();

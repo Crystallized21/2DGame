@@ -4,21 +4,19 @@ import entity.Entity;
 import main.GamePanel;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class InteractiveTile extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
     public boolean destructible = false;
 
-    public InteractiveTile(GamePanel gp, int col, int row) {
+    public InteractiveTile(GamePanel gp) {
         super(gp);
         this.gp = gp;
     }
 
     public boolean isCorrectItem(Entity entity) {
-        boolean isCorrectItem = false;
-        return isCorrectItem;
+        return false;
     }
 
     public void playSE() {
@@ -26,8 +24,7 @@ public class InteractiveTile extends Entity {
     }
 
     public InteractiveTile getDestroyedForm() {
-        InteractiveTile tile = null;
-        return tile;
+        return null;
     }
 
     public void update() {

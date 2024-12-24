@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class MON_GreenSlime extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
 
     public MON_GreenSlime(GamePanel gp) {
         super(gp);
@@ -53,13 +53,13 @@ public class MON_GreenSlime extends Entity {
     
     public void setAction() {
         if (onPath) {
-            // If the monster is on the path and the player are far away, stop following the player
+            // If the monster is on the path and the player is far away, stop following the player
             checkStopChasing(gp.player, 15, 100);
             
             // Search a path to the player
             searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
             
-            // Check if it can it shoot a projectile
+            // Check if it can shoot a projectile
             checkProjectile(200, 30);
         } else {
             // Check if the player is near
@@ -77,7 +77,7 @@ public class MON_GreenSlime extends Entity {
     }
 
     public void checkDrop() {
-        // Cast monster dead drop
+        // Cast a monster a dead drop
         int i = new Random().nextInt(100) + 1;
 
         // Set drops

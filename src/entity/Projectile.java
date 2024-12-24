@@ -79,22 +79,18 @@ public class Projectile extends Entity {
     public void subtractResource(Entity user) {}
 
     public Color getParticleColor() {
-        Color color = new Color(240, 50, 0);
-        return color;
+        return new Color(240, 50, 0);
     }
 
     public int getParticleSize() {
-        int size = 10;
-        return size;
+        return 10;
     }
 
     public int getParticleSpeed() {
-        int speed = 1;
-        return speed;
+        return 1;
     }
 
     public int getParticleMaxLife() {
-        int maxLife = 20;
-        return maxLife;
+        return 20;
     }
 }
