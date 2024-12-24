@@ -89,6 +89,7 @@ public class Player extends Entity {
         guarding = false;
         knockBack = false;
         lightUpdated = true;
+        speed = defaultSpeed;
     }
 
     public void setItems() {
