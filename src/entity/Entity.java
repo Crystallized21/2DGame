@@ -53,6 +53,8 @@ public class Entity {
     int knockBackCounter = 0;
     public int guardCounter = 0;
     int offBalanceCounter = 0;
+    public Entity loot;
+    public boolean opened = false;
 
     // Character Attributes
     public String name;
@@ -157,6 +159,8 @@ public class Entity {
         int goalRow = (target.worldY + target.solidArea.y) / gp.tileSize;
         return goalRow;
     }
+
+    public void setLoot(Entity loot) {}
 
     public void setAction() {}
 

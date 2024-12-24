@@ -98,10 +98,13 @@ public class EventHandler {
             gp.gameState = gameState;
             gp.player.attackCanceled = true;
             gp.playSE(2);
-            gp.ui.currentDialogue = "You drank from the pool and feel refreshed! \nYour life and mana has been restored!";
+            gp.ui.currentDialogue = "You drank from the pool and feel refreshed! \nYour life and mana has been restored!" +
+                    "\n(Your progress has been saved)";
             gp.player.life = gp.player.maxLife;
             gp.player.mana = gp.player.maxMana;
             gp.aSetter.setMonster();
+            // Prob move this method above the dialogue text
+            gp.saveLoad.save();
         }
     }
 
