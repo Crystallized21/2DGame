@@ -6,7 +6,6 @@ import object.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.logging.Logger;
 
 public class Player extends Entity {
 
@@ -16,8 +15,6 @@ public class Player extends Entity {
     int standCounter = 0;
     public boolean attackCanceled = false;
     public boolean lightUpdated = false;
-
-    private static final Logger logger = Logger.getLogger(Player.class.getName());
 
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
@@ -323,11 +320,10 @@ public class Player extends Entity {
             }
 
             shotAvailableCounter = 0;
-
             gp.playSE(10);
         }
 
-        // Must be outside of if statement.
+        // Must be outside if statement.
         if (invincible) {
             invincibleCounter++;
             if (invincibleCounter > 60) {
