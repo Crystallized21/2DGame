@@ -64,7 +64,7 @@ public class Lighting {
             fraction[11] = 1f;
 
 
-            // Create a gradation paint settings for the light circle
+            // Create a gradation paint setting for the light circle
             RadialGradientPaint gPaint = new RadialGradientPaint(centerX, centerY, gp.player.currentLight.lightRadius, fraction, color);
 
             // Set the paint settings on g2
@@ -74,6 +74,11 @@ public class Lighting {
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
         g2.dispose();
+    }
+
+    public void resetDay() {
+        dayState = day;
+        filterAlpha = 0f;
     }
 
     public void update() {

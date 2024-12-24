@@ -35,10 +35,6 @@ public class Player extends Entity {
         solidArea.height = 32;
 
         setDefaultValues();
-        getImage();
-        getAttackImage();
-        getGuardImage();
-        setItems();
     }
 
     public void setDefaultValues() {
@@ -66,9 +62,15 @@ public class Player extends Entity {
         coin = 500;
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
+        currentLight = null;
         projectile = new OBJ_Fireball(gp);
         attack = getAttack(); // Total attack value is decided by strength and weapon
-        defense = getDefense(); // Total defense value is decided by dexterity and shield
+        defense = getDefense(); // Total defence value is decided by dexterity and shield
+
+        getImage();
+        getAttackImage();
+        getGuardImage();
+        setItems();
     }
 
     public void setDefaultPositions() {
@@ -78,11 +80,15 @@ public class Player extends Entity {
     }
 
     // TODO: rename this to something better
-    public void restoreLifeMana() {
+    public void restoreStatus() {
         life = maxLife;
         mana = maxMana;
         invincible = false;
         transparent = false;
+        attacking = false;
+        guarding = false;
+        knockBack = false;
+        lightUpdated = true;
     }
 
     public void setItems() {
@@ -373,7 +379,7 @@ public class Player extends Entity {
         }
     }
     
-    // Handle monster collision possible rename
+    // Handle monster collision possibly rename
     public void contactMonster(int i) {
         if (i != 999) {
             if (!invincible && !gp.monster[gp.currentMap][i].invincible) {
