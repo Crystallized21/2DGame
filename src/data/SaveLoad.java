@@ -14,6 +14,12 @@ public class SaveLoad {
         this.gp = gp;
     }
 
+    /**
+     * Retrieves an object of type Entity based on the provided item name.
+     *
+     * @param itemName the name of the item for which an Entity object needs to be created
+     * @return an Entity object corresponding to the specified item name, or null if the item name does not match any case
+     */
     public Entity getObject(String itemName) {
 
         return switch (itemName) {
@@ -32,6 +38,25 @@ public class SaveLoad {
         };
     }
 
+    /**
+     * Saves the current game state into a file named "save.dat".
+     * The game state includes player statistics, inventory, equipment,
+     * and details about objects on the map. The data is serialized using
+     * the DataStorage class.
+     * <p>
+     * If the save operation fails due to an I/O error, an error message
+     * is printed, and a RuntimeException is thrown.
+     * <p>
+     * This method involves the following steps:
+     * 1. Serializing the player's current stats such as level, health, mana, etc.
+     * 2. Capturing the player's inventory items and respective quantities.
+     * 3. Recording the player's current weapon and shield slots.
+     * 4. Storing information about objects present on the game map including
+     *    their position, names, loot details, and states (e.g., opened or not).
+     * <p>
+     * Note that this method assumes the `gp` field and its associated objects
+     * (like `player` and `obj`) are properly initialized and accessible.
+     */
     public void save() {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("save.dat"));
@@ -92,6 +117,24 @@ public class SaveLoad {
         }
     }
 
+    /**
+     * Loads the game state from a file named "save.dat".
+     * <p>
+     * This method deserializes the game state stored in a `DataStorage` object, restoring:
+     * 1. Player statistics, including attributes such as level, health, mana, strength, and experience.
+     * 2. Player inventory with item types and quantities.
+     * 3. Player's currently equipped weapon and shield, recalculating attack, defense, and attack images.
+     * 4. Objects on the map, including their names, positions, loot, and state of interaction (e.g., opened or closed).
+     * <p>
+     * During the loading process, the player's inventory is cleared and repopulated based on the data
+     * in the `DataStorage` object, and the player's current weapon and shield are re-equipped. Each
+     * object's specific attributes, such as coordinates, loot, and opened state, are restored.
+     * <p>
+     * If the loading process fails due to an I/O issue or an incompatibility while deserializing the game state,
+     * the method prints an error message ("Load failed") and throws a `RuntimeException`.
+     * <p>
+     * This method assumes the presence of a valid `DataStorage` object serialized in the correct format.
+     */
     public void load() {
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream("save.dat"));

@@ -23,6 +23,19 @@ public class Lighting {
         setLightSource();
     }
 
+    /**
+     * Configures the light source effect for the game environment.
+     * This method generates a darkness filter overlay and adjusts it based on
+     * the player's current light source. If the player has an active light
+     * source, a radial gradient is applied to simulate a light circle with a
+     * gradation effect. Otherwise, a uniform darkness filter is applied.
+     * <p>
+     * The method uses the dimensions of the game panel (screenWidth, screenHeight),
+     * along with the player's position and light radius, to calculate and render
+     * the light effect.
+     * <p>
+     * This functionality is crucial for maintaining the lighting dynamics in the game.
+     */
     public void setLightSource() {
         darknessFilter = new BufferedImage(gp.screenWidth, gp.screenHeight, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = (Graphics2D) darknessFilter.getGraphics();
@@ -81,6 +94,22 @@ public class Lighting {
         filterAlpha = 0f;
     }
 
+    /**
+     * Updates the lighting state within the game environment.
+     * <p>
+     * This method performs several operations to adjust the lighting based on
+     * the game's current time state:
+     * <p>
+     * - If the player's light source is updated, the light source settings are recalculated.
+     * - Handles transitions between different day states (day, dusk, night, dawn).
+     *   Each state transitions after a specific number of frames, incrementing or
+     *   decrementing the filter alpha value to achieve smooth transitions.
+     * - Ensures that the alpha values for the lighting filter stay within the valid range
+     *   (e.g., 0.0f to 1.0f).
+     * <p>
+     * The method embodies the dynamic day-night cycle in the game by seamlessly toggling
+     * between lighting states and adjusting the filter opacity.
+     */
     public void update() {
         if (gp.player.lightUpdated) {
             setLightSource();
@@ -125,6 +154,13 @@ public class Lighting {
         }
     }
 
+    /**
+     * Renders the lighting and debug information for the game environment.
+     * This method adjusts the composite for alpha blending, applies a darkness filter overlay,
+     * and displays the current day state as debug text on the screen.
+     *
+     * @param g2 the Graphics2D object used to perform the rendering operations
+     */
     public void draw(Graphics2D g2) {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, filterAlpha));
         g2.drawImage(darknessFilter, 0, 0, null);
