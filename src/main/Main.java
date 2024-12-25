@@ -34,7 +34,7 @@ public class Main {
     }
 
     private static void initializeGraphics() {
-        // Create a dummy BufferedImage to initialize the graphics context
+        // Create a dummy BufferedImage to initialise the graphics context
         BufferedImage dummyImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = dummyImage.createGraphics();
 
@@ -45,7 +45,7 @@ public class Main {
         AffineTransform defaultTransform = new AffineTransform();
         g2.setTransform(defaultTransform);
 
-        // Draw a line to force the graphics context to initialize
+        // Draw a line to force the graphics context to initialise
         g2.drawLine(0, 0, 1, 1);
         g2.drawString("Debug", 0, 0);
 
