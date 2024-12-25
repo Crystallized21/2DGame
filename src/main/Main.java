@@ -51,6 +51,5 @@ public class Main {
 
         // Dispose of the graphics context
         g2.dispose();
-
     }
 }
