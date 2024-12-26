@@ -1,13 +1,12 @@
 package main;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.*;
+import java.io.IOException;
 import java.net.URL;
 
 public class Sound {
     Clip clip;
+    Clip preloadedClip;
     URL[] soundURL = new URL[30];
     FloatControl fc;
     int volumeScale = 3;
@@ -32,10 +31,28 @@ public class Sound {
         soundURL[15] = getClass().getClassLoader().getResource("sound/blocked.wav");
         soundURL[16] = getClass().getClassLoader().getResource("sound/parry.wav");
         soundURL[17] = getClass().getClassLoader().getResource("sound/speak.wav");
+
+        preloadSound17();
+    }
+
+    private void preloadSound17() {
+        try {
+            if (soundURL[17] != null) {
+                AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[17]);
+                preloadedClip = AudioSystem.getClip();
+                preloadedClip.open(ais); // Preload the index clip and prepare it
+            }
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setFile(int i) {
         try {
+            if (i == 17) {
+                // Only doing this for index 17
+                return;
+            }
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
             clip = AudioSystem.getClip();
             clip.open(ais);
@@ -46,15 +63,38 @@ public class Sound {
         }
 
     }
+
     public void play() {
-        clip.start();
+        if (clip != null) {
+            clip.start();
+        }
     }
+
+    public void playPreload(int i) {
+        if (i == 17 && preloadedClip != null) {
+            preloadedClip.setFramePosition(0);
+            preloadedClip.start();
+        } else {
+            setFile(i);
+            play();
+        }
+    }
+
     public void loop() {
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        if (clip != null) {
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        }
     }
+
     public void stop() {
-        clip.stop();
+        if (clip != null) {
+            clip.stop();
+        }
+        if (preloadedClip != null) {
+            preloadedClip.stop();
+        }
     }
+
     public void checkVolume() {
         switch (volumeScale) {
             case 0: volume = -80.0f; break;

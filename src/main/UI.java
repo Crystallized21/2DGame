@@ -358,8 +358,8 @@ public class UI {
             char[] characters = npc.dialogues[npc.dialogueSet][npc.dialogueIndex].toCharArray();
 
             if (charIndex < characters.length) {
-                // TODO: optimise this, wtf 800ms of run time??
-                gp.playSE(17);
+                // Preloaded sound to make sure it doesn't lag.
+                gp.se.playPreload(17);
                 String s = String.valueOf(characters[charIndex]);
                 combinedText = combinedText + s;
                 currentDialogue = combinedText;
