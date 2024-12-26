@@ -28,27 +28,29 @@ public class OBJ_Chest extends Entity {
 
     public void setLoot(Entity loot) {
         this.loot = loot;
+
+        setDialogue();
+    }
+
+    public void setDialogue() {
+        dialogues[0][0] = "You opened the and found " + loot.name + "!\n...But your inventory is full.";
+        dialogues[1][0] = "You opened the and found " + loot.name + "!\nYou obtained " + loot.name + "!";
+        dialogues[2][0] = "It's empty. What a waste of time.";
     }
 
     public void interact() {
-        gp.gameState = gp.dialogueState;
-
         if (!opened) {
             gp.playSE(3);
 
-            StringBuilder sb = new StringBuilder();
-            sb.append("You opened the and found " + loot.name + "!");
-
             if (!gp.player.canObtainItem(loot)) {
-                sb.append("\n...But your inventory is full.");
+                startDialogue(this, 0);
             } else {
-                sb.append("\nYou obtained " + loot.name + "!");
+                startDialogue(this, 1);
                 down1 = image2;
                 opened = true;
             }
-            gp.ui.currentDialogue = sb.toString();
         } else {
-            gp.ui.currentDialogue = "It's empty. What a waste of time.";
+            startDialogue(this, 2);
         }
     }
 }
