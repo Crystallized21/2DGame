@@ -42,6 +42,8 @@ public class Entity {
     public boolean guarding = false;
     public boolean transparent = false;
     public boolean offBalance = false;
+    public Entity loot;
+    public boolean opened = false;
 
     // Counters
     public int spriteCounter = 0;
@@ -53,8 +55,6 @@ public class Entity {
     int knockBackCounter = 0;
     public int guardCounter = 0;
     int offBalanceCounter = 0;
-    public Entity loot;
-    public boolean opened = false;
 
     // Character Attributes
     public String name;
@@ -158,6 +158,18 @@ public class Entity {
     public int getGoalRow(Entity target) {
         int goalRow = (target.worldY + target.solidArea.y) / gp.tileSize;
         return goalRow;
+    }
+
+    public void resetCounter() {
+        spriteCounter = 0;
+        actionLockCounter = 0;
+        invincibleCounter = 0;
+        shotAvailableCounter = 0;
+        dyingCounter = 0;
+        hpBarCounter = 0;
+        knockBackCounter = 0;
+        guardCounter = 0;
+        offBalanceCounter = 0;
     }
 
     public void setLoot(Entity loot) {}
