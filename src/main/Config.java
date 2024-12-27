@@ -34,6 +34,7 @@ public class Config {
             throw new RuntimeException(e);
         }
     }
+
     public void loadConfig() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("config.txt"));

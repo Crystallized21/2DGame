@@ -1,3 +1,0 @@
-fullScreenOn=false
-2
-3
