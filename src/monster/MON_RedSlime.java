@@ -9,27 +9,26 @@ import object.OBJ_Rock;
 
 import java.util.Random;
 
-public class MON_GreenSlime extends Entity {
+public class MON_RedSlime extends Entity {
 
     GamePanel gp;
 
-    public MON_GreenSlime(GamePanel gp) {
+    public MON_RedSlime(GamePanel gp) {
         super(gp);
 
         this.gp = gp;
 
         type = type_monster;
-        name = "Green Slime";
-        defaultSpeed = 1;
+        name = "Red Slime";
+        defaultSpeed = 2;
         speed = defaultSpeed;
-        maxLife = 4;
+        maxLife = 8;
         life = maxLife;
-        attack = 4;
+        attack = 7;
         defense = 0;
-        exp = 2;
+        exp = 5;
         projectile = new OBJ_Rock(gp);
 
-        // Solid Area
         solidArea.x = 3;
         solidArea.y = 18;
         solidArea.width = 42;
@@ -41,40 +40,36 @@ public class MON_GreenSlime extends Entity {
     }
 
     public void getImage() {
-        up1 = setup("monster/greenslime_down_1", gp.tileSize, gp.tileSize);
-        up2 = setup("monster/greenslime_down_2", gp.tileSize, gp.tileSize);
-        down1 = setup("monster/greenslime_down_1", gp.tileSize, gp.tileSize);
-        down2 = setup("monster/greenslime_down_2", gp.tileSize, gp.tileSize);
-        left1 = setup("monster/greenslime_down_1", gp.tileSize, gp.tileSize);
-        left2 = setup("monster/greenslime_down_2", gp.tileSize, gp.tileSize);
-        right1 = setup("monster/greenslime_down_1", gp.tileSize, gp.tileSize);
-        right2 = setup("monster/greenslime_down_2", gp.tileSize, gp.tileSize);
+        up1 = setup("monster/redslime_down_1", gp.tileSize, gp.tileSize);
+        up2 = setup("monster/redslime_down_2", gp.tileSize, gp.tileSize);
+        down1 = setup("monster/redslime_down_1", gp.tileSize, gp.tileSize);
+        down2 = setup("monster/redslime_down_2", gp.tileSize, gp.tileSize);
+        left1 = setup("monster/redslime_down_1", gp.tileSize, gp.tileSize);
+        left2 = setup("monster/redslime_down_2", gp.tileSize, gp.tileSize);
+        right1 = setup("monster/redslime_down_1", gp.tileSize, gp.tileSize);
+        right2 = setup("monster/redslime_down_2", gp.tileSize, gp.tileSize);
     }
-    
+
+    @Override
     public void setAction() {
         if (onPath) {
-            // If the monster is on the path and the player are far away, stop following the player
             checkStopChasing(gp.player, 15, 100);
-            
-            // Search a path to the player
             searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
+            checkProjectile(200, 30);
         } else {
-            // Check if the player is near
             checkStartChasing(gp.player, 5, 100);
-
-            // Get a random direction if the monster is not on the path
             getRandomDirection();
         }
     }
 
+    @Override
     public void damageReaction() {
         actionLockCounter = 0;
-//        direction = gp.player.direction;
         onPath = true;
     }
 
+    @Override
     public void checkDrop() {
-        // Cast monster dead drop
         int i = new Random().nextInt(100) + 1;
 
         // Set drops

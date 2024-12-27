@@ -175,8 +175,20 @@ public class Entity {
 
     public void setLoot(Entity loot) {}
 
+    /**
+     * Defines the action or behavior of the entity in a specific game context.
+     * This method is responsible for determining and setting the current state or
+     * sequence of actions the entity should perform. The implementation typically
+     * includes logic for deciding the entity's movements, attacks, interactions,
+     * or other gameplay-related activities.
+     */
     public void setAction() {}
 
+    /**
+     * Handles the reaction of the entity when it takes damage.
+     * This method is responsible for managing behavior, animations, or state changes
+     * that occur when the entity is subjected to damage.
+     */
     public void damageReaction() {}
 
     public void speak() {}
@@ -210,6 +222,11 @@ public class Entity {
         return false;
     }
 
+    /**
+     * Checks if the entity should drop an item or loot upon certain conditions.
+     * This method determines whether an entity will drop its assigned loot
+     * based on its state or internal logic.
+     */
     public void checkDrop() {}
 
     public void dropItem(Entity droppedItem) {
