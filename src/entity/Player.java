@@ -1,5 +1,6 @@
 package entity;
 
+import main.EntityGenerator;
 import main.GamePanel;
 import main.KeyHandler;
 import object.*;
@@ -538,11 +539,14 @@ public class Player extends Entity {
     }
 
     public boolean canObtainItem(Entity item) {
+
         boolean canObtain = false;
 
+        Entity newItem = gp.eGenerator.getObject(item.name);
+
         // Check if item is stackable
-        if (item.stackable) {
-            int index = searchItemInInventory(item.name);
+        if (newItem.stackable) {
+            int index = searchItemInInventory(newItem.name);
 
             if (index != 999) {
                 inventory.get(index).amount++;
@@ -550,14 +554,14 @@ public class Player extends Entity {
             } else {
                 // This is a new item so no need to check for stackable
                 if (inventory.size() != maxInventorySize) {
-                    inventory.add(item);
+                    inventory.add(newItem);
                     canObtain = true;
                 }
             }
         } else {
             // Not stackable, so check for vacancy
             if (inventory.size() != maxInventorySize) {
-                inventory.add(item);
+                inventory.add(newItem);
                 canObtain = true;
             }
         }
