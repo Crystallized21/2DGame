@@ -25,6 +25,7 @@ public class Entity {
     public String[][] dialogues = new String[20][20];
     public Entity attacker;
     public String knockBackDirection;
+    public Entity linkedEntity;
 
     // State
     public int worldX, worldY;
@@ -107,6 +108,7 @@ public class Entity {
     public final int type_pickUps = 7;
     public final int type_obstacle = 8;
     public final int type_light = 9;
+    public final int type_pickaxe = 10;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
@@ -173,6 +175,11 @@ public class Entity {
         offBalanceCounter = 0;
     }
 
+    /**
+     * Sets the loot associated with this entity.
+     *
+     * @param loot the entity representing the loot to be associated with this entity
+     */
     public void setLoot(Entity loot) {}
 
     /**
@@ -185,12 +192,27 @@ public class Entity {
     public void setAction() {}
 
     /**
+     * Moves the entity in the specified direction.
+     *
+     * @param direction the direction in which the entity should move. This can
+     *                  typically be "up", "down", "left", or "right" depending
+     *                  on the implementation.
+     */
+    public void move(String direction) {}
+
+    /**
      * Handles the reaction of the entity when it takes damage.
      * This method is responsible for managing behavior, animations, or state changes
      * that occur when the entity is subjected to damage.
      */
     public void damageReaction() {}
 
+    /**
+     * Initiates dialogue or sound associated with the entity.
+     * This method handles the logic for the entity to speak,
+     * which could involve triggering predefined dialogues,
+     * sounds, or expressions based on the game's context.
+     */
     public void speak() {}
 
     public void facePlayer() {
@@ -216,8 +238,23 @@ public class Entity {
         dialogueSet = setNum;
     }
 
+    /**
+     * Defines the interaction behavior of an entity within the game.
+     * This method manages what happens when the entity interacts with
+     * another entity, object, or element in its environment. The implementation
+     * typically varies based on the entity's type and context within the game,
+     * allowing for actions such as picking up items, opening doors, or triggering events.
+     */
     public void interact() {}
 
+    /**
+     * Executes the use action for the specified entity.
+     * This method is typically responsible for defining what occurs when an entity is used,
+     * such as consuming an item or activating a particular effect specific to the entity and its context in the game.
+     *
+     * @param entity the entity to be used
+     * @return a boolean indicating whether the use action was successful
+     */
     public boolean use(Entity entity) {
         return false;
     }
@@ -240,21 +277,41 @@ public class Entity {
         }
     }
 
+    /**
+     * Retrieves the color of the particle associated with this entity.
+     *
+     * @return the color of the particle, or null if no color is defined
+     */
     public Color getParticleColor() {
         Color color = null;
         return color;
     }
 
+    /**
+     * Retrieves the size of the particle associated with this entity.
+     *
+     * @return the size of the particle as an integer
+     */
     public int getParticleSize() {
         int size = 0;
         return size;
     }
 
+    /**
+     * Retrieves the speed of the particle associated with this entity.
+     *
+     * @return the speed of the particle as an integer
+     */
     public int getParticleSpeed() {
         int speed = 0;
         return speed;
     }
 
+    /**
+     * Retrieves the maximum lifespan of a particle associated with this entity.
+     *
+     * @return the maximum particle life as an integer
+     */
     public int getParticleMaxLife() {
         int maxLife = 0;
         return maxLife;
@@ -292,6 +349,21 @@ public class Entity {
         }
     }
 
+    /**
+     * Updates the state and behavior of the entity during each game cycle.
+     * <p>
+     * This method is responsible for managing the entity's movement, actions,
+     * and animations based on its current state and conditions. It handles
+     * several behaviors, including knockback, attacking, collision checking,
+     * invincibility, and other status effects like off-balance.
+     * <p>
+     * Key behaviors include:
+     * - Handling knockback mechanics: movement and the resolution of collision during knockback.
+     * - Managing attacking actions through the `attacking` method.
+     * - Setting and executing the entity's actions when not in a special state.
+     * - Updating sprite frames for animations based on a counter.
+     * - Managing temporary effects such as invincibility, shot availability, and off-balance states.
+     */
     public void update() {
         if (knockBack) {
             checkCollision();
@@ -598,6 +670,14 @@ public class Entity {
         target.knockBack = true;
     }
 
+    /**
+     * Draws the character or object on the screen based on its position, direction,
+     * movement, and actions such as attacking or being invincible. The method also
+     * handles optimizations to only render elements visible within the screen bounds
+     * and displays additional visual elements like health bars or dying animations.
+     *
+     * @param g2 the {@code Graphics2D} object used for rendering images and shapes
+     */
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
 

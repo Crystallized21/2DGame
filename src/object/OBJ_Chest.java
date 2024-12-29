@@ -34,8 +34,8 @@ public class OBJ_Chest extends Entity {
     }
 
     public void setDialogue() {
-        dialogues[0][0] = "You opened the and found " + loot.name + "!\n...But your inventory is full.";
-        dialogues[1][0] = "You opened the and found " + loot.name + "!\nYou obtained " + loot.name + "!";
+        dialogues[0][0] = "You opened the and found a " + loot.name + "!\n...But your inventory is full.";
+        dialogues[1][0] = "You opened the and found a " + loot.name + "!\nYou obtained a " + loot.name + "!";
         dialogues[2][0] = "It's empty. What a waste of time.";
     }
 

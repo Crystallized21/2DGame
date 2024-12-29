@@ -18,7 +18,7 @@ public class IT_DryTree extends InteractiveTile {
 
         down1 = setup("tiles_interactive/drytree", gp.tileSize, gp.tileSize);
         destructible = true;
-        // TODO: Debugging reset life to 3
+        // TODO: Debugging reset life to 2
         life = 1;
     }
 
