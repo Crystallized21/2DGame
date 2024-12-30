@@ -474,10 +474,10 @@ public class Entity {
         }
     }
     
-    public void getRandomDirection() {
+    public void getRandomDirection(int interval) {
         // Get a random direction if the monster is not on the path
         actionLockCounter++;
-        if (actionLockCounter == 120) {
+        if (actionLockCounter == interval) {
             Random random = new Random();
             // Pick a random number between 1 and 100
             int i = random.nextInt(100) + 1;

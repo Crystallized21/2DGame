@@ -28,7 +28,7 @@ public class Lighting {
         Graphics2D g2 = (Graphics2D) darknessFilter.getGraphics();
 
         if (gp.player.currentLight == null) {
-            g2.setColor(new Color(0, 0, 0.1f, 0.94f));
+            g2.setColor(new Color(0, 0, 0.1f, 0.96f));
         } else {
             int centerX = gp.player.screenX + (gp.tileSize) / 2;
             int centerY = gp.player.screenY + (gp.tileSize) / 2;
@@ -46,9 +46,9 @@ public class Lighting {
             color[6] = new Color(0, 0, 0.1f, 0.82f);
             color[7] = new Color(0, 0, 0.1f, 0.87f);
             color[8] = new Color(0, 0, 0.1f, 0.91f);
-            color[9] = new Color(0, 0, 0.1f, 0.94f);
-            color[10] = new Color(0, 0, 0.1f, 0.96f);
-            color[11] = new Color(0, 0, 0.1f, 0.98f);
+            color[9] = new Color(0, 0, 0.1f, 0.92f);
+            color[10] = new Color(0, 0, 0.1f, 0.93f);
+            color[11] = new Color(0, 0, 0.1f, 0.94f);
 
             fraction[0] = 0f;
             fraction[1] = 0.4f;
@@ -62,7 +62,6 @@ public class Lighting {
             fraction[9] = 0.9f;
             fraction[10] = 0.95f;
             fraction[11] = 1f;
-
 
             // Create a gradation paint setting for the light circle
             RadialGradientPaint gPaint = new RadialGradientPaint(centerX, centerY, gp.player.currentLight.lightRadius, fraction, color);

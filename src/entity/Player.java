@@ -73,6 +73,7 @@ public class Player extends Entity {
     }
 
     public void setDefaultPositions() {
+        gp.currentMap = 0;
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
         direction = "down";
@@ -102,6 +103,7 @@ public class Player extends Entity {
         inventory.add(new OBJ_Key(gp));
         // TODO: Debugging purposes, remove the axe later
         inventory.add(new OBJ_Axe(gp));
+        inventory.add(new OBJ_Pickaxe(gp));
     }
 
     public int getAttack() {
