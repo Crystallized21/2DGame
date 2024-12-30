@@ -74,29 +74,18 @@ public class MON_SkeletonLord extends Entity {
     @Override
     public void setAction() {
         if (onPath) {
-            // If the monster is on the path and the player are far away, stop following the player
-            checkStopChasing(gp.player, 15, 100);
-
-            // Search a path to the player
-            searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
         } else {
-            // Check if the player is near
-            checkStartChasing(gp.player, 5, 100);
-
-            // Get a random direction if the monster is not on the path
-            getRandomDirection(120);
         }
 
         // Check if the orc can attack
         if (!attacking) {
-            checkAttack(30, gp.tileSize * 4, gp.tileSize);
+            checkAttack(60, gp.tileSize * 10, gp.tileSize * 5);
         }
     }
 
     @Override
     public void damageReaction() {
         actionLockCounter = 0;
-        onPath = true;
     }
 
     @Override

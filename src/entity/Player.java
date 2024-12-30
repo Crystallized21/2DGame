@@ -362,12 +362,14 @@ public class Player extends Entity {
             mana = maxMana;
         }
 
-        if (life <= 0) {
-            gp.gameState = gp.gameOverState;
-            gp.ui.commandNum = -1;
-            gp.stopMusic();
-            // gp.playMusic(index); This is for the game over music if I wanted to add it
-            gp.playSE(12);
+        if (!keyH.godMode) {
+            if (life <= 0) {
+                gp.gameState = gp.gameOverState;
+                gp.ui.commandNum = -1;
+                gp.stopMusic();
+                // gp.playMusic(index); This is for the game over music if I wanted to add it
+                gp.playSE(12);
+            }
         }
     }
     
