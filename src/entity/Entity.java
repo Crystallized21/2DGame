@@ -46,6 +46,7 @@ public class Entity {
     public boolean offBalance = false;
     public Entity loot;
     public boolean opened = false;
+    public boolean inRage = false;
 
     // Counters
     public int spriteCounter = 0;
@@ -487,7 +488,7 @@ public class Entity {
     public void getRandomDirection(int interval) {
         // Get a random direction if the monster is not on the path
         actionLockCounter++;
-        if (actionLockCounter == interval) {
+        if (actionLockCounter > interval) {
             Random random = new Random();
             // Pick a random number between 1 and 100
             int i = random.nextInt(100) + 1;
@@ -497,6 +498,27 @@ public class Entity {
             if (i > 50 && i <= 75) direction = "left";
             if (i > 75) direction = "right";
 
+            actionLockCounter = 0;
+        }
+    }
+
+    public void moveTowardPlayer(int interval) {
+        actionLockCounter++;
+
+        if (actionLockCounter > interval) {
+            if (getXDistance(gp.player) > getYDistance(gp.player)) {
+                if (gp.player.getCenterX() < getCenterX()) {
+                    direction = "left";
+                } else {
+                    direction = "right";
+                }
+            } else if (getXDistance(gp.player) < getYDistance(gp.player)) {
+                if (gp.player.getCenterY() < getCenterY()) {
+                    direction = "up";
+                } else {
+                    direction = "down";
+                }
+            }
             actionLockCounter = 0;
         }
     }
