@@ -82,6 +82,7 @@ public class Entity {
     public Entity currentShield;
     public Entity currentLight;
     public Projectile projectile;
+    public boolean boss;
 
     // Item Attributes
     public ArrayList<Entity> inventory = new ArrayList<>();
