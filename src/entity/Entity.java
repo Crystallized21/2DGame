@@ -797,6 +797,7 @@ public class Entity {
                 hpBarCounter = 0;
                 changeAlpha(g2, 0.4F);
             }
+
             if (dying) {
                 dyingAnimation(g2);
             }
