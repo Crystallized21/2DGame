@@ -204,11 +204,14 @@ public class UI {
                     int x = gp.screenWidth / 2 - gp.tileSize * 4;
                     int y = gp.tileSize * 10;
 
+                    // Use these if i wanna make the text go on the health bar
                     g2.setColor(new Color(35, 35, 35));
-                    g2.fillRect(x - 1 - 1, y - 1 - 16, gp.tileSize * 8 + 2, 12);
+                    g2.fillRect(x - 1, y - 1, gp.tileSize * 8 + 2, 22);
+                    // g2.fillRect(x - 1 - 1, y - 1 - 16, gp.tileSize * 8 + 2, 12);
 
                     g2.setColor(new Color(255, 0, 30));
-                    g2.fillRect(x, y - 15, (int) hpBarValue, 20);
+                    g2.fillRect(x, y, (int) hpBarValue, 20);
+                    // g2.fillRect(x, y - 15, (int) hpBarValue, 20);
 
                     g2.setFont(g2.getFont().deriveFont(Font.BOLD, 24F));
                     g2.setColor(Color.white);
