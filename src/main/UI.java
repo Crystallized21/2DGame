@@ -145,10 +145,12 @@ public class UI {
         while (i < gp.player.life) {
             g2.drawImage(heart_half, x, y, null);
             i++;
+
             if (i < gp.player.life) {
                 g2.drawImage(heart_full, x, y, null);
             }
             i++;
+
             x += gp.tileSize;
         }
 
