@@ -162,7 +162,7 @@ public class Entity {
         int centerY = worldY + up1.getHeight() / 2;
         return centerY;
     }
-    
+
     public int getXDistance(Entity target) {
         int xDistance = Math.abs(getCenterX() - target.worldX);
         return xDistance;
@@ -721,11 +721,11 @@ public class Entity {
     public boolean inCamera() {
         boolean inCamera = false;
 
-        if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
+        // 5 times cause the skeleton boss is big
+        if (worldX + gp.tileSize * 5 > gp.player.worldX - gp.player.screenX &&
                 worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-                worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
+                worldY + gp.tileSize * 5 > gp.player.worldY - gp.player.screenY &&
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenY
-
         ) {
             inCamera = true;
         }
