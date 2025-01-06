@@ -49,7 +49,7 @@ public class Player extends Entity {
         // Player Status
         level = 1;
         maxLife = 6;
-        life = 6;
+        life = maxLife;
         maxMana = 4;
         mana = maxMana;
         ammo = 10;
@@ -652,8 +652,10 @@ public class Player extends Entity {
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.3f));
         }
 
-        if (image != null) {
-            g2.drawImage(image, tempScreenX, tempScreenY, null);
+        if (drawing) {
+            if (image != null) {
+                g2.drawImage(image, tempScreenX, tempScreenY, null);
+            }
         }
 
         // Reset the composite
