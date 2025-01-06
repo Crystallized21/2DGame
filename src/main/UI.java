@@ -131,49 +131,77 @@ public class UI {
         int y = gp.tileSize / 2;
         int i = 0;
 
+        int iconSize = 32;
+        int manaStartX = (gp.tileSize / 2) - 5;
+        int manaStartY = 0;
+
         // Draw Blank Hearts, Draw Max Life
         while (i < gp.player.maxLife / 2) {
-            g2.drawImage(heart_blank, x, y, null);
+            g2.drawImage(heart_blank, x, y, iconSize, iconSize,null);
             i++;
-            x += gp.tileSize;
+            x += iconSize;
+
+            manaStartY = y + 32;
+
+            if (i % 8 == 0) {
+                x = gp.tileSize / 2;
+                y += iconSize;
+            }
         }
 
+        // Reset X and Y
         x = gp.tileSize / 2;
+        y = gp.tileSize / 2;
         i = 0;
 
         // Draw Current Life
         while (i < gp.player.life) {
-            g2.drawImage(heart_half, x, y, null);
+            g2.drawImage(heart_half, x, y, iconSize, iconSize,null);
             i++;
 
             if (i < gp.player.life) {
-                g2.drawImage(heart_full, x, y, null);
+                g2.drawImage(heart_full, x, y, iconSize, iconSize, null);
             }
             i++;
+            x += iconSize;
 
-            x += gp.tileSize;
+            if (i % 16 == 0) {
+                x = gp.tileSize / 2;
+                y += iconSize;
+            }
         }
 
-        // Draw Max Mana Crystals
-        x = (gp.tileSize / 2) - 5;
-        y = (int) (gp.tileSize * 1.5);
+        // Draw Max Mana Crystals (Blank Crystals)
+        x = manaStartX;
+        y = manaStartY;
         i = 0;
 
         while (i < gp.player.maxMana) {
-            g2.drawImage(crystal_blank, x, y, null);
+            g2.drawImage(crystal_blank, x, y, iconSize, iconSize, null);
             i++;
-            x += 35;
+            x += 20;
+
+            if (i % 10 == 0) {
+                x = manaStartX;
+                y += iconSize;
+            }
         }
 
-        // Draw Current Mana
-        x = (gp.tileSize / 2) - 5;
-        y = (int) (gp.tileSize * 1.5);
+        // Reset X and Y
+        x = manaStartX;
+        y = manaStartY;
         i = 0;
 
+        // Draw Current Mana
         while (i < gp.player.mana) {
-            g2.drawImage(crystal_full, x, y, null);
+            g2.drawImage(crystal_full, x, y, iconSize, iconSize, null);
             i++;
-            x += 35;
+            x += 20;
+
+            if (i % 10 == 0) {
+                x = manaStartX;
+                y += iconSize;
+            }
         }
     }
 
