@@ -2,6 +2,7 @@ package main;
 
 import entity.PlayerDummy;
 import monster.MON_SkeletonLord;
+import object.OBJ_BlueHeart;
 import object.OBJ_Door_Iron;
 
 import java.awt.*;
@@ -12,13 +13,25 @@ public class CutsceneManager {
     Graphics2D g2;
     public int sceneNum;
     public int scenePhase;
+    int counter = 0;
+    float alpha = 0;
+    int y;
+    String endCredit;
 
     // Scene Number
     public final int NA = 0;
     public final int skeletonLord = 1;
+    public final int ending = 2;
 
     public CutsceneManager(GamePanel gp) {
         this.gp = gp;
+
+        endCredit = "Music/Art/Design\n" +
+                "RyiSnow" +
+                "\n\n\n\n\n\n\n\n\n\n\n\n\n" +
+                "Programming\n" +
+                "Michael Bui\n\n\n\n\n\n" +
+                "Thank yoiu for playing!";
     }
 
     public void draw(Graphics2D g2) {
@@ -27,6 +40,9 @@ public class CutsceneManager {
         switch (sceneNum) {
             case skeletonLord:
                 scene_skeletonLord();
+                break;
+            case ending:
+                scene_ending();
                 break;
         }
     }
@@ -114,5 +130,126 @@ public class CutsceneManager {
             gp.stopMusic();
             gp.playMusic(22);
         }
+    }
+
+    public void scene_ending() {
+        if (scenePhase == 0) {
+            gp.stopMusic();
+            gp.ui.npc = new OBJ_BlueHeart(gp);
+            scenePhase++;
+        }
+
+        if (scenePhase == 1) {
+            // Display the dialogues
+            gp.ui.drawDialogueScreen();
+        }
+
+        if (scenePhase == 2) {
+            gp.playSE(4);
+            scenePhase++;
+        }
+
+        if (scenePhase == 3) {
+            // Wait until the sound effect ends
+            if (counterReached(300)) {
+                scenePhase++;
+            }
+        }
+
+        if (scenePhase == 4) {
+            // Fade out the screen
+            alpha += 0.05f;
+            if (alpha > 1f) {
+                alpha = 1f;
+                scenePhase++;
+            }
+            drawBlackBackground(alpha);
+
+            if (alpha == 1f) {
+                alpha = 0;
+                scenePhase++;
+            }
+        }
+
+        if (scenePhase == 5) {
+            drawBlackBackground(1f);
+
+            alpha += 0.05f;
+            if (alpha > 1f) {
+                alpha = 1f;
+            }
+
+            String text = "After the fierce battle, the skeleton lord was defeated.\n" +
+                    "The Blue Boy finally found the legendary treasure, the blue heart.\n" +
+                    "But the adventure was not over yet.\n" +
+                    "It was just the beginning of a new journey.";
+            drawString(alpha, 38f, 200, text, 70);
+
+            if (counterReached(600)) {
+                gp.playMusic(0);
+                scenePhase++;
+            }
+        }
+
+        if (scenePhase == 6) {
+            drawBlackBackground(1f);
+
+            drawString(1f, 120f, gp.screenHeight / 2, "Blue Boy Adventure", 40);
+
+            if (counterReached(480)) {
+                scenePhase++;
+            }
+        }
+
+        if (scenePhase == 7) {
+            drawBlackBackground(1f);
+
+            y = gp.screenHeight / 2;
+            drawString(1f, 38f, y, endCredit, 40);
+
+            if (counterReached(480)) {
+                scenePhase++;
+            }
+        }
+
+        if (scenePhase == 8) {
+            drawBlackBackground(1f);
+
+            // Scrolling the credits
+            y--;
+            drawString(1f, 38f, y, endCredit, 40);
+        }
+    }
+
+    public boolean counterReached(int target) {
+        boolean counterReached = false;
+
+        counter++;
+        if (counter > target) {
+            counterReached = true;
+            counter = 0;
+        }
+
+        return counterReached;
+    }
+
+    public void drawBlackBackground(float alpha) {
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+        g2.setColor(Color.black);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+    }
+
+    public void drawString(float alpha, float fontSize, int y, String text, int lineHeight) {
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(fontSize));
+
+        for (String line : text.split("\n")) {
+            int x = gp.ui.getXforCenteredText(line);
+            g2.drawString(line, x, y);
+            y += lineHeight;
+        }
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 }

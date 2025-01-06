@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 public class Main {
     public static JFrame window;
@@ -16,7 +17,8 @@ public class Main {
         window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.setTitle("2D Adventure");
+        window.setTitle("Blue Boy Adventure");
+        new Main().setIcon();
 
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
@@ -31,6 +33,11 @@ public class Main {
 
         gamePanel.setUpGame();
         gamePanel.startGameThread();
+    }
+
+    private void setIcon() {
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("player/boy_down_1.png")));
+        window.setIconImage(icon.getImage());
     }
 
     private static void initializeGraphics() {
