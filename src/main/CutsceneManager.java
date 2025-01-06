@@ -158,7 +158,7 @@ public class CutsceneManager {
 
         if (scenePhase == 4) {
             // Fade out the screen
-            alpha += 0.05f;
+            alpha += 0.005f;
             if (alpha > 1f) {
                 alpha = 1f;
                 scenePhase++;
@@ -174,7 +174,7 @@ public class CutsceneManager {
         if (scenePhase == 5) {
             drawBlackBackground(1f);
 
-            alpha += 0.05f;
+            alpha += 0.005f;
             if (alpha > 1f) {
                 alpha = 1f;
             }
@@ -187,6 +187,7 @@ public class CutsceneManager {
 
             if (counterReached(600)) {
                 gp.playMusic(0);
+                alpha = 0f;
                 scenePhase++;
             }
         }
