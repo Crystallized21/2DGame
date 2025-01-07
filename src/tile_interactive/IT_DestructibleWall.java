@@ -2,6 +2,7 @@ package tile_interactive;
 
 import entity.Entity;
 import main.GamePanel;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 
@@ -23,7 +24,7 @@ public class IT_DestructibleWall extends InteractiveTile {
     }
 
     @Override
-    public boolean isCorrectItem(Entity entity) {
+    public boolean isCorrectItem(@NotNull Entity entity) {
         boolean isCorrectItem = false;
 
         if (entity.currentWeapon.type == type_pickaxe) {

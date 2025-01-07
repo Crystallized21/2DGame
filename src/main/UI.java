@@ -5,6 +5,7 @@ import entity.Entity;
 import object.OBJ_Coin_Bronze;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -70,7 +71,7 @@ public class UI {
         messageCounter.add(0);
     }
 
-    public void draw(Graphics2D g2) {
+    public void draw(@NotNull Graphics2D g2) {
         this.g2 = g2;
 
         g2.setFont(maruMonica);

@@ -2,6 +2,7 @@ package entity;
 
 import main.GamePanel;
 import main.UtilityTool;
+import org.jetbrains.annotations.NotNull;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -163,12 +164,12 @@ public class Entity {
         return centerY;
     }
 
-    public int getXDistance(Entity target) {
+    public int getXDistance(@NotNull Entity target) {
         int xDistance = Math.abs(getCenterX() - target.worldX);
         return xDistance;
     }
 
-    public int getYDistance(Entity target) {
+    public int getYDistance(@NotNull Entity target) {
         int yDistance = Math.abs(getCenterY() - target.worldY);
         return yDistance;
     }
@@ -178,12 +179,12 @@ public class Entity {
         return tileDistance;
     }
 
-    public int getGoalCol(Entity target) {
+    public int getGoalCol(@NotNull Entity target) {
         int goalCol = (target.worldX + target.solidArea.x) / gp.tileSize;
         return goalCol;
     }
 
-    public int getGoalRow(Entity target) {
+    public int getGoalRow(@NotNull Entity target) {
         int goalRow = (target.worldY + target.solidArea.y) / gp.tileSize;
         return goalRow;
     }
@@ -342,7 +343,7 @@ public class Entity {
         return maxLife;
     }
 
-    public void generateParticle(Entity generator, Entity target) {
+    public void generateParticle(@NotNull Entity generator, Entity target) {
         // TODO: Make particle generation more dynamic and random
 
         Color color = generator.getParticleColor();
@@ -539,7 +540,7 @@ public class Entity {
         }
     }
 
-    public String getOppositeDirection(String direction) {
+    public String getOppositeDirection(@NotNull String direction) {
         String oppositeDirection = "";
         
         switch (direction) {
@@ -711,7 +712,7 @@ public class Entity {
         }
     }
 
-    public void setKnockBack(Entity target, Entity attacker, int knockBackPower) {
+    public void setKnockBack(@NotNull Entity target, @NotNull Entity attacker, int knockBackPower) {
         this.attacker = attacker;
         target.knockBackDirection = attacker.direction;
         target.speed += knockBackPower;
@@ -827,7 +828,7 @@ public class Entity {
         }
     }
 
-    public void changeAlpha(Graphics2D g2, float alphaValue) {
+    public void changeAlpha(@NotNull Graphics2D g2, float alphaValue) {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
 
@@ -913,7 +914,7 @@ public class Entity {
         }
     }
 
-    public int getDetected(Entity user, Entity[][] target, String targetName) {
+    public int getDetected(@NotNull Entity user, Entity[][] target, String targetName) {
         int index = 999;
         // Check surrounding objects
         int nextWorldX = user.getLeftX();

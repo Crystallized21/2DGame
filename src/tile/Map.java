@@ -1,6 +1,7 @@
 package tile;
 
 import main.GamePanel;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -47,7 +48,7 @@ public class Map extends TileManager {
         }
     }
 
-    public void drawFullMapScreen(Graphics2D g2) {
+    public void drawFullMapScreen(@NotNull Graphics2D g2) {
         // Draw Background Color
         g2.setColor(Color.black);
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);

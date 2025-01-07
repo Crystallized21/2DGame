@@ -2,6 +2,7 @@ package ai;
 
 import entity.Entity;
 import main.GamePanel;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -98,7 +99,7 @@ public class PathFinder {
         }
     }
 
-    public void getCost(Node node) {
+    public void getCost(@NotNull Node node) {
         // G Cost
         int xDistance = Math.abs(node.col - startNode.col);
         int yDistance = Math.abs(node.row - startNode.row);
@@ -175,7 +176,7 @@ public class PathFinder {
         return goalReached;
     }
 
-    public void openNode(Node node) {
+    public void openNode(@NotNull Node node) {
         if (!node.open && !node.checked && !node.solid) {
             node.open = true;
             node.parent = currentNode;

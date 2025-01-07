@@ -1,5 +1,7 @@
 package main;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -21,7 +23,7 @@ public class KeyHandler implements KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(@NotNull KeyEvent e) {
         int code = e.getKeyCode();
 
         // Title State
@@ -398,7 +400,7 @@ public class KeyHandler implements KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(@NotNull KeyEvent e) {
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_W) {

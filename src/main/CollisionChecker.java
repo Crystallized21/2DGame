@@ -1,6 +1,7 @@
 package main;
 
 import entity.Entity;
+import org.jetbrains.annotations.NotNull;
 
 public class CollisionChecker {
 
@@ -10,7 +11,7 @@ public class CollisionChecker {
         this.gp = gp;
     }
 
-    public void checkTile(Entity entity) {
+    public void checkTile(@NotNull Entity entity) {
         int entityLeftWorldX = entity.worldX + entity.solidArea.x;
         int entityRightWorldX = entity.worldX + entity.solidArea.x + entity.solidArea.width;
         int entityTopWorldY = entity.worldY + entity.solidArea.y;
@@ -65,7 +66,7 @@ public class CollisionChecker {
         }
     }
 
-    public int checkObject(Entity entity, boolean player) {
+    public int checkObject(@NotNull Entity entity, boolean player) {
         int index = 999;
         
         String direction = entity.direction;
@@ -116,7 +117,7 @@ public class CollisionChecker {
     }
 
     // NPC or Monster
-    public int checkEntity(Entity entity, Entity[][] target) {
+    public int checkEntity(@NotNull Entity entity, Entity[][] target) {
         int index = 999;
 
         // Use a temporal direction when an entity is being knocked back
@@ -165,7 +166,7 @@ public class CollisionChecker {
         return index;
     }
 
-    public boolean checkPlayer(Entity entity) {
+    public boolean checkPlayer(@NotNull Entity entity) {
 
         boolean contactPlayer = false;
 

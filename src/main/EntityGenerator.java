@@ -2,6 +2,7 @@ package main;
 
 import entity.Entity;
 import object.*;
+import org.jetbrains.annotations.NotNull;
 
 public class EntityGenerator {
 
@@ -11,7 +12,7 @@ public class EntityGenerator {
         this.gp = gp;
     }
 
-    public Entity getObject(String itemName) {
+    public Entity getObject(@NotNull String itemName) {
 
         Entity obj = null;
 

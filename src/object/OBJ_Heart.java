@@ -2,6 +2,7 @@ package object;
 
 import entity.Entity;
 import main.GamePanel;
+import org.jetbrains.annotations.NotNull;
 
 public class OBJ_Heart extends Entity {
 
@@ -23,7 +24,7 @@ public class OBJ_Heart extends Entity {
     }
 
     @Override
-    public boolean use(Entity entity) {
+    public boolean use(@NotNull Entity entity) {
         gp.playSE(2);
         gp.ui.addMessage("Life + " + value);
         entity.life += value;

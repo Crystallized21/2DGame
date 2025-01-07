@@ -4,6 +4,7 @@ import main.EntityGenerator;
 import main.GamePanel;
 import main.KeyHandler;
 import object.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -556,7 +557,7 @@ public class Player extends Entity {
         return itemIndex;
     }
 
-    public boolean canObtainItem(Entity item) {
+    public boolean canObtainItem(@NotNull Entity item) {
 
         boolean canObtain = false;
 
@@ -662,10 +663,5 @@ public class Player extends Entity {
 
         // Reset the composite
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
-
-        // Debug
-//        g2.setFont(new Font("Arial", Font.PLAIN, 26));
-//        g2.setColor(Color.white);
-//        g2.drawString("Invincible " + invincibleCounter, 10, 400);
     }
 }

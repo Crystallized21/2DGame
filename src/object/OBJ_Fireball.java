@@ -3,6 +3,7 @@ package object;
 import entity.Entity;
 import entity.Projectile;
 import main.GamePanel;
+import org.jetbrains.annotations.NotNull;
 
 public class OBJ_Fireball extends Projectile {
 
@@ -36,12 +37,12 @@ public class OBJ_Fireball extends Projectile {
     }
 
     @Override
-    public boolean haveResource(Entity user) {
+    public boolean haveResource(@NotNull Entity user) {
         return user.mana >= useCost;
     }
 
     @Override
-    public void subtractResource(Entity user) {
+    public void subtractResource(@NotNull Entity user) {
         user.mana -= useCost;
     }
 }

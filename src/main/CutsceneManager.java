@@ -4,6 +4,7 @@ import entity.PlayerDummy;
 import monster.MON_SkeletonLord;
 import object.OBJ_BlueHeart;
 import object.OBJ_Door_Iron;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 
@@ -241,7 +242,7 @@ public class CutsceneManager {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
     }
 
-    public void drawString(float alpha, float fontSize, int y, String text, int lineHeight) {
+    public void drawString(float alpha, float fontSize, int y, @NotNull String text, int lineHeight) {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha));
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(fontSize));
