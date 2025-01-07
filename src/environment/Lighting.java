@@ -91,7 +91,8 @@ public class Lighting {
         if (dayState == day) {
             dayCounter++;
 
-            if (dayCounter > 600) {
+            // 5400 is 3 minutes
+            if (dayCounter > 5400) {
                 dayState = dusk;
                 dayCounter = 0;
             }
@@ -109,7 +110,8 @@ public class Lighting {
         if (dayState == night) {
             dayCounter++;
 
-            if (dayCounter > 600) {
+            // 3600 is 1 minute
+            if (dayCounter > 3600) {
                 dayState = dawn;
                 dayCounter = 0;
             }
@@ -134,25 +136,25 @@ public class Lighting {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         
         // Debug info
-        String situation = "";
-        
-        switch (dayState) {
-            case day:
-                situation = "Day";
-                break;
-            case dusk:
-                situation = "Dusk";
-                break;
-            case night:
-                situation = "Night";
-                break;
-            case dawn:
-                situation = "Dawn";
-                break;
-        }
+//        String situation = "";
+//
+//        switch (dayState) {
+//            case day:
+//                situation = "Day";
+//                break;
+//            case dusk:
+//                situation = "Dusk";
+//                break;
+//            case night:
+//                situation = "Night";
+//                break;
+//            case dawn:
+//                situation = "Dawn";
+//                break;
+//        }
         
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(50F));
-        g2.drawString(situation, 800, 500);
+//        g2.drawString(situation, 800, 500);
     }
 }
