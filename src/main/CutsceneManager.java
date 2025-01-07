@@ -10,14 +10,14 @@ import java.awt.*;
 
 public class CutsceneManager {
 
-    GamePanel gp;
+    final GamePanel gp;
     Graphics2D g2;
     public int sceneNum;
     public int scenePhase;
     int counter = 0;
     float alpha = 0;
     int y;
-    String endCredit;
+    final String endCredit;
 
     // Scene Number
     public final int NA = 0;
@@ -27,12 +27,30 @@ public class CutsceneManager {
     public CutsceneManager(GamePanel gp) {
         this.gp = gp;
 
-        endCredit = "Music/Art/Design\n" +
-                "RyiSnow" +
-                "\n\n\n\n\n\n\n\n\n\n\n\n\n" +
-                "Programming\n" +
-                "Michael Bui\n\n\n\n\n\n" +
-                "Thank you for playing!";
+        endCredit = """
+                Music/Art/Design
+                RyiSnow\
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                Programming
+                Michael Bui
+                
+                
+                
+                
+                
+                Thank you for playing!""";
     }
 
     public void draw(Graphics2D g2) {
@@ -111,7 +129,7 @@ public class CutsceneManager {
 
             // Search for the fake player
             for (int i = 0; i < gp.npc[i].length; i++) {
-                if (gp.npc[gp.currentMap][i] != null && gp.npc[gp.currentMap][i].name == PlayerDummy.npcName) {
+                if (gp.npc[gp.currentMap][i] != null && gp.npc[gp.currentMap][i].name.equals(PlayerDummy.npcName)) {
                     gp.player.worldX = gp.npc[gp.currentMap][i].worldX;
                     gp.player.worldY = gp.npc[gp.currentMap][i].worldY;
                     // Remove the fake player
@@ -180,10 +198,11 @@ public class CutsceneManager {
                 alpha = 1f;
             }
 
-            String text = "After the fierce battle, the skeleton lord was defeated.\n" +
-                    "The Blue Boy finally found the legendary treasure, the blue heart.\n" +
-                    "But the adventure was not over yet.\n" +
-                    "It was just the beginning of a new journey.";
+            String text = """
+                    After the fierce battle, the skeleton lord was defeated.
+                    The Blue Boy finally found the legendary treasure, the blue heart.
+                    But the adventure was not over yet.
+                    It was just the beginning of a new journey.""";
             drawString(alpha, 38f, 200, text, 70);
 
             if (counterReached(600)) {

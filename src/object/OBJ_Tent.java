@@ -9,7 +9,7 @@ public class OBJ_Tent extends Entity {
     *   Maybe like having the player touch the bed talk to the innkeeper
     *   to sleep.*/
     
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Tent";
     
     public OBJ_Tent(GamePanel gp) {

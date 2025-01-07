@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class OBJ_Potion_Red extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Red Potion";
 
     public OBJ_Potion_Red(GamePanel gp) {

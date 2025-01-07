@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class MON_Orc extends Entity {
     
-    GamePanel gp;
+    final GamePanel gp;
     
     public MON_Orc(GamePanel gp) {
         super(gp);

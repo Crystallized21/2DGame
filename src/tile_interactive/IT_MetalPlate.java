@@ -4,11 +4,11 @@ import main.GamePanel;
 
 public class IT_MetalPlate extends InteractiveTile {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String itName = "Metal Plate";
 
     public IT_MetalPlate(GamePanel gp, int col, int row) {
-        super(gp, col, row);
+        super(gp);
         this.gp = gp;
 
         this.worldX = gp.tileSize * col;

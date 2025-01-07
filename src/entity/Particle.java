@@ -7,10 +7,10 @@ import java.awt.*;
 
 public class Particle extends Entity {
 
-    Entity generator;
-    Color color;
-    int size;
-    int xd;
+    final Entity generator;
+    final Color color;
+    final int size;
+    final int xd;
     int yd;
 
     public Particle(GamePanel gp, @NotNull Entity generator, Color color, int size, int speed, int maxLife, int xd, int yd) {

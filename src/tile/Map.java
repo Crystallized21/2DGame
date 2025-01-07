@@ -5,11 +5,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.security.SecureClassLoader;
 
 public class Map extends TileManager {
     
-    GamePanel gp;
+    final GamePanel gp;
     BufferedImage[] worldMap;
     public boolean miniMapOn = false;
     
@@ -26,7 +25,7 @@ public class Map extends TileManager {
 
         for (int i = 0; i < gp.maxMap; i++) {
             worldMap[i] = new BufferedImage(worldMapWidth, worldMapHeight, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g2 = (Graphics2D) worldMap[i].createGraphics();
+            Graphics2D g2 = worldMap[i].createGraphics();
             
             int col = 0;
             int row = 0;
@@ -89,7 +88,7 @@ public class Map extends TileManager {
             double scale = (double) (gp.tileSize * gp.maxWorldCol) / width;
             int playerX = (int) (x + gp.player.worldX / scale);
             int playerY = (int) (y + gp.player.worldY / scale);
-            int playerSize = (int) (gp.tileSize / 3);
+            int playerSize = gp.tileSize / 3;
             g2.drawImage(gp.player.down1, playerX - 6, playerY - 6, playerSize, playerSize, null);
             g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         }

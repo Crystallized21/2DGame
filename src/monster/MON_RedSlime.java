@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class MON_RedSlime extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
 
     public MON_RedSlime(GamePanel gp) {
         super(gp);

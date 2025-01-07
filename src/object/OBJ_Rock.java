@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class OBJ_Rock extends Projectile {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Rock";
 
     public OBJ_Rock(GamePanel gp) {
@@ -49,25 +49,7 @@ public class OBJ_Rock extends Projectile {
 
     @Override
     public Color getParticleColor() {
-        Color color = new Color(40, 50, 0);
-        return color;
+        return new Color(40, 50, 0);
     }
 
-    @Override
-    public int getParticleSize() {
-        int size = 10;
-        return size;
-    }
-
-    @Override
-    public int getParticleSpeed() {
-        int speed = 1;
-        return speed;
-    }
-
-    @Override
-    public int getParticleMaxLife() {
-        int maxLife = 20;
-        return maxLife;
-    }
 }

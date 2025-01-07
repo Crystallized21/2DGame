@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class MON_SkeletonLord extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String monName = "Skeleton Lord";
 
     public MON_SkeletonLord(GamePanel gp) {

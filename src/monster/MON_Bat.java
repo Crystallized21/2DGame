@@ -9,7 +9,7 @@ import object.OBJ_ManaCrystal;
 import java.util.Random;
 
 public class MON_Bat extends Entity {
-    GamePanel gp;
+    final GamePanel gp;
 
     public MON_Bat(GamePanel gp) {
         super(gp);

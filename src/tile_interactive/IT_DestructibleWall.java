@@ -8,10 +8,10 @@ import java.awt.*;
 
 public class IT_DestructibleWall extends InteractiveTile {
 
-    GamePanel gp;
+    final GamePanel gp;
 
     public IT_DestructibleWall(GamePanel gp, int col, int row) {
-        super(gp, col, row);
+        super(gp);
         this.gp = gp;
 
         this.worldX = gp.tileSize * col;
@@ -25,13 +25,8 @@ public class IT_DestructibleWall extends InteractiveTile {
 
     @Override
     public boolean isCorrectItem(@NotNull Entity entity) {
-        boolean isCorrectItem = false;
 
-        if (entity.currentWeapon.type == type_pickaxe) {
-            isCorrectItem = true;
-        }
-
-        return isCorrectItem;
+        return entity.currentWeapon.type == type_pickaxe;
     }
 
     @Override
@@ -40,32 +35,23 @@ public class IT_DestructibleWall extends InteractiveTile {
     }
 
     @Override
-    public InteractiveTile getDestroyedForm() {
-        InteractiveTile tile = null;
-        return tile;
-    }
-
-    @Override
     public Color getParticleColor() {
-        Color color = new Color(65, 65, 65);
-        return color;
+        return new Color(65, 65, 65);
     }
 
     @Override
     public int getParticleSize() {
-        int size = 6; // 6 Pixels
-        return size;
+        // 6 Pixels
+        return 6;
     }
 
     @Override
     public int getParticleSpeed() {
-        int speed = 1;
-        return speed;
+        return 1;
     }
 
     @Override
     public int getParticleMaxLife() {
-        int maxLife = 20;
-        return maxLife;
+        return 20;
     }
 }

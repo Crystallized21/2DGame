@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class OBJ_Fireball extends Projectile {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Fireball";
 
     public OBJ_Fireball(GamePanel gp) {

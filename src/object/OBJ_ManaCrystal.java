@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class OBJ_ManaCrystal extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Mana Crystal";
 
     public OBJ_ManaCrystal(GamePanel gp) {

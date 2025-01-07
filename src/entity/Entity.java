@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Entity {
-    GamePanel gp;
+    final GamePanel gp;
 
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
     public BufferedImage attackUp1, attackUp2, attackDown1, attackDown2, attackLeft1, attackLeft2, attackRight1, attackRight2, 
@@ -23,7 +23,7 @@ public class Entity {
     public Rectangle attackArea = new Rectangle(0, 0, 0, 0);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collision = false;
-    public String[][] dialogues = new String[20][20];
+    public final String[][] dialogues = new String[20][20];
     public Entity attacker;
     public String knockBackDirection;
     public Entity linkedEntity;
@@ -89,7 +89,7 @@ public class Entity {
     public boolean boss;
 
     // Item Attributes
-    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final ArrayList<Entity> inventory = new ArrayList<>();
     public final int maxInventorySize = 20;
     public int value;
     public int attackValue;
@@ -121,13 +121,11 @@ public class Entity {
     }
 
     public int getScreenX() {
-        int screenX = worldX - gp.player.worldX + gp.player.screenX;
-        return screenX;
+        return worldX - gp.player.worldX + gp.player.screenX;
     }
 
     public int getScreenY() {
-        int screenY = worldY - gp.player.worldY + gp.player.screenY;
-        return screenY;
+        return worldY - gp.player.worldY + gp.player.screenY;
     }
 
     public int getLeftX() {
@@ -155,38 +153,31 @@ public class Entity {
     }
 
     public int getCenterX() {
-        int centerX = worldX + left1.getWidth() / 2;
-        return centerX;
+        return worldX + left1.getWidth() / 2;
     }
 
     public int getCenterY() {
-        int centerY = worldY + up1.getHeight() / 2;
-        return centerY;
+        return worldY + up1.getHeight() / 2;
     }
 
     public int getXDistance(@NotNull Entity target) {
-        int xDistance = Math.abs(getCenterX() - target.worldX);
-        return xDistance;
+        return Math.abs(getCenterX() - target.worldX);
     }
 
     public int getYDistance(@NotNull Entity target) {
-        int yDistance = Math.abs(getCenterY() - target.worldY);
-        return yDistance;
+        return Math.abs(getCenterY() - target.worldY);
     }
 
     public int getTileDistance(Entity target) {
-        int tileDistance = (getXDistance(target) + getYDistance(target)) / gp.tileSize;
-        return tileDistance;
+        return (getXDistance(target) + getYDistance(target)) / gp.tileSize;
     }
 
     public int getGoalCol(@NotNull Entity target) {
-        int goalCol = (target.worldX + target.solidArea.x) / gp.tileSize;
-        return goalCol;
+        return (target.worldX + target.solidArea.x) / gp.tileSize;
     }
 
     public int getGoalRow(@NotNull Entity target) {
-        int goalRow = (target.worldY + target.solidArea.y) / gp.tileSize;
-        return goalRow;
+        return (target.worldY + target.solidArea.y) / gp.tileSize;
     }
 
     public void resetCounter() {
@@ -309,8 +300,7 @@ public class Entity {
      * @return the color of the particle, or null if no color is defined
      */
     public Color getParticleColor() {
-        Color color = null;
-        return color;
+        return null;
     }
 
     /**
@@ -319,8 +309,7 @@ public class Entity {
      * @return the size of the particle as an integer
      */
     public int getParticleSize() {
-        int size = 0;
-        return size;
+        return 0;
     }
 
     /**
@@ -329,8 +318,7 @@ public class Entity {
      * @return the speed of the particle as an integer
      */
     public int getParticleSpeed() {
-        int speed = 0;
-        return speed;
+        return 0;
     }
 
     /**
@@ -339,8 +327,7 @@ public class Entity {
      * @return the maximum particle life as an integer
      */
     public int getParticleMaxLife() {
-        int maxLife = 0;
-        return maxLife;
+        return 0;
     }
 
     public void generateParticle(@NotNull Entity generator, Entity target) {
@@ -395,26 +382,28 @@ public class Entity {
             if (knockBack) {
                 checkCollision();
 
+                //noinspection DuplicateCondition
                 if (collisionOn) {
                     knockBackCounter = 0;
                     knockBack = false;
                     speed = defaultSpeed;
-                } else if (!collisionOn) {
-                    switch (knockBackDirection) {
-                        case "up":
-                            worldY -= speed;
-                            break;
-                        case "down":
-                            worldY += speed;
-                            break;
-                        case "left":
-                            worldX -= speed;
-                            break;
-                        case "right":
-                            worldX += speed;
-                            break;
-                    }
+                } else //noinspection DuplicateCondition
+                {
+                switch (knockBackDirection) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
                 }
+            }
 
                 knockBackCounter++;
                 if (knockBackCounter == 10) {
@@ -541,23 +530,14 @@ public class Entity {
     }
 
     public String getOppositeDirection(@NotNull String direction) {
-        String oppositeDirection = "";
-        
-        switch (direction) {
-            case "up":
-                oppositeDirection = "down";
-                break;
-            case "down":
-                oppositeDirection = "up";
-                break;
-            case "left":
-                oppositeDirection = "right";
-                break;
-            case "right":
-                oppositeDirection = "left";
-                break;
-        }
-        
+        String oppositeDirection = switch (direction) {
+            case "up" -> "down";
+            case "down" -> "up";
+            case "left" -> "right";
+            case "right" -> "left";
+            default -> "";
+        };
+
         return oppositeDirection;
     }
 
@@ -720,18 +700,13 @@ public class Entity {
     }
 
     public boolean inCamera() {
-        boolean inCamera = false;
 
         // 5 times cause the skeleton boss is big
-        if (worldX + gp.tileSize * 5 > gp.player.worldX - gp.player.screenX &&
+
+        return worldX + gp.tileSize * 5 > gp.player.worldX - gp.player.screenX &&
                 worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
                 worldY + gp.tileSize * 5 > gp.player.worldY - gp.player.screenY &&
-                worldY - gp.tileSize < gp.player.worldY + gp.player.screenY
-        ) {
-            inCamera = true;
-        }
-
-        return inCamera;
+                worldY - gp.tileSize < gp.player.worldY + gp.player.screenY;
     }
 
     /**
@@ -850,12 +825,12 @@ public class Entity {
         int startCol = (worldX + solidArea.x) / gp.tileSize;
         int startRow = (worldY + solidArea.y) / gp.tileSize;
 
-        gp.pFinder.setNodes(startCol, startRow, goalCol, goalRow, this);
+        gp.pFinder.setNodes(startCol, startRow, goalCol, goalRow);
 
         if (gp.pFinder.search()) {
             // Next worldX and worldY
-            int nextX = gp.pFinder.pathList.get(0).col * gp.tileSize;
-            int nextY = gp.pFinder.pathList.get(0).row * gp.tileSize;
+            int nextX = gp.pFinder.pathList.getFirst().col * gp.tileSize;
+            int nextY = gp.pFinder.pathList.getFirst().row * gp.tileSize;
 
             // Entity's solid area position
             int enLeftX = worldX + solidArea.x;
@@ -906,8 +881,8 @@ public class Entity {
             }
 
             // If th entity reaches the goal, stop the path
-            int nextCol = gp.pFinder.pathList.get(0).col;
-            int nextRow = gp.pFinder.pathList.get(0).row;
+            int nextCol = gp.pFinder.pathList.getFirst().col;
+            int nextRow = gp.pFinder.pathList.getFirst().row;
             if (nextCol == goalCol && nextRow == goalRow) {
                 onPath = false;
             }

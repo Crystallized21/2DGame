@@ -4,9 +4,9 @@ import data.Progress;
 import entity.Entity;
 
 public class EventHandler {
-    GamePanel gp;
-    EventRect[][][] eventRect;
-    Entity eventMaster;
+    final GamePanel gp;
+    final EventRect[][][] eventRect;
+    final Entity eventMaster;
 
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
@@ -48,8 +48,11 @@ public class EventHandler {
     public void setDialogue() {
         eventMaster.dialogues[0][0] = "You fell into a pit!";
 
-        eventMaster.dialogues[1][0] = "You drank from the pool and feel refreshed! \nYour life and mana has been restored!" +
-                "\n(Your progress has been saved)";
+        eventMaster.dialogues[1][0] = """
+                You drank from the pool and feel refreshed!\s
+                Your life and mana has been restored!\
+                
+                (Your progress has been saved)""";
         eventMaster.dialogues[1][1] = "Damn, this is good water my dude.";
     }
 

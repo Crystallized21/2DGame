@@ -5,7 +5,6 @@ import main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,18 +13,19 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class TileManager {
-    GamePanel gp;
+    final GamePanel gp;
     public Tile[] tile;
     public int[][][] mapTileNum;
     boolean drawPath = true;
-    ArrayList<String> fileNames = new ArrayList<>();
-    ArrayList<String> collisionStatus = new ArrayList<>();
+    final ArrayList<String> fileNames = new ArrayList<>();
+    final ArrayList<String> collisionStatus = new ArrayList<>();
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
 
         // Read Tile Data file
         InputStream is = getClass().getResourceAsStream("/maps/tiledata.txt");
+        assert is != null;
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
         // Get tile names and collision status from the file
@@ -47,6 +47,7 @@ public class TileManager {
 
         // Get the world's max column and row
         is = getClass().getResourceAsStream("/maps/worldmap.txt");
+        assert is != null;
         br = new BufferedReader(new InputStreamReader(is));
 
         try {
@@ -67,8 +68,6 @@ public class TileManager {
         loadMap("/maps/dungeon01.txt", 2);
         loadMap("/maps/dungeon02.txt", 3);
 
-//        loadMap("/maps/worldV3.txt", 0);
-//        loadMap("/maps/interior01.txt", 1);
     }
 
     public void getTileImage() {
@@ -78,11 +77,7 @@ public class TileManager {
 
             // Get the file name and collision status
             fileName = fileNames.get(i);
-            if (collisionStatus.get(i).equals("true")) {
-                collision = true;
-            } else {
-                collision = false;
-            }
+            collision = collisionStatus.get(i).equals("true");
 
             setup(i, fileName, collision);
         }
@@ -169,17 +164,5 @@ public class TileManager {
 
         // Draw the path, if needed or something idk
 
-//        if (drawPath) {
-//            g2.setColor(new Color(255, 0, 0, 70));
-//
-//            for (int i = 0; i < gp.pFinder.pathList.size(); i++) {
-//                int worldX = gp.pFinder.pathList.get(i).col * gp.tileSize;
-//                int worldY = gp.pFinder.pathList.get(i).row * gp.tileSize;
-//                int screenX = worldX - gp.player.worldX + gp.player.screenX;
-//                int screenY = worldY - gp.player.worldY + gp.player.screenY;
-//
-//                g2.fillRect(screenX, screenY, gp.tileSize, gp.tileSize);
-//            }
-//        }
     }
 }

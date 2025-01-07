@@ -7,7 +7,7 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-    GamePanel gp;
+    final GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, shootKeyPressed, spacePressed;
 
     // Debugging
@@ -162,11 +162,7 @@ public class KeyHandler implements KeyListener {
             gp.gameState = gp.mapState;
         }
         if (code == KeyEvent.VK_X) {
-            if (!gp.map.miniMapOn) {
-                gp.map.miniMapOn = true;
-            } else {
-                gp.map.miniMapOn = false;
-            } 
+            gp.map.miniMapOn = !gp.map.miniMapOn;
         }
         if (code == KeyEvent.VK_SPACE) {
             spacePressed = true;
@@ -176,7 +172,7 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_T) {
             if (!showDebugText) {
                 showDebugText = true;
-            } else if (showDebugText) {
+            } else {
                 showDebugText = false;
             }
         }
@@ -193,7 +189,7 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_G) {
             if (!godMode) {
                 godMode = true;
-            } else if (godMode) {
+            } else {
                 godMode = false;
             }
         }
@@ -229,11 +225,11 @@ public class KeyHandler implements KeyListener {
             enterPressed = true;
         }
 
-        int maxCommandNum = 0;
-        switch (gp.ui.subState) {
-            case 0: maxCommandNum = 5; break;
-            case 3: maxCommandNum = 1; break;
-        }
+        int maxCommandNum = switch (gp.ui.subState) {
+            case 0 -> 5;
+            case 3 -> 1;
+            default -> 0;
+        };
         if (code == KeyEvent.VK_W) {
             gp.ui.commandNum--;
             gp.playSE(9);

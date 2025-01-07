@@ -8,10 +8,10 @@ import java.awt.*;
 
 public class IT_DryTree extends InteractiveTile {
 
-    GamePanel gp;
+    final GamePanel gp;
 
     public IT_DryTree(GamePanel gp, int col, int row) {
-        super(gp, col, row);
+        super(gp);
         this.gp = gp;
 
         this.worldX = gp.tileSize * col;
@@ -25,13 +25,8 @@ public class IT_DryTree extends InteractiveTile {
 
     @Override
     public boolean isCorrectItem(@NotNull Entity entity) {
-        boolean isCorrectItem = false;
 
-        if (entity.currentWeapon.type == type_axe) {
-            isCorrectItem = true;
-        }
-
-        return isCorrectItem;
+        return entity.currentWeapon.type == type_axe;
     }
 
     @Override
@@ -41,31 +36,27 @@ public class IT_DryTree extends InteractiveTile {
 
     @Override
     public InteractiveTile getDestroyedForm() {
-        InteractiveTile tile = new IT_Trunk(gp, worldX / gp.tileSize, worldY / gp.tileSize);
-        return tile;
+        return new IT_Trunk(gp, worldX / gp.tileSize, worldY / gp.tileSize);
     }
 
     @Override
     public Color getParticleColor() {
-        Color color = new Color(65, 50, 30);
-        return color;
+        return new Color(65, 50, 30);
     }
 
     @Override
     public int getParticleSize() {
-        int size = 6; // 6 Pixels
-        return size;
+        // 6 Pixels
+        return 6;
     }
 
     @Override
     public int getParticleSpeed() {
-        int speed = 1;
-        return speed;
+        return 1;
     }
 
     @Override
     public int getParticleMaxLife() {
-        int maxLife = 20;
-        return maxLife;
+        return 20;
     }
 }

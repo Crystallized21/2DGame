@@ -5,7 +5,7 @@ import main.GamePanel;
 
 public class OBJ_BlueHeart extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Blue Heart";
 
     public OBJ_BlueHeart(GamePanel gp) {

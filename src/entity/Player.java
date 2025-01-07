@@ -1,6 +1,5 @@
 package entity;
 
-import main.EntityGenerator;
 import main.GamePanel;
 import main.KeyHandler;
 import object.*;
@@ -11,7 +10,7 @@ import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
 
-    KeyHandler keyH;
+    final KeyHandler keyH;
     public final int screenX;
     public final int screenY;
     int standCounter = 0;
@@ -39,8 +38,6 @@ public class Player extends Entity {
     public void setDefaultValues() {
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
-//        worldX = gp.tileSize * 12;
-//        worldY = gp.tileSize * 30;
         gp.currentMap = 0;
 
         defaultSpeed = 4;
@@ -103,8 +100,6 @@ public class Player extends Entity {
 //        inventory.add(new OBJ_Key(gp));
 //        inventory.add(new OBJ_Key(gp));
         // TODO: Debugging purposes, remove the axe later
-//        inventory.add(new OBJ_Axe(gp));
-//        inventory.add(new OBJ_Pickaxe(gp));
     }
 
     public int getAttack() {
@@ -210,27 +205,29 @@ public class Player extends Entity {
             gp.cChecker.checkEntity(this, gp.npc);
             gp.cChecker.checkEntity(this, gp.monster);
             gp.cChecker.checkEntity(this, gp.iTile);
-            
+
+            //noinspection DuplicateCondition
             if (collisionOn) {
                 knockBackCounter = 0;
                 knockBack = false;
                 speed = defaultSpeed;
-            } else if (!collisionOn) {
-                switch (knockBackDirection) {
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
-                        break;
-                }
+            } else //noinspection DuplicateCondition
+            {
+            switch (knockBackDirection) {
+                case "up":
+                    worldY -= speed;
+                    break;
+                case "down":
+                    worldY += speed;
+                    break;
+                case "left":
+                    worldX -= speed;
+                    break;
+                case "right":
+                    worldX += speed;
+                    break;
             }
+        }
 
             knockBackCounter++;
             if (knockBackCounter == 10) {

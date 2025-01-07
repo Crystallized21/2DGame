@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class CollisionChecker {
 
-    GamePanel gp;
+    final GamePanel gp;
 
     public CollisionChecker(GamePanel gp) {
         this.gp = gp;

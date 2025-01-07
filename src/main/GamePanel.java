@@ -13,7 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -44,32 +43,32 @@ public class GamePanel extends JPanel implements Runnable {
     final int FPS = 60;
 
     // System
-    public TileManager tileM = new TileManager(this);
-    public KeyHandler keyH = new KeyHandler(this);
-    Sound music = new Sound();
-    Sound se = new Sound();
-    public CollisionChecker cChecker = new CollisionChecker(this);
-    public AssetSetter aSetter = new AssetSetter(this);
-    public UI ui = new UI(this);
-    public EventHandler eHandler = new EventHandler(this);
-    Config config = new Config(this);
-    public PathFinder pFinder = new PathFinder(this);
-    EnvironmentManager eManager = new EnvironmentManager(this);
-    Map map = new Map(this);
-    SaveLoad saveLoad = new SaveLoad(this);
-    public EntityGenerator eGenerator = new EntityGenerator(this);
-    public CutsceneManager csManager = new CutsceneManager(this);
+    public final TileManager tileM = new TileManager(this);
+    public final KeyHandler keyH = new KeyHandler(this);
+    final Sound music = new Sound();
+    final Sound se = new Sound();
+    public final CollisionChecker cChecker = new CollisionChecker(this);
+    public final AssetSetter aSetter = new AssetSetter(this);
+    public final UI ui = new UI(this);
+    public final EventHandler eHandler = new EventHandler(this);
+    final Config config = new Config(this);
+    public final PathFinder pFinder = new PathFinder(this);
+    final EnvironmentManager eManager = new EnvironmentManager(this);
+    final Map map = new Map(this);
+    final SaveLoad saveLoad = new SaveLoad(this);
+    public final EntityGenerator eGenerator = new EntityGenerator(this);
+    public final CutsceneManager csManager = new CutsceneManager(this);
     Thread gameThread;
 
     // Entities and Objects
-    public Player player = new Player(this, keyH);
-    public Entity[][] obj = new Entity[maxMap][20];
-    public Entity[][] npc = new Entity[maxMap][10];
-    public Entity[][] monster = new Entity[maxMap][20];
-    public InteractiveTile[][] iTile = new InteractiveTile[maxMap][50];
-    public Entity[][] projectile = new Entity[maxMap][50];
-    public ArrayList<Entity> particleList = new ArrayList<>();
-    ArrayList<Entity> entityList = new ArrayList<>();
+    public final Player player = new Player(this, keyH);
+    public final Entity[][] obj = new Entity[maxMap][20];
+    public final Entity[][] npc = new Entity[maxMap][10];
+    public final Entity[][] monster = new Entity[maxMap][20];
+    public final InteractiveTile[][] iTile = new InteractiveTile[maxMap][50];
+    public final Entity[][] projectile = new Entity[maxMap][50];
+    public final ArrayList<Entity> particleList = new ArrayList<>();
+    final ArrayList<Entity> entityList = new ArrayList<>();
 
     // Game State
     public int gameState;
@@ -243,9 +242,7 @@ public class GamePanel extends JPanel implements Runnable {
             }
             eManager.update();
         }
-        if (gameState == pauseState) {
-            // Nothing for now.
-        }
+        // Nothing for now.
     }
 
     public void drawToTempScreen() {
@@ -302,24 +299,18 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
-            for (int i = 0; i < particleList.size(); i++) {
-                if (particleList.get(i) != null) {
-                    entityList.add(particleList.get(i));
+            for (Entity value : particleList) {
+                if (value != null) {
+                    entityList.add(value);
                 }
             }
 
             // Sort the entities by their world position
-            Collections.sort(entityList, new Comparator<Entity>() {
-                @Override
-                public int compare(Entity e1, Entity e2) {
-                    int result = Integer.compare(e1.worldY, e2.worldY);
-                    return result;
-                }
-            });
+            entityList.sort(Comparator.comparingInt(e -> e.worldY));
 
             // Draw Entities
-            for (int i = 0; i < entityList.size(); i++) {
-                entityList.get(i).draw(g2);
+            for (Entity entity : entityList) {
+                entity.draw(g2);
             }
 
             // Clear the list

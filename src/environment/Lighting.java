@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Lighting {
-    GamePanel gp;
+    final GamePanel gp;
     BufferedImage darknessFilter;
     public int dayCounter;
     public float filterAlpha = 0f;
@@ -136,23 +136,7 @@ public class Lighting {
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         
         // Debug info
-//        String situation = "";
-//
-//        switch (dayState) {
-//            case day:
-//                situation = "Day";
-//                break;
-//            case dusk:
-//                situation = "Dusk";
-//                break;
-//            case night:
-//                situation = "Night";
-//                break;
-//            case dawn:
-//                situation = "Dawn";
-//                break;
-//        }
-        
+
         g2.setColor(Color.WHITE);
         g2.setFont(g2.getFont().deriveFont(50F));
 //        g2.drawString(situation, 800, 500);

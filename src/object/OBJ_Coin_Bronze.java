@@ -5,7 +5,7 @@ import main.GamePanel;
 
 public class OBJ_Coin_Bronze extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Bronze Coin";
 
     public OBJ_Coin_Bronze(GamePanel gp) {
