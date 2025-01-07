@@ -53,6 +53,7 @@ public class NPC_Merchant extends Entity{
         inventory.add(new OBJ_Shield_Blue(gp));
     }
 
+    @Override
     public void speak() {
         facePlayer();
 

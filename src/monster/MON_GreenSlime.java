@@ -50,7 +50,8 @@ public class MON_GreenSlime extends Entity {
         right1 = setup("monster/greenslime_down_1", gp.tileSize, gp.tileSize);
         right2 = setup("monster/greenslime_down_2", gp.tileSize, gp.tileSize);
     }
-    
+
+    @Override
     public void setAction() {
         if (onPath) {
             // If the monster is on the path and the player are far away, stop following the player
@@ -67,12 +68,14 @@ public class MON_GreenSlime extends Entity {
         }
     }
 
+    @Override
     public void damageReaction() {
         actionLockCounter = 0;
 //        direction = gp.player.direction;
         onPath = true;
     }
 
+    @Override
     public void checkDrop() {
         // Cast monster dead drop
         int i = new Random().nextInt(100) + 1;

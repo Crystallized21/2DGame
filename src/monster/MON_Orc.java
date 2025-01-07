@@ -66,6 +66,7 @@ public class MON_Orc extends Entity {
         attackRight2 = setup("monster/orc_attack_right_2", gp.tileSize * 2, gp.tileSize);
     }
 
+    @Override
     public void setAction() {
         if (onPath) {
             // If the monster is on the path and the player are far away, stop following the player
@@ -87,12 +88,14 @@ public class MON_Orc extends Entity {
         }
     }
 
+    @Override
     public void damageReaction() {
         actionLockCounter = 0;
 //        direction = gp.player.direction;
         onPath = true;
     }
 
+    @Override
     public void checkDrop() {
         // Cast monster dead drop
         int i = new Random().nextInt(100) + 1;

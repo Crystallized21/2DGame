@@ -31,7 +31,7 @@ public class CutsceneManager {
                 "\n\n\n\n\n\n\n\n\n\n\n\n\n" +
                 "Programming\n" +
                 "Michael Bui\n\n\n\n\n\n" +
-                "Thank yoiu for playing!";
+                "Thank you for playing!";
     }
 
     public void draw(Graphics2D g2) {

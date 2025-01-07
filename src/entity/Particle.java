@@ -29,6 +29,7 @@ public class Particle extends Entity {
         worldY = generator.worldY + offset;
     }
 
+    @Override
     public void update() {
         life--;
 
@@ -44,6 +45,7 @@ public class Particle extends Entity {
         }
     }
 
+    @Override
     public void draw(Graphics2D g2) {
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;

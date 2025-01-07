@@ -19,9 +19,10 @@ public class IT_DryTree extends InteractiveTile {
         down1 = setup("tiles_interactive/drytree", gp.tileSize, gp.tileSize);
         destructible = true;
         // TODO: Debugging reset life to 2
-        life = 1;
+        life = 2;
     }
 
+    @Override
     public boolean isCorrectItem(Entity entity) {
         boolean isCorrectItem = false;
 
@@ -32,30 +33,36 @@ public class IT_DryTree extends InteractiveTile {
         return isCorrectItem;
     }
 
+    @Override
     public void playSE() {
         gp.playSE(11);
     }
 
+    @Override
     public InteractiveTile getDestroyedForm() {
         InteractiveTile tile = new IT_Trunk(gp, worldX / gp.tileSize, worldY / gp.tileSize);
         return tile;
     }
 
+    @Override
     public Color getParticleColor() {
         Color color = new Color(65, 50, 30);
         return color;
     }
 
+    @Override
     public int getParticleSize() {
         int size = 6; // 6 Pixels
         return size;
     }
 
+    @Override
     public int getParticleSpeed() {
         int speed = 1;
         return speed;
     }
 
+    @Override
     public int getParticleMaxLife() {
         int maxLife = 20;
         return maxLife;

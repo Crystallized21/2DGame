@@ -57,7 +57,7 @@ public class Player extends Entity {
         dexterity = 1; // More dexterity = less damage received
         exp = 0;
         nextLevelExp = 5;
-        coin = 500;
+        coin = 100;
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         currentLight = null;
@@ -99,11 +99,11 @@ public class Player extends Entity {
     public void setItems() {
         inventory.clear();
         inventory.add(currentWeapon);
-        inventory.add(new OBJ_Key(gp));
-        inventory.add(new OBJ_Key(gp));
+//        inventory.add(new OBJ_Key(gp));
+//        inventory.add(new OBJ_Key(gp));
         // TODO: Debugging purposes, remove the axe later
-        inventory.add(new OBJ_Axe(gp));
-        inventory.add(new OBJ_Pickaxe(gp));
+//        inventory.add(new OBJ_Axe(gp));
+//        inventory.add(new OBJ_Pickaxe(gp));
     }
 
     public int getAttack() {
@@ -199,6 +199,7 @@ public class Player extends Entity {
         guardRight = setup("player/boy_guard_right", gp.tileSize, gp.tileSize);
     }
 
+    @Override
     public void update() {
 
         if (knockBack) {
@@ -586,6 +587,7 @@ public class Player extends Entity {
         return canObtain;
     }
 
+    @Override
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
         int tempScreenX = screenX;

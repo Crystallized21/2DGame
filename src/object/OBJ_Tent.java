@@ -23,6 +23,7 @@ public class OBJ_Tent extends Entity {
         stackable = true;
     }
     
+    @Override
     public boolean use(Entity entity) {
         gp.gameState = gp.sleepState;
         gp.playSE(14);

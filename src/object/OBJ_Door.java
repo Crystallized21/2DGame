@@ -31,6 +31,7 @@ public class OBJ_Door extends Entity {
         dialogues[0][0] = "You need a key to open this door.";
     }
 
+    @Override
     public void interact() {
         startDialogue(this, 0);
     }

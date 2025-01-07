@@ -28,6 +28,7 @@ public class OBJ_Potion_Red extends Entity {
         dialogues[0][0] = "You drink the " + name + ".\nYour life has been restored by " + value + ".";
     }
 
+    @Override
     public boolean use(Entity entity) {
         startDialogue(this, 0);
         entity.life += value;

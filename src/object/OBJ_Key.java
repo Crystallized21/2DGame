@@ -28,6 +28,7 @@ public class OBJ_Key extends Entity {
         dialogues[1][0] = "What are you trying to do?";
     }
 
+    @Override
     public boolean use(Entity entity) {
         int objIndex = getDetected(entity, gp.obj, "Door");
 

@@ -50,6 +50,7 @@ public class NPC_OldMan extends Entity {
         dialogues[2][0] = "I wonder what that door is all about.";
     }
 
+    @Override
     public void setAction() {
         if (onPath) {
             int goalCol = 12;
@@ -86,6 +87,7 @@ public class NPC_OldMan extends Entity {
         }
     }
 
+    @Override
     public void speak() {
         facePlayer();
         startDialogue(this, dialogueSet);

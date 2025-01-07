@@ -2,14 +2,11 @@ package tile_interactive;
 
 import entity.Entity;
 import main.GamePanel;
-import object.OBJ_Coin_Bronze;
-import object.OBJ_Heart;
-import object.OBJ_ManaCrystal;
 
 import java.awt.*;
-import java.util.Random;
 
 public class IT_DestructibleWall extends InteractiveTile {
+
     GamePanel gp;
 
     public IT_DestructibleWall(GamePanel gp, int col, int row) {
@@ -25,6 +22,7 @@ public class IT_DestructibleWall extends InteractiveTile {
         life = 1;
     }
 
+    @Override
     public boolean isCorrectItem(Entity entity) {
         boolean isCorrectItem = false;
 
@@ -35,48 +33,38 @@ public class IT_DestructibleWall extends InteractiveTile {
         return isCorrectItem;
     }
 
+    @Override
     public void playSE() {
         gp.playSE(20);
     }
 
+    @Override
     public InteractiveTile getDestroyedForm() {
         InteractiveTile tile = null;
         return tile;
     }
 
+    @Override
     public Color getParticleColor() {
         Color color = new Color(65, 65, 65);
         return color;
     }
 
+    @Override
     public int getParticleSize() {
         int size = 6; // 6 Pixels
         return size;
     }
 
+    @Override
     public int getParticleSpeed() {
         int speed = 1;
         return speed;
     }
 
+    @Override
     public int getParticleMaxLife() {
         int maxLife = 20;
         return maxLife;
     }
-
-    // If the wall is destroyed, prob wont add to the final game
-//    @Override
-//    public void checkDrop() {
-//        int i = new Random().nextInt(100) + 1;
-//
-//        if (i < 50) {
-//            dropItem(new OBJ_Coin_Bronze(gp));
-//        }
-//        if (i >= 50 && i < 75) {
-//            dropItem(new OBJ_Heart(gp));
-//        }
-//        if (i >= 75 && i < 100) {
-//            dropItem(new OBJ_ManaCrystal(gp));
-//        }
-//    }
 }

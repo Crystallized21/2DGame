@@ -18,6 +18,7 @@ public class OBJ_Coin_Bronze extends Entity {
         down1 = setup("objects/coin_bronze", gp.tileSize, gp.tileSize);
     }
 
+    @Override
     public boolean use(Entity entity) {
         gp.playSE(1);
         gp.ui.addMessage("Coin + " + value);

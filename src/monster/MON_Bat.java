@@ -48,6 +48,7 @@ public class MON_Bat extends Entity {
         right2 = setup("monster/bat_down_2", gp.tileSize, gp.tileSize);
     }
 
+    @Override
     public void setAction() {
         getRandomDirection(10);
     }
