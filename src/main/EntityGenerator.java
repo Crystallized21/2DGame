@@ -15,7 +15,7 @@ public class EntityGenerator {
 
     public Entity getObject(@NotNull String itemName) {
 
-        Entity obj = switch (itemName) {
+        return switch (itemName) {
             case OBJ_Axe.objName -> new OBJ_Axe(gp);
             case OBJ_Boots.objName -> new OBJ_Boots(gp);
             case OBJ_Chest.objName -> new OBJ_Chest(gp);
@@ -38,7 +38,5 @@ public class EntityGenerator {
             case OBJ_Tent.objName -> new OBJ_Tent(gp);
             default -> null;
         };
-
-        return obj;
     }
 }

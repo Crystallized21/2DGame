@@ -19,10 +19,8 @@ public class UI {
     public Font maruMonica;
     Font purisaB;
     BufferedImage heart_full, heart_half, heart_blank, crystal_full, crystal_blank, coin;
-    public boolean messageOn = false;
     final ArrayList<String> message = new ArrayList<>();
     final ArrayList<Integer> messageCounter = new ArrayList<>();
-    public boolean gameFinished = false;
     public String currentDialogue = "";
     public int commandNum = 0;
     public int titleScreenState = 0; // 0: First scree, 1: Second screen etc...
@@ -765,11 +763,7 @@ public class UI {
         if (commandNum == 0) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed) {
-                if (!gp.fullScreenOn) {
-                    gp.fullScreenOn = true;
-                } else {
-                    gp.fullScreenOn = false;
-                }
+                gp.fullScreenOn = !gp.fullScreenOn;
                 subState = 1;
             }
         }
