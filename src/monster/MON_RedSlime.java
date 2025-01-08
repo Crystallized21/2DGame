@@ -53,11 +53,11 @@ public class MON_RedSlime extends Entity {
     @Override
     public void setAction() {
         if (onPath) {
-            checkStopChasing(gp.player, 15, 100);
+            stopChasingPlayer(gp.player, 15, 100);
             searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
             checkProjectile(200, 30);
         } else {
-            checkStartChasing(gp.player, 5, 100);
+            startChasingPlayer(gp.player, 5, 100);
             getRandomDirection(120);
         }
     }

@@ -466,8 +466,7 @@ public class Entity {
         }
     }
     
-    // TODO: Prob rename this to something better
-    public void checkStartChasing(Entity target, int distance, int rate) {
+    public void startChasingPlayer(Entity target, int distance, int rate) {
         // Check if the player is near
         if (getTileDistance(target) < distance) {
             int i = new Random().nextInt(rate);
@@ -478,8 +477,7 @@ public class Entity {
         }
     }
     
-    // TODO: Prob rename this to something better
-    public void checkStopChasing(Entity target, int distance, int rate) {
+    public void stopChasingPlayer(Entity target, int distance, int rate) {
         // If the monster is on the path and the player is far away, stop following the player
         if (getTileDistance(target) > distance) {
             int i = new Random().nextInt(rate);
@@ -633,7 +631,6 @@ public class Entity {
         }
     }
 
-    // TODO: Prob rename this to something better
     public void checkProjectile(int rate, int shotInterval) {
         // Check if it can it shoot a projectile
         int i = new Random().nextInt(rate);
