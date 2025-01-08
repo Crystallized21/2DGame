@@ -89,7 +89,6 @@ public class UI {
         }
         // PauseState Logic
         if (gp.gameState == gp.pauseState) {
-            // TODO: This is dogshit and has really bad performance. Fix this later, or optimise it.
             drawPlayerLife();
             drawPauseState();
         }
@@ -411,8 +410,13 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80));
         String text = "PAUSED";
         int x = getXforCenteredText(text);
-        int y = gp.screenHeight / 2;
+        int y = (int) (gp.screenHeight / 2.5);
+        g2.drawString(text, x, y);
 
+        g2.setColor(Color.white);
+        text = "Press P to resume";
+        x = getXforCenteredText(text);
+        y += gp.tileSize * 2;
         g2.drawString(text, x, y);
     }
 
