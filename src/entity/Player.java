@@ -81,8 +81,7 @@ public class Player extends Entity {
         dialogues[0][0] = "You've Leveled Up! \nYou are now Level " + level + "! \nYou feel stronger!";
     }
 
-    // TODO: rename this to something better
-    public void restoreStatus() {
+    public void resetPlayerStatus() {
         life = maxLife;
         mana = maxMana;
         speed = defaultSpeed;
