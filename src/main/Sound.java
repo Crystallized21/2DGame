@@ -6,6 +6,7 @@ import java.net.URL;
 
 public class Sound {
     Clip clip;
+    Clip preloadedClip;
     final URL[] soundURL = new URL[30];
     FloatControl fc;
     int volumeScale = 3;
@@ -35,10 +36,27 @@ public class Sound {
         soundURL[20] = getClass().getClassLoader().getResource("sound/chipwall.wav");
         soundURL[21] = getClass().getClassLoader().getResource("sound/dooropen.wav");
         soundURL[22] = getClass().getClassLoader().getResource("sound/FinalBattle.wav");
+
+        preloadSound17();
+    }
+
+    private void preloadSound17() {
+        try {
+            if (soundURL[17] != null) {
+                AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[17]);
+                preloadedClip = AudioSystem.getClip();
+                preloadedClip.open(ais);
+            }
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setFile(int i) {
         try {
+            // Only for 17
+            if (i == 17) return;
+
             AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
             clip = AudioSystem.getClip();
             clip.open(ais);
@@ -51,15 +69,32 @@ public class Sound {
     }
 
     public void play() {
+        if (clip == null) return;
         clip.start();
     }
 
+    public void playPreload(int i) {
+        if (i == 17 && preloadedClip != null) {
+            preloadedClip.setFramePosition(0);
+            preloadedClip.start();
+        } else {
+            setFile(i);
+            play();
+        }
+    }
+
     public void loop() {
+        if (clip == null) return;
         clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
     public void stop() {
+        if (clip == null) return;
         clip.stop();
+
+        if (preloadedClip != null) {
+            preloadedClip.stop();
+        }
     }
 
     public void checkVolume() {
