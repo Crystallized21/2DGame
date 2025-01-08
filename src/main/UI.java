@@ -2,7 +2,7 @@ package main;
 
 
 import entity.Entity;
-import object.OBJ_Coin_Bronze;
+import object.coin.OBJ_Coin_Bronze;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
 import org.jetbrains.annotations.NotNull;

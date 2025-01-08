@@ -2,6 +2,7 @@ package main;
 
 import entity.Entity;
 import object.*;
+import object.coin.*;
 import org.jetbrains.annotations.NotNull;
 
 public class EntityGenerator {
@@ -19,6 +20,8 @@ public class EntityGenerator {
             case OBJ_Boots.objName -> new OBJ_Boots(gp);
             case OBJ_Chest.objName -> new OBJ_Chest(gp);
             case OBJ_Coin_Bronze.objName -> new OBJ_Coin_Bronze(gp);
+            case OBJ_Coin_Sliver.objName -> new OBJ_Coin_Sliver(gp);
+            case OBJ_Coin_Gold.objName -> new OBJ_Coin_Gold(gp);
             case OBJ_Door.objName -> new OBJ_Door(gp);
             case OBJ_Door_Iron.objName -> new OBJ_Door_Iron(gp);
             case OBJ_Fireball.objName -> new OBJ_Fireball(gp);
