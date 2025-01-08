@@ -267,7 +267,6 @@ public class Player extends Entity {
             contactMonster(monsterIndex);
 
             // Check Interactive Tile collision
-            // TODO: This is suspicious.
             gp.cChecker.checkEntity(this, gp.iTile);
             
             // Event Checker
@@ -365,7 +364,6 @@ public class Player extends Entity {
                 gp.gameState = gp.gameOverState;
                 gp.ui.commandNum = -1;
                 gp.stopMusic();
-                // gp.playMusic(index); This is for the game over music if I wanted to add it
                 gp.playSE(12);
             }
         }
@@ -391,7 +389,6 @@ public class Player extends Entity {
                 String text;
 
                 if (canObtainItem(gp.obj[gp.currentMap][i])) {
-                    // TODO: Optimise audio startup time as it causes a stutter
                     gp.playSE(1);
                     text = "Got a "  + gp.obj[gp.currentMap][i].name + "!";
                 }

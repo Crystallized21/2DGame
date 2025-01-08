@@ -87,7 +87,6 @@ public class Lighting {
         }
         
         // Check if the day state can change
-        // TODO: Change the values to proper values since its too fast
         if (dayState == day) {
             dayCounter++;
 

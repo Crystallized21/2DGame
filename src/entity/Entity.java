@@ -480,7 +480,7 @@ public class Entity {
     
     // TODO: Prob rename this to something better
     public void checkStopChasing(Entity target, int distance, int rate) {
-        // If the monster is on the path and the player are far away, stop following the player
+        // If the monster is on the path and the player is far away, stop following the player
         if (getTileDistance(target) > distance) {
             int i = new Random().nextInt(rate);
 
@@ -806,13 +806,13 @@ public class Entity {
 
     public BufferedImage setup(String imagePath, int width, int height) {
         UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
+        BufferedImage image;
 
         try {
             image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(imagePath + ".png")));
             image = uTool.scaleImage(image, width, height);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
 
         return image;
