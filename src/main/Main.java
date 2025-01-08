@@ -15,6 +15,15 @@ public class Main {
         // TODO: Feedback from play testing
         // Entity Boss invisible glitch
 
+        /*
+            TODO: Future updates
+                - Add more maps
+                - Add more enemies
+                - Add more items?
+                - Game balance
+                - Add more game mechanics and flow
+        */
+
         initializeGraphics();
 
         window = new JFrame();
