@@ -207,13 +207,11 @@ public class Player extends Entity {
             gp.cChecker.checkEntity(this, gp.monster);
             gp.cChecker.checkEntity(this, gp.iTile);
 
-            //noinspection DuplicateCondition
             if (collisionOn) {
                 knockBackCounter = 0;
                 knockBack = false;
                 speed = defaultSpeed;
-            } else //noinspection DuplicateCondition
-            {
+            } else {
             switch (knockBackDirection) {
                 case "up":
                     worldY -= speed;

@@ -382,12 +382,11 @@ public class Entity {
             if (knockBack) {
                 checkCollision();
 
-                //noinspection DuplicateCondition
                 if (collisionOn) {
                     knockBackCounter = 0;
                     knockBack = false;
                     speed = defaultSpeed;
-                } else //noinspection DuplicateCondition
+                } else
                 {
                 switch (knockBackDirection) {
                     case "up":
@@ -530,15 +529,13 @@ public class Entity {
     }
 
     public String getOppositeDirection(@NotNull String direction) {
-        String oppositeDirection = switch (direction) {
+        return switch (direction) {
             case "up" -> "down";
             case "down" -> "up";
             case "left" -> "right";
             case "right" -> "left";
             default -> "";
         };
-
-        return oppositeDirection;
     }
 
     public void attacking() {
