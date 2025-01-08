@@ -80,7 +80,8 @@ public class KeyHandler implements KeyListener {
             }
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
-                    gp.ui.titleScreenState = 1;
+                    gp.gameState = gp.playState;
+                    gp.playMusic(0);
                 }
                 if (gp.ui.commandNum == 1) {
                     gp.saveLoad.load();
@@ -92,42 +93,6 @@ public class KeyHandler implements KeyListener {
                 }
             }
         }
-        // Class System Screen
-        else if (gp.ui.titleScreenState == 1) {
-            if (code == KeyEvent.VK_W) {
-                gp.ui.commandNum--;
-                if (gp.ui.commandNum < 0) {
-                    gp.ui.commandNum = 3;
-                }
-            }
-            if (code == KeyEvent.VK_S) {
-                gp.ui.commandNum++;
-                if (gp.ui.commandNum > 3) {
-                    gp.ui.commandNum = 0;
-                }
-            }
-            if (code == KeyEvent.VK_ENTER) {
-                if (gp.ui.commandNum == 0) {
-                    System.out.println("Fighter Specs...");
-                    gp.gameState = gp.playState;
-                    gp.playMusic(0);
-                }
-                if (gp.ui.commandNum == 1) {
-                    System.out.println("Thief Specs...");
-                    gp.gameState = gp.playState;
-                    gp.playMusic(0);
-                }
-                if (gp.ui.commandNum == 2) {
-                    System.out.println("Sorcerer Specs...");
-                    gp.gameState = gp.playState;
-                    gp.playMusic(0);
-                }
-                if (gp.ui.commandNum == 3) {
-                    gp.ui.titleScreenState = 0;
-                }
-            }
-        }
-
     }
 
     public void playState(int code) {
