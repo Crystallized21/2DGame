@@ -2,7 +2,7 @@ package monster;
 
 import entity.Entity;
 import main.GamePanel;
-import object.coin.OBJ_Coin_Bronze;
+import object.coin.*;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
 import object.OBJ_Rock;
@@ -56,7 +56,7 @@ public class MON_GreenSlime extends Entity {
         if (onPath) {
             // If the monster is on the path and the player are far away, stop following the player
             checkStopChasing(gp.player, 15, 100);
-            
+
             // Search a path to the player
             searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
         } else {
@@ -77,17 +77,23 @@ public class MON_GreenSlime extends Entity {
 
     @Override
     public void checkDrop() {
-        // Cast monster dead drop
+        // Cast a monster dead drop
         int i = new Random().nextInt(100) + 1;
 
         // Set drops
-        if (i < 50) {
+        if (i < 40) {
             dropItem(new OBJ_Coin_Bronze(gp));
         }
-        if (i >= 50 && i < 75) {
+        if (i >= 40 && i < 60) {
+            dropItem(new OBJ_Coin_Sliver(gp));
+        }
+        if (i >= 60 && i < 80) {
+            dropItem(new OBJ_Coin_Gold(gp));
+        }
+        if (i >= 80 && i < 90) {
             dropItem(new OBJ_Heart(gp));
         }
-        if (i >= 75 && i < 100) {
+        if (i >= 90 && i < 100) {
             dropItem(new OBJ_ManaCrystal(gp));
         }
     }

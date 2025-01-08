@@ -11,7 +11,7 @@ public class OBJ_Coin_Gold extends OBJ_Coin {
 
         type = type_pickUps;
         name = objName;
-        value = 5;
-        down1 = setup("placeholder", gp.tileSize, gp.tileSize);
+        value = 10;
+        down1 = setup("objects/coin_gold", gp.tileSize, gp.tileSize);
     }
 }

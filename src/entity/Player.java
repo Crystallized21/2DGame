@@ -55,7 +55,7 @@ public class Player extends Entity {
         dexterity = 1; // More dexterity = less damage received
         exp = 0;
         nextLevelExp = 5;
-        coin = 100;
+        coin = 50;
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         currentLight = null;
@@ -97,6 +97,7 @@ public class Player extends Entity {
     public void setItems() {
         inventory.clear();
         inventory.add(currentWeapon);
+        inventory.add(currentShield);
 //        inventory.add(new OBJ_Key(gp));
 //        inventory.add(new OBJ_Key(gp));
         // TODO: Debugging purposes, remove the axe later

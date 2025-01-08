@@ -12,6 +12,6 @@ public class OBJ_Coin_Sliver extends OBJ_Coin {
         type = type_pickUps;
         name = objName;
         value = 5;
-        down1 = setup("placeholder", gp.tileSize, gp.tileSize);
+        down1 = setup("objects/coin_sliver", gp.tileSize, gp.tileSize);
     }
 }
