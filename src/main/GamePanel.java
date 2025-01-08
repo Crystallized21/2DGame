@@ -166,26 +166,29 @@ public class GamePanel extends JPanel implements Runnable {
         int drawCount = 0;
 
         while (gameThread != null) {
+            if (this.hasFocus()) {
+                currentTime = System.nanoTime();
 
-            currentTime = System.nanoTime();
+                timer += (currentTime - lastTime);
+                delta += (currentTime - lastTime) / drawInterval;
+                lastTime = currentTime;
 
-            timer += (currentTime - lastTime);
-            delta += (currentTime - lastTime) / drawInterval;
-            lastTime = currentTime;
+                if (delta >= 1) {
+                    update();
+                    drawToTempScreen(); // Draw to the BufferedImage
+                    drawToScreen(); // Draw to the actual screen
+                    delta--;
+                    drawCount++;
+                }
 
-            if (delta >= 1) {
-                update();
-                drawToTempScreen(); // Draw to the BufferedImage
-                drawToScreen(); // Draw to the actual screen
-                delta--;
-                drawCount++;
-            }
-
-            if (timer >= 1000000000) {
-                // 1000000000 nanoseconds = 1 second
-                System.out.println("FPS: " + drawCount);
-                drawCount = 0;
-                timer = 0;
+                if (timer >= 1000000000) {
+                    // 1000000000 nanoseconds = 1 second
+                    System.out.println("FPS: " + drawCount);
+                    drawCount = 0;
+                    timer = 0;
+                }
+            } else {
+                gameState = pauseState;
             }
         }
     }

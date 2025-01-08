@@ -10,13 +10,10 @@ public class Main {
     public static JFrame window;
 
     public static void main(String[] args) {
-        // Initialize the graphics context
-        // TODO: Tabbing out of the game causes the game to have high FPS
+        // Initialise the graphics context
 
         // TODO: Feedback from play testing
-        // Not enough coins being dropped
         // Entity Boss invisible glitch
-        
 
         initializeGraphics();
 
