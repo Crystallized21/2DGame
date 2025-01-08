@@ -48,7 +48,7 @@ public class Map extends TileManager {
     }
 
     public void drawFullMapScreen(@NotNull Graphics2D g2) {
-        // Draw Background Color
+        // Draw Background Colour
         g2.setColor(Color.black);
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         

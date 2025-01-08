@@ -412,7 +412,7 @@ public class Player extends Entity {
         }
     }
     
-    // Handle monster collision possibly rename
+    // Handle monster collision
     public void contactMonster(int i) {
         if (i != 999) {
             if (!invincible && !gp.monster[gp.currentMap][i].invincible) {
@@ -556,7 +556,7 @@ public class Player extends Entity {
 
         Entity newItem = gp.eGenerator.getObject(item.name);
 
-        // Check if item is stackable
+        // Check if the item is stackable
         if (newItem.stackable) {
             int index = searchItemInInventory(newItem.name);
 
@@ -564,7 +564,7 @@ public class Player extends Entity {
                 inventory.get(index).amount++;
                 canObtain = true;
             } else {
-                // This is a new item so no need to check for stackable
+                // This is a new item, so no need to check for stackable
                 if (inventory.size() != maxInventorySize) {
                     inventory.add(newItem);
                     canObtain = true;

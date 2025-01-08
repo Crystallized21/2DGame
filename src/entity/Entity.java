@@ -200,7 +200,7 @@ public class Entity {
     public void setLoot(Entity loot) {}
 
     /**
-     * Defines the action or behavior of the entity in a specific game context.
+     * Defines the action or behaviour of the entity in a specific game context.
      * This method is responsible for determining and setting the current state or
      * sequence of actions the entity should perform. The implementation typically
      * includes logic for deciding the entity's movements, attacks, interactions,
@@ -219,7 +219,7 @@ public class Entity {
 
     /**
      * Handles the reaction of the entity when it takes damage.
-     * This method is responsible for managing behavior, animations, or state changes
+     * This method is responsible for managing behaviour, animations, or state changes
      * that occur when the entity is subjected to damage.
      */
     public void damageReaction() {}
@@ -256,7 +256,7 @@ public class Entity {
     }
 
     /**
-     * Defines the interaction behavior of an entity within the game.
+     * Defines the interaction behaviour of an entity within the game.
      * This method manages what happens when the entity interacts with
      * another entity, object, or element in its environment. The implementation
      * typically varies based on the entity's type and context within the game,
@@ -295,9 +295,9 @@ public class Entity {
     }
 
     /**
-     * Retrieves the color of the particle associated with this entity.
+     * Retrieves the colour of the particle associated with this entity.
      *
-     * @return the color of the particle, or null if no color is defined
+     * @return the colour of the particle, or null if no colour is defined
      */
     public Color getParticleColor() {
         return null;
@@ -363,14 +363,14 @@ public class Entity {
     }
 
     /**
-     * Updates the state and behavior of the entity during each game cycle.
+     * Updates the state and behaviour of the entity during each game cycle.
      * <p>
      * This method is responsible for managing the entity's movement, actions,
      * and animations based on its current state and conditions. It handles
-     * several behaviors, including knockback, attacking, collision checking,
+     * several behaviours, including knockback, attacking, collision checking,
      * invincibility, and other status effects like off-balance.
      * <p>
-     * Key behaviors include:
+     * Key behaviours include:
      * - Handling knockback mechanics: movement and the resolution of collision during knockback.
      * - Managing attacking actions through the `attacking` method.
      * - Setting and executing the entity's actions when not in a special state.
@@ -477,6 +477,7 @@ public class Entity {
         }
     }
     
+    @SuppressWarnings("GrazieInspection")
     public void stopChasingPlayer(Entity target, int distance, int rate) {
         // If the monster is on the path and the player is far away, stop following the player
         if (getTileDistance(target) > distance) {
@@ -550,7 +551,7 @@ public class Entity {
             int solidAreaWidth = solidArea.width;
             int solidAreaHeight = solidArea.height;
 
-            // Adjust the players world position for the attack area
+            // Adjust the player's world position for the attack area
             switch (direction) {
                 case "up": worldY -= attackArea.height; break;
                 case "down": worldY += attackArea.height; break;
@@ -632,7 +633,7 @@ public class Entity {
     }
 
     public void checkProjectile(int rate, int shotInterval) {
-        // Check if it can it shoot a projectile
+        // Check if it can shoot a projectile
         int i = new Random().nextInt(rate);
         if (i == 0 && !projectile.alive && shotAvailableCounter == shotInterval) {
             projectile.set(worldX, worldY, direction, true, this);
@@ -706,7 +707,7 @@ public class Entity {
     /**
      * Draws the character or object on the screen based on its position, direction,
      * movement, and actions such as attacking or being invincible. The method also
-     * handles optimizations to only render elements visible within the screen bounds
+     * handles optimisations to only render elements visible within the screen bounds
      * and displays additional visual elements like health bars or dying animations.
      *
      * @param g2 the {@code Graphics2D} object used for rendering images and shapes
@@ -874,7 +875,7 @@ public class Entity {
                 }
             }
 
-            // If th entity reaches the goal, stop the path
+            // If the entity reaches the goal, stop the path
             int nextCol = gp.pFinder.pathList.getFirst().col;
             int nextRow = gp.pFinder.pathList.getFirst().row;
             if (nextCol == goalCol && nextRow == goalRow) {

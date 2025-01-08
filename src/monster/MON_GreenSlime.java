@@ -51,10 +51,11 @@ public class MON_GreenSlime extends Entity {
         right2 = setup("monster/greenslime_down_2", gp.tileSize, gp.tileSize);
     }
 
+    @SuppressWarnings("GrazieInspection")
     @Override
     public void setAction() {
         if (onPath) {
-            // If the monster is on the path and the player are far away, stop following the player
+            // If the monster is on the path and the player is far away, stop following the player
             stopChasingPlayer(gp.player, 15, 100);
 
             // Search a path to the player
@@ -77,7 +78,7 @@ public class MON_GreenSlime extends Entity {
 
     @Override
     public void checkDrop() {
-        // Cast a monster dead drop
+        // Cast a monster dead drops
         int i = new Random().nextInt(100) + 1;
 
         // Set drops

@@ -231,7 +231,7 @@ public class UI {
                     int x = gp.screenWidth / 2 - gp.tileSize * 4;
                     int y = gp.tileSize * 10;
 
-                    // Use these if i wanna make the text go on the health bar
+                    // Use these if I want to make the text go on the health bar
                     g2.setColor(new Color(35, 35, 35));
                     g2.fillRect(x - 1, y - 1, gp.tileSize * 8 + 2, 22);
                     // g2.fillRect(x - 1 - 1, y - 1 - 16, gp.tileSize * 8 + 2, 12);
@@ -294,7 +294,7 @@ public class UI {
                 // Increment the counter
                 messageCounter.set(i, counter + 1);
 
-                // Remove message after it fades out
+                // Remove the message after it fades out
                 if (counter > 180) {
                     message.remove(i);
                     messageCounter.remove(i);
@@ -815,7 +815,7 @@ public class UI {
             }
         }
 
-        // Full Screen Check Box
+        // Full-Screen Check Box
         textX = (int) (frameX + gp.tileSize * 4.5);
         textY = frameY + gp.tileSize * 2 + 24;
         g2.setStroke(new BasicStroke(3));

@@ -121,12 +121,11 @@ public class EventHandler {
             gp.gameState = gameState;
             gp.player.attackCanceled = true;
             gp.playSE(2);
+            gp.saveLoad.save();
             eventMaster.startDialogue(eventMaster, 1);
             gp.player.life = gp.player.maxLife;
             gp.player.mana = gp.player.maxMana;
             gp.aSetter.setMonster();
-            // Prob move this method above the dialogue text
-            gp.saveLoad.save();
         }
     }
 

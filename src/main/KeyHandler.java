@@ -135,11 +135,7 @@ public class KeyHandler implements KeyListener {
 
         // Debugging
         if (code == KeyEvent.VK_T) {
-            if (!showDebugText) {
-                showDebugText = true;
-            } else {
-                showDebugText = false;
-            }
+            showDebugText = !showDebugText;
         }
         if (code == KeyEvent.VK_R) {
             switch (gp.currentMap) {
@@ -152,11 +148,7 @@ public class KeyHandler implements KeyListener {
             }
         }
         if (code == KeyEvent.VK_G) {
-            if (!godMode) {
-                godMode = true;
-            } else {
-                godMode = false;
-            }
+            godMode = !godMode;
         }
     }
 

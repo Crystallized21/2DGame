@@ -66,10 +66,11 @@ public class MON_Orc extends Entity {
         attackRight2 = setup("monster/orc_attack_right_2", gp.tileSize * 2, gp.tileSize);
     }
 
+    @SuppressWarnings("GrazieInspection")
     @Override
     public void setAction() {
         if (onPath) {
-            // If the monster is on the path and the player are far away, stop following the player
+            // If the monster is on the path and the player is far away, stop following the player
             stopChasingPlayer(gp.player, 15, 100);
 
             // Search a path to the player
@@ -97,7 +98,7 @@ public class MON_Orc extends Entity {
 
     @Override
     public void checkDrop() {
-        // Cast monster dead drop
+        // Cast a monster dead drops
         int i = new Random().nextInt(100) + 1;
 
         // Set drops

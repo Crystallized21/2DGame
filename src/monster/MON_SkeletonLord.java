@@ -154,7 +154,7 @@ public class MON_SkeletonLord extends Entity {
             }
         }
 
-        // Cast monster dead drop
+        // Cast a monster dead drops
         int i = new Random().nextInt(100) + 1;
 
         // Set drops

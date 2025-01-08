@@ -60,7 +60,7 @@ public class MON_Bat extends Entity {
 
     @Override
     public void checkDrop() {
-        // Cast monster dead drop
+        // Cast a monster dead drops
         int i = new Random().nextInt(100) + 1;
 
         // Set drops

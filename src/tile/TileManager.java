@@ -41,7 +41,7 @@ public class TileManager {
             throw new RuntimeException(e);
         }
 
-        // Initialize the tile array
+        // Initialise the tile array
         tile = new Tile[fileNames.size()];
         getTileImage();
 
@@ -92,7 +92,7 @@ public class TileManager {
             tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].collision = collision;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -161,8 +161,5 @@ public class TileManager {
             }
 
         }
-
-        // Draw the path, if needed or something idk
-
     }
 }
