@@ -1,9 +1,7 @@
 package main;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.*;
+import java.io.IOException;
 import java.net.URL;
 
 public class Sound {
@@ -46,20 +44,24 @@ public class Sound {
             clip.open(ais);
             fc = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             checkVolume();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            throw new RuntimeException(e);
         }
 
     }
+
     public void play() {
         clip.start();
     }
+
     public void loop() {
         clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
+
     public void stop() {
         clip.stop();
     }
+
     public void checkVolume() {
         switch (volumeScale) {
             case 0: volume = -80.0f; break;

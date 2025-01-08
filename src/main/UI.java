@@ -46,7 +46,6 @@ public class UI {
             assert is != null;
             purisaB = Font.createFont(Font.TRUETYPE_FONT, is);
         } catch (FontFormatException | IOException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
 
@@ -433,8 +432,6 @@ public class UI {
         y += gp.tileSize;
 
         if (npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
-//            currentDialogue = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
-
             char[] characters = npc.dialogues[npc.dialogueSet][npc.dialogueIndex].toCharArray();
 
             if (charIndex < characters.length) {
