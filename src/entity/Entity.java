@@ -331,21 +331,21 @@ public class Entity {
     }
 
     public void generateParticle(@NotNull Entity generator, Entity target) {
-        // TODO: Make particle generation more dynamic and random
-
         Color color = generator.getParticleColor();
         int size = generator.getParticleSize();
         int speed = generator.getParticleSpeed();
         int maxLife = generator.getParticleMaxLife();
 
-        Particle p1 = new Particle(gp, target, color, size, speed, maxLife, -2, -1);
-        Particle p2 = new Particle(gp, target, color, size, speed, maxLife, 2, -1);
-        Particle p3 = new Particle(gp, target, color, size, speed, maxLife, -2, 1);
-        Particle p4 = new Particle(gp, target, color, size, speed, maxLife, 2, 1);
-        gp.particleList.add(p1);
-        gp.particleList.add(p2);
-        gp.particleList.add(p3);
-        gp.particleList.add(p4);
+        Random random = new Random();
+        int[] xOffsets = {-2, 2, -2, 2};
+        int[] yOffsets = {-1, -1, 1, 1};
+
+        for (int i = 0; i < 4; i++) {
+            int xOffset = xOffsets[i] + random.nextInt(3) - 1; // Randomise between -3 and 3
+            int yOffset = yOffsets[i] + random.nextInt(3) - 1; // Randomise between -2 and 2
+            Particle p = new Particle(gp, target, color, size, speed, maxLife, xOffset, yOffset);
+            gp.particleList.add(p);
+        }
     }
 
     public void checkCollision() {
