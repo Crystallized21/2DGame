@@ -12,6 +12,9 @@ import tile_interactive.IT_DestructibleWall;
 import tile_interactive.IT_DryTree;
 import tile_interactive.IT_MetalPlate;
 
+import javax.swing.plaf.multi.MultiPanelUI;
+import java.security.Key;
+
 public class AssetSetter {
     final GamePanel gp;
 
@@ -102,6 +105,26 @@ public class AssetSetter {
         gp.obj[mapNum][i] = new OBJ_BlueHeart(gp);
         gp.obj[mapNum][i].worldX = gp.tileSize * 25;
         gp.obj[mapNum][i].worldY = gp.tileSize * 8;
+        i++;
+
+        mapNum = 4;
+        i = 0;
+
+        gp.obj[mapNum][i] = new OBJ_Door(gp);
+        gp.obj[mapNum][i].worldX = gp.tileSize * 19;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 46;
+        i++;
+
+        gp.obj[mapNum][i] = new OBJ_Chest(gp);
+        gp.obj[mapNum][i].setLoot(new OBJ_Key(gp)); // TODO: Add Dungeon Key
+        gp.obj[mapNum][i].worldX = gp.tileSize * 19;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 48;
+        i++;
+
+        gp.obj[mapNum][i] = new OBJ_Chest(gp);
+        gp.obj[mapNum][i].setLoot(new OBJ_Key(gp)); // For school door? LMAO
+        gp.obj[mapNum][i].worldX = gp.tileSize * 24;
+        gp.obj[mapNum][i].worldY = gp.tileSize * 47;
         i++;
     }
 
@@ -333,6 +356,39 @@ public class AssetSetter {
         gp.iTile[mapNum][i] = new IT_MetalPlate(gp, 8, 17);
         i++;
         gp.iTile[mapNum][i] = new IT_MetalPlate(gp, 39, 31);
+        i++;
+
+        mapNum = 4;
+        i = 0;
+
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 19, 34);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 19, 35);
+        i++;
+
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 16, 33);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 15, 33);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 14, 33);
+        i++;
+
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 33, 38);
+        i++;
+
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 33, 47);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 34, 47);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 35, 47);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 36, 47);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 37, 47);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 38, 47);
+        i++;
+        gp.iTile[mapNum][i] = new IT_DryTree(gp, 39, 47);
         i++;
     }
 }

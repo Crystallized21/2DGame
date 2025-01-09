@@ -62,12 +62,12 @@ public class TileManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        
+
         loadMap("/maps/worldmap.txt", 0);
         loadMap("/maps/indoor01.txt", 1);
         loadMap("/maps/dungeon01.txt", 2);
         loadMap("/maps/dungeon02.txt", 3);
-
+        loadMap("/maps/worldmap2.txt", 4);
     }
 
     public void getTileImage() {
@@ -128,38 +128,34 @@ public class TileManager {
     }
 
     public void draw(Graphics2D g2) {
-        int worldCol = 0;
-        int worldRow = 0;
+        // Draw a green background for the entire visible area
+       g2.setColor(new Color(0x67a55e));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
-        while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
+        for (int worldRow = 0; worldRow < gp.maxWorldRow; worldRow++) {
+            for (int worldCol = 0; worldCol < gp.maxWorldCol; worldCol++) {
 
-            int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
+                int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
 
-            int worldX = worldCol * gp.tileSize;
-            int worldY = worldRow * gp.tileSize;
-            int screenX = worldX - gp.player.worldX + gp.player.screenX;
-            int screenY = worldY - gp.player.worldY + gp.player.screenY;
+                int worldX = worldCol * gp.tileSize;
+                int worldY = worldRow * gp.tileSize;
+                int screenX = worldX - gp.player.worldX + gp.player.screenX;
+                int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
-            // Optimisation to only draw tiles that are visible on the screen
+                // Optimisation to only draw tiles that are visible on the screen
+                if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
+                        worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+                        worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
+                        worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 
-            if (worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
-                    worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-                    worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
-                    worldY - gp.tileSize < gp.player.worldY + gp.player.screenY
-            ) {
-                if (tile[tileNum] != null) {
-                    g2.drawImage(tile[tileNum].image, screenX, screenY, null);
-                } else {
-                    System.out.println("Tile " + tileNum + " is null");
+                    // Draw the tile if it is not null
+                    if (tile[tileNum] != null) {
+                        g2.drawImage(tile[tileNum].image, screenX, screenY, null);
+                    } else {
+                        System.out.println("Tile " + tileNum + " is null");
+                    }
                 }
             }
-            worldCol++;
-
-            if (worldCol == gp.maxWorldCol) {
-                worldCol = 0;
-                worldRow++;
-            }
-
         }
     }
 }

@@ -38,7 +38,7 @@ public class Player extends Entity {
     public void setDefaultValues() {
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
-        gp.currentMap = 0;
+        gp.currentMap = 4;
 
         defaultSpeed = 4;
         speed = defaultSpeed;
@@ -71,7 +71,7 @@ public class Player extends Entity {
     }
 
     public void setDefaultPositions() {
-        gp.currentMap = 0;
+        gp.currentMap = 4;
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
         direction = "down";
@@ -97,9 +97,11 @@ public class Player extends Entity {
         inventory.clear();
         inventory.add(currentWeapon);
         inventory.add(currentShield);
+        inventory.add(new OBJ_Key(gp));
 //        inventory.add(new OBJ_Key(gp));
 //        inventory.add(new OBJ_Key(gp));
         // TODO: Debugging purposes, remove the axe later
+        inventory.add(new OBJ_Axe(gp));
     }
 
     public int getAttack() {

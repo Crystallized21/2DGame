@@ -245,7 +245,6 @@ public class GamePanel extends JPanel implements Runnable {
             }
             eManager.update();
         }
-        // Nothing for now.
     }
 
     public void drawToTempScreen() {
