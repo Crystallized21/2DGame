@@ -2,30 +2,31 @@ package monster.slime;
 
 import entity.Entity;
 import main.GamePanel;
-import object.coin.*;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
+import object.OBJ_Rock;
+import object.coin.OBJ_Coin_Gold;
 
 import java.util.Random;
 
-public class MON_YellowSlime extends Entity {
+public class MON_BlueSlime extends Entity {
 
-    final GamePanel gp;
+    GamePanel gp;
 
-    public MON_YellowSlime(GamePanel gp) {
+    public MON_BlueSlime(GamePanel gp) {
         super(gp);
-
         this.gp = gp;
 
         type = type_monster;
-        name = "Yellow Slime";
+        name = "Blue Slime";
         defaultSpeed = 2;
         speed = defaultSpeed;
-        maxLife = 10;
+        maxLife = 8;
         life = maxLife;
-        attack = 1;
-        defense = 0;
-        exp = 10;
+        attack = 10;
+        defense = 2;
+        exp = 15;
+        projectile = new OBJ_Rock(gp);
 
         // Solid Area
         solidArea.x = 3;
@@ -39,14 +40,14 @@ public class MON_YellowSlime extends Entity {
     }
 
     public void getImage() {
-        up1 = setup("monster/yellowslime_down_1", gp.tileSize, gp.tileSize);
-        up2 = setup("monster/yellowslime_down_2", gp.tileSize, gp.tileSize);
-        down1 = setup("monster/yellowslime_down_1", gp.tileSize, gp.tileSize);
-        down2 = setup("monster/yellowslime_down_2", gp.tileSize, gp.tileSize);
-        left1 = setup("monster/yellowslime_down_1", gp.tileSize, gp.tileSize);
-        left2 = setup("monster/yellowslime_down_2", gp.tileSize, gp.tileSize);
-        right1 = setup("monster/yellowslime_down_1", gp.tileSize, gp.tileSize);
-        right2 = setup("monster/yellowslime_down_2", gp.tileSize, gp.tileSize);
+        up1 = setup("monster/blueslime_down_1", gp.tileSize, gp.tileSize);
+        up2 = setup("monster/blueslime_down_2", gp.tileSize, gp.tileSize);
+        down1 = setup("monster/blueslime_down_1", gp.tileSize, gp.tileSize);
+        down2 = setup("monster/blueslime_down_2", gp.tileSize, gp.tileSize);
+        left1 = setup("monster/blueslime_down_1", gp.tileSize, gp.tileSize);
+        left2 = setup("monster/blueslime_down_2", gp.tileSize, gp.tileSize);
+        right1 = setup("monster/blueslime_down_1", gp.tileSize, gp.tileSize);
+        right2 = setup("monster/blueslime_down_2", gp.tileSize, gp.tileSize);
     }
 
     @Override
@@ -54,9 +55,10 @@ public class MON_YellowSlime extends Entity {
         if (onPath) {
             stopChasingPlayer(gp.player, 15, 100);
             searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
+            checkProjectile(200, 30);
         } else {
             startChasingPlayer(gp.player, 5, 100);
-            getRandomDirection(60);
+            getRandomDirection(120);
         }
     }
 
@@ -68,14 +70,9 @@ public class MON_YellowSlime extends Entity {
 
     @Override
     public void checkDrop() {
-        // Cast the monster's dead drops
         int i = new Random().nextInt(100) + 1;
 
-        // Set drops
-        if (i < 40) {
-            dropItem(new OBJ_Coin_Sliver(gp));
-        }
-        if (i >= 40 && i < 60) {
+        if (i <= 60) {
             dropItem(new OBJ_Coin_Gold(gp));
         }
         if (i >= 60 && i < 80) {
@@ -85,4 +82,5 @@ public class MON_YellowSlime extends Entity {
             dropItem(new OBJ_ManaCrystal(gp));
         }
     }
+
 }
