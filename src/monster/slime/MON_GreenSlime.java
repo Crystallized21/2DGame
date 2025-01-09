@@ -1,4 +1,4 @@
-package monster;
+package monster.slime;
 
 import entity.Entity;
 import main.GamePanel;

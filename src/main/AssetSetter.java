@@ -5,6 +5,8 @@ import entity.NPC_BigRock;
 import entity.NPC_Merchant;
 import entity.NPC_OldMan;
 import monster.*;
+import monster.slime.MON_GreenSlime;
+import monster.slime.MON_RedSlime;
 import object.*;
 import tile_interactive.IT_DestructibleWall;
 import tile_interactive.IT_DryTree;
