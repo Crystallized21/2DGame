@@ -5,28 +5,28 @@ import main.GamePanel;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
 import object.OBJ_Rock;
-import object.coin.OBJ_Coin_Sliver;
+import object.coin.OBJ_Coin_Gold;
 
 import java.util.Random;
 
-public class MON_RedSlime extends Entity {
+public class MON_PurpleSlime extends Entity {
 
     final GamePanel gp;
 
-    public MON_RedSlime(GamePanel gp) {
+    public MON_PurpleSlime(GamePanel gp) {
         super(gp);
 
         this.gp = gp;
 
         type = type_monster;
         name = "Red Slime";
-        defaultSpeed = 2;
+        defaultSpeed = 1;
         speed = defaultSpeed;
-        maxLife = 8;
+        maxLife = 15;
         life = maxLife;
-        attack = 7;
-        defense = 0;
-        exp = 5;
+        attack = 1;
+        defense = 1;
+        exp = 15;
         projectile = new OBJ_Rock(gp);
 
         solidArea.x = 3;
@@ -40,14 +40,14 @@ public class MON_RedSlime extends Entity {
     }
 
     public void getImage() {
-        up1 = setup("monster/redslime_down_1", gp.tileSize, gp.tileSize);
-        up2 = setup("monster/redslime_down_2", gp.tileSize, gp.tileSize);
-        down1 = setup("monster/redslime_down_1", gp.tileSize, gp.tileSize);
-        down2 = setup("monster/redslime_down_2", gp.tileSize, gp.tileSize);
-        left1 = setup("monster/redslime_down_1", gp.tileSize, gp.tileSize);
-        left2 = setup("monster/redslime_down_2", gp.tileSize, gp.tileSize);
-        right1 = setup("monster/redslime_down_1", gp.tileSize, gp.tileSize);
-        right2 = setup("monster/redslime_down_2", gp.tileSize, gp.tileSize);
+        up1 = setup("monster/purpleslime_down_1", gp.tileSize, gp.tileSize);
+        up2 = setup("monster/purpleslime_down_2", gp.tileSize, gp.tileSize);
+        down1 = setup("monster/purpleslime_down_1", gp.tileSize, gp.tileSize);
+        down2 = setup("monster/purpleslime_down_2", gp.tileSize, gp.tileSize);
+        left1 = setup("monster/purpleslime_down_1", gp.tileSize, gp.tileSize);
+        left2 = setup("monster/purpleslime_down_2", gp.tileSize, gp.tileSize);
+        right1 = setup("monster/purpleslime_down_1", gp.tileSize, gp.tileSize);
+        right2 = setup("monster/purpleslime_down_2", gp.tileSize, gp.tileSize);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class MON_RedSlime extends Entity {
 
         // Set drops
         if (i < 50) {
-            dropItem(new OBJ_Coin_Sliver(gp));
+            dropItem(new OBJ_Coin_Gold(gp));
         }
         if (i >= 50 && i < 75) {
             dropItem(new OBJ_Heart(gp));

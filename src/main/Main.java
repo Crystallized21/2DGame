@@ -24,6 +24,7 @@ public class Main {
                 - ADD A IRON KEY TO OPEN THE FINAL BOSS DUNGEON
                 - Game balance
                 - Add more game mechanics and flow?
+                - In the dungeon, add dungeon specific items
         */
 
         initializeGraphics();

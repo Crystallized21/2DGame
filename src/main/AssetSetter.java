@@ -11,6 +11,8 @@ import object.*;
 import object.OBJ_Door_Dungeon;
 import tile_interactive.*;
 
+import java.security.Key;
+
 public class AssetSetter {
     final GamePanel gp;
 
@@ -54,6 +56,19 @@ public class AssetSetter {
 
         addChest(mapNum, i++, new OBJ_Chest(gp), 19, 48, new OBJ_Key(gp));
         addChest(mapNum, i++, new OBJ_Chest(gp), 24, 47, new OBJ_Key(gp)); // For school door? LMAO
+
+        mapNum = 5;
+        i = 0;
+
+        addObject(mapNum, i++, new OBJ_Door_Iron(gp), 20, 46);
+        addObject(mapNum, i++, new OBJ_Door(gp), 23, 12);
+        addObject(mapNum, i++, new OBJ_Key(gp), 29, 12);
+        addObject(mapNum, i++, new OBJ_Key(gp), 35, 31);
+        addObject(mapNum, i++, new OBJ_Door(gp), 44, 10);
+        addObject(mapNum, i++, new OBJ_Door(gp), 31, 3);
+
+        addChest(mapNum, i++, new OBJ_Chest(gp), 16, 45, new OBJ_Potion_Red(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 31, 44, new OBJ_Key(gp));
     }
 
     public void setNPC() {
@@ -116,6 +131,33 @@ public class AssetSetter {
         addMonster(mapNum, i++, new MON_YellowSlime(gp), 43, 6);
         addMonster(mapNum, i++, new MON_YellowSlime(gp), 43, 9);
         addMonster(mapNum, i++, new MON_YellowSlime(gp), 36, 9);
+
+        mapNum = 5;
+        i = 0;
+
+        addMonster(mapNum, i++, new MON_Bat(gp), 27, 31);
+        addMonster(mapNum, i++, new MON_Bat(gp), 31, 31);
+        addMonster(mapNum, i++, new MON_Bat(gp), 14, 46);
+        addMonster(mapNum, i++, new MON_Bat(gp), 26, 9);
+        addMonster(mapNum, i++, new MON_Bat(gp), 26, 14);
+
+        // TODO: Add dungeon monster that drop a dungeon key to loots
+        addMonster(mapNum, i++, new MON_Orc(gp), 37, 18);
+        addMonster(mapNum, i++, new MON_Orc(gp), 43, 18);
+        addMonster(mapNum, i++, new MON_Bat(gp), 32, 11);
+        addMonster(mapNum, i++, new MON_Bat(gp), 32, 27);
+        addMonster(mapNum, i++, new MON_Bat(gp), 47, 27);
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 22, 36);
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 26, 36);
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 25, 38);
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 39, 45);
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 35, 45);
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 18, 4);
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 14, 4);
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 35, 15);
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 35, 22);
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 43, 45);
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 43, 16);
     }
 
     public void setInteractiveTile() {

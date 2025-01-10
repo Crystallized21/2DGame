@@ -40,7 +40,7 @@ public class Player extends Entity {
         worldY = gp.tileSize * 21;
         gp.currentMap = 4;
 
-        defaultSpeed = 4;
+        defaultSpeed = 8;
         speed = defaultSpeed;
         direction = "down";
 
@@ -103,6 +103,7 @@ public class Player extends Entity {
         // TODO: Debugging purposes, remove the axe later
         inventory.add(new OBJ_Axe(gp));
         inventory.add(new OBJ_Key_Dungeon(gp));
+        inventory.add(new OBJ_Lantern(gp));
     }
 
     public int getAttack() {
