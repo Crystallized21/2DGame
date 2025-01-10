@@ -19,8 +19,7 @@ public class IT_DestructibleWall extends InteractiveTile {
 
         down1 = setup("tiles_interactive/destructiblewall", gp.tileSize, gp.tileSize);
         destructible = true;
-        // TODO: Debugging reset life to 3
-        life = 1;
+        life = 3;
     }
 
     @Override
