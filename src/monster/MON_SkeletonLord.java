@@ -7,6 +7,8 @@ import object.coin.OBJ_Coin_Bronze;
 import object.OBJ_Door_Iron;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
+import object.coin.OBJ_Coin_Gold;
+import object.coin.OBJ_Coin_Sliver;
 
 import java.util.Random;
 
@@ -134,7 +136,6 @@ public class MON_SkeletonLord extends Entity {
         actionLockCounter = 0;
     }
 
-    // TODO: Change the items
     @Override
     public void checkDrop() {
 
@@ -159,7 +160,7 @@ public class MON_SkeletonLord extends Entity {
 
         // Set drops
         if (i < 50) {
-            dropItem(new OBJ_Coin_Bronze(gp));
+            dropItem(new OBJ_Coin_Gold(gp));
         }
         if (i >= 50 && i < 75) {
             dropItem(new OBJ_Heart(gp));
