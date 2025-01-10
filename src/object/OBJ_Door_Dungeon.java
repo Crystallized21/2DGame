@@ -3,16 +3,18 @@ package object;
 import entity.Entity;
 import main.GamePanel;
 
-public class OBJ_Door_Iron extends Entity {
+public class OBJ_Door_Dungeon extends Entity {
 
-    public static final String objName = "Iron Door";
+    final GamePanel gp;
+    public static final String objName = "Dungeon Door";
 
-    public OBJ_Door_Iron(GamePanel gp) {
+    public OBJ_Door_Dungeon(GamePanel gp) {
         super(gp);
+        this.gp = gp;
 
         type = type_obstacle;
         name = objName;
-        down1 = setup("objects/door_iron", gp.tileSize, gp.tileSize);
+        down1 = setup("objects/door_gold", gp.tileSize, gp.tileSize);
         collision = true;
 
         solidArea.x = 0;
@@ -21,11 +23,12 @@ public class OBJ_Door_Iron extends Entity {
         solidArea.height = 32;
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
+
         setDialogue();
     }
 
-    public void setDialogue() {
-        dialogues[0][0] = "It won't budge.";
+    private void setDialogue() {
+        dialogues[0][0] = "You need a dungeon key to open this door to the\ndungeon.";
     }
 
     @Override

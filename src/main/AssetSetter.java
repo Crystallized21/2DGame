@@ -8,6 +8,7 @@ import entity.NPC_OldMan;
 import monster.*;
 import monster.slime.*;
 import object.*;
+import object.OBJ_Door_Dungeon;
 import tile_interactive.*;
 
 public class AssetSetter {
@@ -49,7 +50,9 @@ public class AssetSetter {
         i = 0;
         addObject(mapNum, i++, new OBJ_Door(gp), 19, 46);
 
-        addChest(mapNum, i++, new OBJ_Chest(gp), 19, 48, new OBJ_Key(gp)); // TODO: Add Dungeon Key
+        addObject(mapNum, i++, new OBJ_Door_Dungeon(gp), 23 , 13);
+
+        addChest(mapNum, i++, new OBJ_Chest(gp), 19, 48, new OBJ_Key(gp));
         addChest(mapNum, i++, new OBJ_Chest(gp), 24, 47, new OBJ_Key(gp)); // For school door? LMAO
     }
 
@@ -108,6 +111,11 @@ public class AssetSetter {
         addMonster(mapNum, i++, new MON_BlueSlime(gp), 28, 44);
         addMonster(mapNum, i++, new MON_BlueSlime(gp), 27, 44);
         addMonster(mapNum, i++, new MON_BlueSlime(gp), 29, 44);
+
+        addMonster(mapNum, i++, new MON_YellowSlime(gp), 37, 6);
+        addMonster(mapNum, i++, new MON_YellowSlime(gp), 43, 6);
+        addMonster(mapNum, i++, new MON_YellowSlime(gp), 43, 9);
+        addMonster(mapNum, i++, new MON_YellowSlime(gp), 36, 9);
     }
 
     public void setInteractiveTile() {

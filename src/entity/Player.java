@@ -102,6 +102,7 @@ public class Player extends Entity {
 //        inventory.add(new OBJ_Key(gp));
         // TODO: Debugging purposes, remove the axe later
         inventory.add(new OBJ_Axe(gp));
+        inventory.add(new OBJ_Key_Dungeon(gp));
     }
 
     public int getAttack() {

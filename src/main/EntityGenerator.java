@@ -24,9 +24,11 @@ public class EntityGenerator {
             case OBJ_Coin_Gold.objName -> new OBJ_Coin_Gold(gp);
             case OBJ_Door.objName -> new OBJ_Door(gp);
             case OBJ_Door_Iron.objName -> new OBJ_Door_Iron(gp);
+            case OBJ_Door_Dungeon.objName -> new OBJ_Door_Dungeon(gp);
             case OBJ_Fireball.objName -> new OBJ_Fireball(gp);
             case OBJ_Heart.objName -> new OBJ_Heart(gp);
             case OBJ_Key.objName -> new OBJ_Key(gp);
+            case OBJ_Key_Dungeon.objName -> new OBJ_Key_Dungeon(gp);
             case OBJ_Lantern.objName -> new OBJ_Lantern(gp);
             case OBJ_ManaCrystal.objName -> new OBJ_ManaCrystal(gp);
             case OBJ_Pickaxe.objName -> new OBJ_Pickaxe(gp);
