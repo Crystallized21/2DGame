@@ -5,6 +5,7 @@ import entity.NPC_BigRock;
 import entity.NPC_Merchant;
 import entity.NPC_OldMan;
 import monster.*;
+import monster.slime.MON_BlueSlime;
 import monster.slime.MON_GreenSlime;
 import monster.slime.MON_RedSlime;
 import object.*;
@@ -249,6 +250,24 @@ public class AssetSetter {
             gp.monster[mapNum][i].worldX = gp.tileSize * 23;
             gp.monster[mapNum][i].worldY = gp.tileSize * 16;
         }
+
+        mapNum = 4;
+        i = 0;
+
+        gp.monster[mapNum][i] = new MON_BlueSlime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 28;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 44;
+        i++;
+
+        gp.monster[mapNum][i] = new MON_BlueSlime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 27;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 44;
+        i++;
+
+        gp.monster[mapNum][i] = new MON_BlueSlime(gp);
+        gp.monster[mapNum][i].worldX = gp.tileSize * 29;
+        gp.monster[mapNum][i].worldY = gp.tileSize * 44;
+        i++;
     }
 
     public void setInteractiveTile() {

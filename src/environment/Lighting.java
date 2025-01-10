@@ -90,8 +90,7 @@ public class Lighting {
         if (dayState == day) {
             dayCounter++;
 
-            // 5400 is 3 minutes
-            if (dayCounter > 5400) {
+            if (dayCounter > 10800) {
                 dayState = dusk;
                 dayCounter = 0;
             }
