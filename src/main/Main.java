@@ -17,12 +17,13 @@ public class Main {
 
         /*
             TODO: Future updates
-                - Add more maps
-                - Add more enemies
+                - Add more maps -- in progress
+                - Add more enemies -- in progress
+                - Add signs to the game (to help the player navigate)
                 - Add more items?
                 - ADD A IRON KEY TO OPEN THE FINAL BOSS DUNGEON
                 - Game balance
-                - Add more game mechanics and flow
+                - Add more game mechanics and flow?
         */
 
         initializeGraphics();

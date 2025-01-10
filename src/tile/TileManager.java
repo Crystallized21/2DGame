@@ -129,7 +129,7 @@ public class TileManager {
 
     public void draw(Graphics2D g2) {
         // Draw a green background for the entire visible area
-       g2.setColor(new Color(0x67a55e));
+        g2.setColor(new Color(0x67a55e));
         g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
 
         for (int worldRow = 0; worldRow < gp.maxWorldRow; worldRow++) {
