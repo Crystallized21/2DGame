@@ -77,6 +77,8 @@ public class EventHandler {
             else if (hit(2, 8, 7, "any")) teleport(3, 26, 41, gp.dungeon); // b2
             else if (hit(3, 26, 41, "any")) teleport(2, 8, 7, gp.dungeon); // to dungeon
 
+            else if (hit(4, 37, 29, "any")) healingPool(gp.dialogueState);
+
             else if (hit(4, 23, 8, "any")) teleport(5, 3, 24, gp.dungeon);
             else if (hit(5, 2, 24, "any")) teleport(4, 23, 9, gp.outside);
 
