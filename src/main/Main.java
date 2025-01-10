@@ -25,6 +25,7 @@ public class Main {
                 - Game balance
                 - Add more game mechanics and flow?
                 - In the dungeon, add dungeon specific items
+                - Rewrite the old man's dialogue
         */
 
         initializeGraphics();
