@@ -25,6 +25,7 @@ public class Main {
                 - Game balance
                 - Add more game mechanics and flow?
                 - In the dungeon, add dungeon specific items
+                - Add a teleport sprite to the game
                 - Rewrite the old man's dialogue
         */
 

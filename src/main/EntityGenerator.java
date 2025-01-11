@@ -36,7 +36,9 @@ public class EntityGenerator {
             case OBJ_Rock.objName -> new OBJ_Rock(gp);
             case OBJ_Shield_Blue.objName -> new OBJ_Shield_Blue(gp);
             case OBJ_Shield_Wood.objName -> new OBJ_Shield_Wood(gp);
+            case OBJ_Shield_Dungeon.objName -> new OBJ_Shield_Dungeon(gp);
             case OBJ_Sword_Normal.objName -> new OBJ_Sword_Normal(gp);
+            case OBJ_Sword_Dungeon.objName -> new OBJ_Sword_Dungeon(gp);
             case OBJ_Tent.objName -> new OBJ_Tent(gp);
             default -> null;
         };
