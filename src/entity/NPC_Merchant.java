@@ -46,11 +46,13 @@ public class NPC_Merchant extends Entity{
 
     public void setItems() {
         inventory.add(new OBJ_Potion_Red(gp));
+        inventory.add(new OBJ_Potion_Blue(gp));
         inventory.add(new OBJ_Key(gp));
         inventory.add(new OBJ_Sword_Normal(gp));
         inventory.add(new OBJ_Axe(gp));
         inventory.add(new OBJ_Shield_Wood(gp));
         inventory.add(new OBJ_Shield_Blue(gp));
+        inventory.add(new OBJ_Tent(gp));
     }
 
     @Override

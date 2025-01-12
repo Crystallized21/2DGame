@@ -21,6 +21,7 @@ public class OBJ_Tent extends Entity {
         down1 = setup("objects/tent", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\n You can sleep until\n the next day.";
         stackable = true;
+        price = 50;
     }
     
     @Override
