@@ -12,17 +12,6 @@ public class Main {
     public static void main(String[] args) {
         // Initialise the graphics context
 
-        // TODO: Feedback from play testing
-        // Entity Boss invisible glitch
-
-        /*
-            TODO: Future updates
-                - Add signs to the game to healing pools
-                - Game balance
-                - Redo monsters drops
-                - Rewrite the old man's dialogue maybe?
-        */
-
         initializeGraphics();
 
         window = new JFrame();
