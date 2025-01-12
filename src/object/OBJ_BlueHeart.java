@@ -16,6 +16,8 @@ public class OBJ_BlueHeart extends Entity {
         type = type_pickUps;
         name = objName;
         down1 = setup("objects/blueheart", gp.tileSize, gp.tileSize);
+
+        setDialogue();
     }
 
     public void setDialogue() {
