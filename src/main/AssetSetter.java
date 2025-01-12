@@ -54,7 +54,7 @@ public class AssetSetter {
 
         addObject(mapNum, i++, new OBJ_Door_Dungeon(gp), 23, 13);
 
-        addChest(mapNum, i++, new OBJ_Chest(gp), 19, 48, new OBJ_Key(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 19, 48, new OBJ_Key_Dungeon(gp));
         addChest(mapNum, i++, new OBJ_Chest(gp), 24, 47, new OBJ_Key(gp));
 
         mapNum = 5;
