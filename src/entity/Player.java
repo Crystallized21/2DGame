@@ -36,9 +36,9 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 21;
-        gp.currentMap = 0;
+        worldX = gp.tileSize * 17;
+        worldY = gp.tileSize * 26;
+        gp.currentMap = 8;
 
         defaultSpeed = 8;
         speed = defaultSpeed;

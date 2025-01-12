@@ -70,6 +70,7 @@ public class TileManager {
         loadMap("/maps/abandoned01.txt", 5);
         loadMap("/maps/worldmap3.txt", 6);
         loadMap("/maps/indoor01.txt", 7);
+        loadMap("/maps/dungeonmap3.txt", 8);
     }
 
     public void getTileImage() {

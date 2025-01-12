@@ -21,6 +21,7 @@ public class Main {
                 - ADD A IRON KEY TO OPEN THE FINAL BOSS DUNGEON
                 - Game balance
                 - In the dungeon, add dungeon specific items
+                - Redo monsters drops
                 - Rewrite the old man's dialogue
         */
 

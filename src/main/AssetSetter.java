@@ -11,8 +11,6 @@ import object.*;
 import object.OBJ_Door_Dungeon;
 import tile_interactive.*;
 
-import javax.crypto.interfaces.PBEKey;
-import java.security.Key;
 
 public class AssetSetter {
     final GamePanel gp;
@@ -82,6 +80,28 @@ public class AssetSetter {
 
         addObject(mapNum, i++, new OBJ_Door_Dungeon(gp), 34, 5);
         addObject(mapNum, i++, new OBJ_Door_Iron(gp), 15, 4);
+
+        mapNum = 8;
+        i = 0;
+
+        addObject(mapNum, i++, new OBJ_Door_Dungeon(gp), 28, 25);
+        addChest(mapNum, i++, new OBJ_Chest(gp), 30, 23, new OBJ_Sword_Dungeon(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 31, 23, new OBJ_Shield_Dungeon(gp));
+
+        addChest(mapNum, i++, new OBJ_Chest(gp), 35, 35, new OBJ_Potion_Blue(gp));
+
+        addChest(mapNum, i++, new OBJ_Chest(gp), 14, 31, new OBJ_Potion_Red(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 19, 38, new OBJ_Potion_Blue(gp));
+
+        addChest(mapNum, i++, new OBJ_Chest(gp), 32, 30, new OBJ_Key(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 48, 18, new OBJ_Potion_Red(gp));
+
+        addObject(mapNum, i++, new OBJ_Door_Iron(gp), 9, 22);
+
+        addObject(mapNum, i++, new OBJ_Door(gp), 3, 30);
+
+        addChest(mapNum, i++, new OBJ_Chest(gp), 27, 3, new OBJ_Potion_Red(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 24, 17, new OBJ_Potion_Red(gp));
     }
 
     public void setNPC() {
@@ -192,6 +212,12 @@ public class AssetSetter {
         addMonster(mapNum, i++, new MON_PurpleSlime(gp), 44, 16);
         addMonster(mapNum, i++, new MON_YellowSlime(gp), 41, 16);
         addMonster(mapNum, i++, new MON_BlueSlime(gp), 38, 16);
+
+        mapNum = 8;
+        i = 0;
+
+        // TODO: make a desperate class for orc dungeon monster
+        addMonster(mapNum, i++, new MON_Orc(gp), 40, 7);
     }
 
     public void setInteractiveTile() {
