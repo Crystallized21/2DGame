@@ -45,7 +45,7 @@ public class Player extends Entity {
         direction = "down";
 
         // Player Status
-        level = 15;
+        level = 1;
         maxLife = 6;
         life = maxLife;
         maxMana = 4;
@@ -494,7 +494,7 @@ public class Player extends Entity {
     public void checkLevelUp() {
         if (exp >= nextLevelExp) {
             level++;
-            nextLevelExp = nextLevelExp * 2;
+            nextLevelExp = (int) (nextLevelExp * 2.5);
             maxLife += 2;
             strength++;
             dexterity++;
