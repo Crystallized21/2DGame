@@ -2,9 +2,10 @@ package main;
 
 
 import entity.Entity;
-import object.OBJ_Coin_Bronze;
+import object.coin.OBJ_Coin_Bronze;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,15 +14,13 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class UI {
-    GamePanel gp;
+    final GamePanel gp;
     Graphics2D g2;
     public Font maruMonica;
     Font purisaB;
     BufferedImage heart_full, heart_half, heart_blank, crystal_full, crystal_blank, coin;
-    public boolean messageOn = false;
-    ArrayList<String> message = new ArrayList<>();
-    ArrayList<Integer> messageCounter = new ArrayList<>();
-    public boolean gameFinished = false;
+    final ArrayList<String> message = new ArrayList<>();
+    final ArrayList<Integer> messageCounter = new ArrayList<>();
     public String currentDialogue = "";
     public int commandNum = 0;
     public int titleScreenState = 0; // 0: First scree, 1: Second screen etc...
@@ -47,7 +46,6 @@ public class UI {
             assert is != null;
             purisaB = Font.createFont(Font.TRUETYPE_FONT, is);
         } catch (FontFormatException | IOException e) {
-            e.printStackTrace();
             throw new RuntimeException(e);
         }
 
@@ -70,7 +68,7 @@ public class UI {
         messageCounter.add(0);
     }
 
-    public void draw(Graphics2D g2) {
+    public void draw(@NotNull Graphics2D g2) {
         this.g2 = g2;
 
         g2.setFont(maruMonica);
@@ -90,7 +88,6 @@ public class UI {
         }
         // PauseState Logic
         if (gp.gameState == gp.pauseState) {
-            // TODO: This is dogshit and has really bad performance. Fix this later, or optimise it.
             drawPlayerLife();
             drawPauseState();
         }
@@ -234,7 +231,7 @@ public class UI {
                     int x = gp.screenWidth / 2 - gp.tileSize * 4;
                     int y = gp.tileSize * 10;
 
-                    // Use these if i wanna make the text go on the health bar
+                    // Use these if I want to make the text go on the health bar
                     g2.setColor(new Color(35, 35, 35));
                     g2.fillRect(x - 1, y - 1, gp.tileSize * 8 + 2, 22);
                     // g2.fillRect(x - 1 - 1, y - 1 - 16, gp.tileSize * 8 + 2, 12);
@@ -297,7 +294,7 @@ public class UI {
                 // Increment the counter
                 messageCounter.set(i, counter + 1);
 
-                // Remove message after it fades out
+                // Remove the message after it fades out
                 if (counter > 180) {
                     message.remove(i);
                     messageCounter.remove(i);
@@ -358,62 +355,20 @@ public class UI {
             if (commandNum == 2) {
                 g2.drawString(">", x - gp.tileSize, y);
             }
-        } else if (titleScreenState == 1) {
-            // Background
-            // TODO: Make this better, somehow.
-            g2.setColor(new Color(0, 0, 0));
-            g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-
-            // Class Selection Screen
-            g2.setColor(Color.white);
-            g2.setFont(g2.getFont().deriveFont(42F));
-
-            String text = "Select your class.";
-            int x = getXforCenteredText(text);
-            int y = gp.tileSize * 3;
-            g2.drawString(text, x, y);
-
-            text = "Fighter";
-            x = getXforCenteredText(text);
-            y += gp.tileSize * 3;
-            g2.drawString(text, x, y);
-            if (commandNum == 0) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
-
-            text = "Thief";
-            x = getXforCenteredText(text);
-            y += gp.tileSize;
-            g2.drawString(text, x, y);
-            if (commandNum == 1) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
-
-            text = "Sorcerer";
-            x = getXforCenteredText(text);
-            y += gp.tileSize;
-            g2.drawString(text, x, y);
-            if (commandNum == 2) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
-
-            text = "Back";
-            x = getXforCenteredText(text);
-            y += gp.tileSize * 2;
-            g2.drawString(text, x, y);
-            if (commandNum == 3) {
-                g2.drawString(">", x - gp.tileSize, y);
-            }
         }
-
     }
 
     public void drawPauseState() {
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80));
         String text = "PAUSED";
         int x = getXforCenteredText(text);
-        int y = gp.screenHeight / 2;
+        int y = (int) (gp.screenHeight / 2.5);
+        g2.drawString(text, x, y);
 
+        g2.setColor(Color.white);
+        text = "Press P to resume";
+        x = getXforCenteredText(text);
+        y += gp.tileSize * 2;
         g2.drawString(text, x, y);
     }
 
@@ -430,13 +385,10 @@ public class UI {
         y += gp.tileSize;
 
         if (npc.dialogues[npc.dialogueSet][npc.dialogueIndex] != null) {
-//            currentDialogue = npc.dialogues[npc.dialogueSet][npc.dialogueIndex];
-
             char[] characters = npc.dialogues[npc.dialogueSet][npc.dialogueIndex].toCharArray();
 
             if (charIndex < characters.length) {
-                // TODO: optimise this, wtf 800ms of run time??
-                gp.playSE(17);
+                gp.se.playPreload(17);
                 String s = String.valueOf(characters[charIndex]);
                 combinedText = combinedText + s;
                 currentDialogue = combinedText;
@@ -572,12 +524,12 @@ public class UI {
     }
 
     public void drawInventory(Entity entity, boolean cursor) {
-        int frameX = 0;
-        int frameY = 0;
-        int frameWidth = 0;
-        int frameHeight = 0;
-        int slotCol = 0;
-        int slotRow = 0;
+        int frameX;
+        int frameY;
+        int frameWidth;
+        int frameHeight;
+        int slotCol;
+        int slotRow;
 
         if (entity == gp.player) {
             frameX = gp.tileSize * 12;
@@ -657,20 +609,18 @@ public class UI {
             g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
             // Draw Item Description
-            int dFrameX = frameX;
             int dFrameY = frameY + frameHeight;
-            int dFrameWidth = frameWidth;
             int dFrameHeight = gp.tileSize * 3;
 
             // Draw Description Text
-            int textX = dFrameX + 20;
+            int textX = frameX + 20;
             int textY = dFrameY + gp.tileSize;
             g2.setFont(g2.getFont().deriveFont(28F));
 
             int itemIndex = getItemIndexOnSlot(slotCol, slotRow);
 
             if (itemIndex < entity.inventory.size()) {
-                drawSubtitleWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+                drawSubtitleWindow(frameX, dFrameY, frameWidth, dFrameHeight);
                 for (String line : entity.inventory.get(itemIndex).description.split("\n")) {
                     g2.drawString(line, textX, textY);
                     textY += 32;
@@ -766,11 +716,7 @@ public class UI {
         if (commandNum == 0) {
             g2.drawString(">", textX - 25, textY);
             if (gp.keyH.enterPressed) {
-                if (!gp.fullScreenOn) {
-                    gp.fullScreenOn = true;
-                } else if (gp.fullScreenOn) {
-                    gp.fullScreenOn = false;
-                }
+                gp.fullScreenOn = !gp.fullScreenOn;
                 subState = 1;
             }
         }
@@ -822,7 +768,7 @@ public class UI {
             }
         }
 
-        // Full Screen Check Box
+        // Full-Screen Check Box
         textX = (int) (frameX + gp.tileSize * 4.5);
         textY = frameY + gp.tileSize * 2 + 24;
         g2.setStroke(new BasicStroke(3));
@@ -891,7 +837,6 @@ public class UI {
         g2.drawString("Pause", textX, textY);
         textY += gp.tileSize;
         g2.drawString("Options", textX, textY);
-        textY += gp.tileSize;
 
         textX = frameX + gp.tileSize * 6;
         textY = frameY + gp.tileSize * 2;
@@ -906,7 +851,6 @@ public class UI {
         g2.drawString("P", textX, textY);
         textY += gp.tileSize;
         g2.drawString("ESC", textX, textY);
-        textY += gp.tileSize;
 
         // Back Button
         textX = frameX + gp.tileSize;
@@ -1049,9 +993,6 @@ public class UI {
 
         // Draw Player's Coin Window
         x = gp.tileSize * 12;
-        y = gp.tileSize * 9;
-        width = gp.tileSize * 6;
-        height = gp.tileSize * 2;
         drawSubtitleWindow(x, y, width, height);
         g2.drawString("Your Coin(s): " + gp.player.coin, x + 24, y + 60);
 
@@ -1106,9 +1047,6 @@ public class UI {
 
         // Draw Player's Coin Window
         x = gp.tileSize * 12;
-        y = gp.tileSize * 9;
-        width = gp.tileSize * 6;
-        height = gp.tileSize * 2;
         drawSubtitleWindow(x, y, width, height);
         g2.drawString("Your Coin(s): " + gp.player.coin, x + 24, y + 60);
 
@@ -1170,8 +1108,7 @@ public class UI {
     }
 
     public int getItemIndexOnSlot(int slotCol, int slotRow) {
-        int itemIndex = slotCol + (slotRow * 5);
-        return itemIndex;
+        return slotCol + (slotRow * 5);
     }
 
     public void drawSubtitleWindow(int x, int y, int width, int height) {
@@ -1187,13 +1124,11 @@ public class UI {
 
     public int getXforCenteredText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = gp.screenWidth / 2 - length / 2;
-        return x;
+        return gp.screenWidth / 2 - length / 2;
     }
 
     public int getXforAlignToRightText(String text, int tailX) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = tailX - length;
-        return x;
+        return tailX - length;
     }
 }

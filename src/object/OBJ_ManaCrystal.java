@@ -2,10 +2,11 @@ package object;
 
 import entity.Entity;
 import main.GamePanel;
+import org.jetbrains.annotations.NotNull;
 
 public class OBJ_ManaCrystal extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Mana Crystal";
 
     public OBJ_ManaCrystal(GamePanel gp) {
@@ -21,7 +22,8 @@ public class OBJ_ManaCrystal extends Entity {
         image2 = setup("objects/manacrystal_blank", gp.tileSize, gp.tileSize);
     }
 
-    public boolean use(Entity entity) {
+    @Override
+    public boolean use(@NotNull Entity entity) {
         gp.playSE(2);
         gp.ui.addMessage("Mana + " + value);
         entity.mana += value;

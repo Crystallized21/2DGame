@@ -2,15 +2,16 @@ package tile_interactive;
 
 import entity.Entity;
 import main.GamePanel;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 
 public class IT_DryTree extends InteractiveTile {
 
-    GamePanel gp;
+    final GamePanel gp;
 
     public IT_DryTree(GamePanel gp, int col, int row) {
-        super(gp, col, row);
+        super(gp);
         this.gp = gp;
 
         this.worldX = gp.tileSize * col;
@@ -18,46 +19,43 @@ public class IT_DryTree extends InteractiveTile {
 
         down1 = setup("tiles_interactive/drytree", gp.tileSize, gp.tileSize);
         destructible = true;
-        // TODO: Debugging reset life to 2
-        life = 1;
+        life = 2;
     }
 
-    public boolean isCorrectItem(Entity entity) {
-        boolean isCorrectItem = false;
+    @Override
+    public boolean isCorrectItem(@NotNull Entity entity) {
 
-        if (entity.currentWeapon.type == type_axe) {
-            isCorrectItem = true;
-        }
-
-        return isCorrectItem;
+        return entity.currentWeapon.type == type_axe;
     }
 
+    @Override
     public void playSE() {
         gp.playSE(11);
     }
 
+    @Override
     public InteractiveTile getDestroyedForm() {
-        InteractiveTile tile = new IT_Trunk(gp, worldX / gp.tileSize, worldY / gp.tileSize);
-        return tile;
+        return new IT_Trunk(gp, worldX / gp.tileSize, worldY / gp.tileSize);
     }
 
+    @Override
     public Color getParticleColor() {
-        Color color = new Color(65, 50, 30);
-        return color;
+        return new Color(65, 50, 30);
     }
 
+    @Override
     public int getParticleSize() {
-        int size = 6; // 6 Pixels
-        return size;
+        // 6 Pixels
+        return 6;
     }
 
+    @Override
     public int getParticleSpeed() {
-        int speed = 1;
-        return speed;
+        return 1;
     }
 
+    @Override
     public int getParticleMaxLife() {
-        int maxLife = 20;
-        return maxLife;
+        return 20;
     }
 }

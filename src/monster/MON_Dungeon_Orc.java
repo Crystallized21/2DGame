@@ -2,30 +2,26 @@ package monster;
 
 import entity.Entity;
 import main.GamePanel;
-import object.coin.OBJ_Coin_Bronze;
-import object.OBJ_Heart;
-import object.OBJ_ManaCrystal;
+import object.OBJ_Key_Dungeon;
 
-import java.util.Random;
+public class MON_Dungeon_Orc extends Entity {
 
-public class MON_Orc extends Entity {
-    
     final GamePanel gp;
-    
-    public MON_Orc(GamePanel gp) {
+
+    public MON_Dungeon_Orc(GamePanel gp) {
         super(gp);
 
         this.gp = gp;
 
         type = type_monster;
-        name = "Orc";
+        name = "Dungeon Orc";
         defaultSpeed = 1;
         speed = defaultSpeed;
-        maxLife = 125;
+        maxLife = 160;
         life = maxLife;
         attack = 8;
         defense = 3;
-        exp = 120;
+        exp = 160;
         knockBackPower = 5;
 
         // Solid Area
@@ -54,7 +50,7 @@ public class MON_Orc extends Entity {
         right1 = setup("monster/orc_right_1", gp.tileSize, gp.tileSize);
         right2 = setup("monster/orc_right_2", gp.tileSize, gp.tileSize);
     }
-    
+
     public void getAttackImage() {
         attackUp1 = setup("monster/orc_attack_up_1", gp.tileSize, gp.tileSize * 2);
         attackUp2 = setup("monster/orc_attack_up_2", gp.tileSize, gp.tileSize * 2);
@@ -66,24 +62,16 @@ public class MON_Orc extends Entity {
         attackRight2 = setup("monster/orc_attack_right_2", gp.tileSize * 2, gp.tileSize);
     }
 
-    @SuppressWarnings("GrazieInspection")
     @Override
     public void setAction() {
         if (onPath) {
-            // If the monster is on the path and the player is far away, stop following the player
             stopChasingPlayer(gp.player, 15, 100);
-
-            // Search a path to the player
             searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
         } else {
-            // Check if the player is near
             startChasingPlayer(gp.player, 5, 100);
-
-            // Get a random direction if the monster is not on the path
             getRandomDirection(120);
         }
-        
-        // Check if the orc can attack
+
         if (!attacking) {
             checkAttack(30, gp.tileSize * 4, gp.tileSize);
         }
@@ -92,24 +80,11 @@ public class MON_Orc extends Entity {
     @Override
     public void damageReaction() {
         actionLockCounter = 0;
-//        direction = gp.player.direction;
         onPath = true;
     }
 
     @Override
     public void checkDrop() {
-        // Cast a monster dead drops
-        int i = new Random().nextInt(100) + 1;
-
-        // Set drops
-        if (i < 50) {
-            dropItem(new OBJ_Coin_Bronze(gp));
-        }
-        if (i >= 50 && i < 75) {
-            dropItem(new OBJ_Heart(gp));
-        }
-        if (i >= 75 && i < 100) {
-            dropItem(new OBJ_ManaCrystal(gp));
-        }
+        dropItem(new OBJ_Key_Dungeon(gp));
     }
 }

@@ -9,7 +9,7 @@ public class OBJ_Tent extends Entity {
     *   Maybe like having the player touch the bed talk to the innkeeper
     *   to sleep.*/
     
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Tent";
     
     public OBJ_Tent(GamePanel gp) {
@@ -21,8 +21,10 @@ public class OBJ_Tent extends Entity {
         down1 = setup("objects/tent", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\n You can sleep until\n the next day.";
         stackable = true;
+        price = 50;
     }
     
+    @Override
     public boolean use(Entity entity) {
         gp.gameState = gp.sleepState;
         gp.playSE(14);

@@ -113,25 +113,25 @@ public class NPC_BigRock extends Entity {
         int count = 0;
 
         // Scan the lists
-        for (int i = 0; i < plateList.size(); i++) {
-            int xDistance = Math.abs(worldX - plateList.get(i).worldX);
-            int yDistance = Math.abs(worldY - plateList.get(i).worldY);
+        for (InteractiveTile interactiveTile : plateList) {
+            int xDistance = Math.abs(worldX - interactiveTile.worldX);
+            int yDistance = Math.abs(worldY - interactiveTile.worldY);
             int distance = Math.max(xDistance, yDistance);
 
             if (distance < 8) {
                 if (linkedEntity == null) {
-                    linkedEntity = plateList.get(i);
+                    linkedEntity = interactiveTile;
                     gp.playSE(3);
                 }
             } else {
-                if (linkedEntity == plateList.get(i)) {
+                if (linkedEntity == interactiveTile) {
                     linkedEntity = null;
                 }
             }
         }
 
-        for (int i = 0; i < rockList.size(); i++) {
-            if (rockList.get(i).linkedEntity != null) {
+        for (Entity entity : rockList) {
+            if (entity.linkedEntity != null) {
                 count++;
             }
         }

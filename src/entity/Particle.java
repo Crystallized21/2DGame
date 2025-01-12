@@ -1,18 +1,19 @@
 package entity;
 
 import main.GamePanel;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 
 public class Particle extends Entity {
 
-    Entity generator;
-    Color color;
-    int size;
-    int xd;
+    final Entity generator;
+    final Color color;
+    final int size;
+    final int xd;
     int yd;
 
-    public Particle(GamePanel gp, Entity generator, Color color, int size, int speed, int maxLife, int xd, int yd) {
+    public Particle(GamePanel gp, @NotNull Entity generator, Color color, int size, int speed, int maxLife, int xd, int yd) {
         super(gp);
 
         this.generator = generator;
@@ -29,6 +30,7 @@ public class Particle extends Entity {
         worldY = generator.worldY + offset;
     }
 
+    @Override
     public void update() {
         life--;
 
@@ -44,7 +46,8 @@ public class Particle extends Entity {
         }
     }
 
-    public void draw(Graphics2D g2) {
+    @Override
+    public void draw(@NotNull Graphics2D g2) {
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
 

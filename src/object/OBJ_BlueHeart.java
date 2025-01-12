@@ -5,7 +5,7 @@ import main.GamePanel;
 
 public class OBJ_BlueHeart extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Blue Heart";
 
     public OBJ_BlueHeart(GamePanel gp) {
@@ -16,6 +16,8 @@ public class OBJ_BlueHeart extends Entity {
         type = type_pickUps;
         name = objName;
         down1 = setup("objects/blueheart", gp.tileSize, gp.tileSize);
+
+        setDialogue();
     }
 
     public void setDialogue() {

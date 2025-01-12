@@ -4,9 +4,9 @@ import data.Progress;
 import entity.Entity;
 
 public class EventHandler {
-    GamePanel gp;
-    EventRect[][][] eventRect;
-    Entity eventMaster;
+    final GamePanel gp;
+    final EventRect[][][] eventRect;
+    final Entity eventMaster;
 
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
@@ -48,8 +48,11 @@ public class EventHandler {
     public void setDialogue() {
         eventMaster.dialogues[0][0] = "You fell into a pit!";
 
-        eventMaster.dialogues[1][0] = "You drank from the pool and feel refreshed! \nYour life and mana has been restored!" +
-                "\n(Your progress has been saved)";
+        eventMaster.dialogues[1][0] = """
+                You drank from the pool and feel refreshed!\s
+                Your life and mana has been restored!\
+                
+                (Your progress has been saved)""";
         eventMaster.dialogues[1][1] = "Damn, this is good water my dude.";
     }
 
@@ -74,7 +77,41 @@ public class EventHandler {
             else if (hit(2, 8, 7, "any")) teleport(3, 26, 41, gp.dungeon); // b2
             else if (hit(3, 26, 41, "any")) teleport(2, 8, 7, gp.dungeon); // to dungeon
 
+            else if (hit(0, 37, 7, "any")) teleport(4, 1, 25, gp.outside);
+
             else if (hit(3, 25, 27, "any")) skeletonLord(); // Boss Cutscene
+
+            else if (hit(4, 37, 29, "any")) healingPool(gp.dialogueState);
+
+            else if (hit(4, 23, 8, "any")) teleport(5, 3, 24, gp.dungeon);
+            else if (hit(5, 2, 24, "any")) teleport(4, 23, 9, gp.outside);
+
+            else if (hit(4, 1, 23, "any")) teleport(0, 37, 7, gp.outside);
+            else if (hit(4, 1, 24, "any")) teleport(0, 37, 7, gp.outside);
+            else if (hit(4, 1, 25, "any")) teleport(0, 37, 7, gp.outside);
+            else if (hit(4, 1, 26, "any")) teleport(0, 37, 7, gp.outside);
+            else if (hit(4, 1, 27, "any")) teleport(0, 37, 7, gp.outside);
+
+
+            else if (hit(4, 40, 1, "any")) teleport(6, 25, 48, gp.outside);
+            else if (hit(4, 41, 1, "any")) teleport(6, 25, 48, gp.outside);
+            else if (hit(4, 42, 1, "any")) teleport(6, 25, 48, gp.outside);
+
+            else if (hit(6, 22, 48, "any")) teleport(4, 40, 2, gp.outside);
+            else if (hit(6, 23, 48, "any")) teleport(4, 40, 2, gp.outside);
+            else if (hit(6, 24, 48, "any")) teleport(4, 40, 2, gp.outside);
+            else if (hit(6, 25, 48, "any")) teleport(4, 40, 2, gp.outside);
+            else if (hit(6, 26, 48, "any")) teleport(4, 40, 2, gp.outside);
+            else if (hit(6, 27, 48, "any")) teleport(4, 40, 2, gp.outside);
+
+            else if (hit(6, 44, 29, "any")) teleport(7, 12, 13, gp.indoor);
+            else if (hit(7, 12, 13, "any")) teleport(6, 44, 29, gp.outside);
+
+            else if (hit(6, 24, 5, "any")) teleport(8, 15, 25, gp.dungeon);
+            else if (hit(6, 24, 6, "any")) teleport(8, 15, 26, gp.dungeon);
+
+            else if (hit(8, 15, 25, "any")) teleport(6, 24, 5, gp.outside);
+            else if (hit(8, 15, 26, "any")) teleport(6, 24, 6, gp.outside);
         }
     }
 
@@ -118,12 +155,11 @@ public class EventHandler {
             gp.gameState = gameState;
             gp.player.attackCanceled = true;
             gp.playSE(2);
+            gp.saveLoad.save();
             eventMaster.startDialogue(eventMaster, 1);
             gp.player.life = gp.player.maxLife;
             gp.player.mana = gp.player.maxMana;
             gp.aSetter.setMonster();
-            // Prob move this method above the dialogue text
-            gp.saveLoad.save();
         }
     }
 

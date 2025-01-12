@@ -2,14 +2,14 @@ package monster;
 
 import entity.Entity;
 import main.GamePanel;
-import object.OBJ_Coin_Bronze;
+import object.coin.OBJ_Coin_Bronze;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
 
 import java.util.Random;
 
 public class MON_Bat extends Entity {
-    GamePanel gp;
+    final GamePanel gp;
 
     public MON_Bat(GamePanel gp) {
         super(gp);
@@ -20,7 +20,7 @@ public class MON_Bat extends Entity {
         name = "Bat";
         defaultSpeed = 4;
         speed = defaultSpeed;
-        maxLife = 7;
+        maxLife = 10;
         life = maxLife;
         attack = 7;
         defense = 0;
@@ -48,6 +48,7 @@ public class MON_Bat extends Entity {
         right2 = setup("monster/bat_down_2", gp.tileSize, gp.tileSize);
     }
 
+    @Override
     public void setAction() {
         getRandomDirection(10);
     }
@@ -59,7 +60,7 @@ public class MON_Bat extends Entity {
 
     @Override
     public void checkDrop() {
-        // Cast monster dead drop
+        // Cast a monster dead drops
         int i = new Random().nextInt(100) + 1;
 
         // Set drops

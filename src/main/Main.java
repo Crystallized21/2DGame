@@ -10,13 +10,7 @@ public class Main {
     public static JFrame window;
 
     public static void main(String[] args) {
-        // Initialize the graphics context
-        // TODO: Tabbing out of the game causes the game to have high FPS
-
-        // TODO: Feedback from play testing
-        // Not enough coins being dropped
-        // Entity Boss invisible glitch
-        
+        // Initialise the graphics context
 
         initializeGraphics();
 
@@ -47,7 +41,7 @@ public class Main {
     }
 
     private static void initializeGraphics() {
-        // Create a dummy BufferedImage to initialise the graphics context
+        // Create a fake BufferedImage to initialise the graphics context
         BufferedImage dummyImage = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = dummyImage.createGraphics();
 

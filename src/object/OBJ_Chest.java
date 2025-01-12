@@ -5,7 +5,7 @@ import main.GamePanel;
 
 public class OBJ_Chest extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Chest";
 
     public OBJ_Chest(GamePanel gp) {
@@ -27,6 +27,7 @@ public class OBJ_Chest extends Entity {
         solidAreaDefaultY = solidArea.y;
     }
 
+    @Override
     public void setLoot(Entity loot) {
         this.loot = loot;
 
@@ -39,6 +40,7 @@ public class OBJ_Chest extends Entity {
         dialogues[2][0] = "It's empty. What a waste of time.";
     }
 
+    @Override
     public void interact() {
         if (!opened) {
             gp.playSE(3);

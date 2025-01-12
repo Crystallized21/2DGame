@@ -2,18 +2,16 @@ package tile_interactive;
 
 import entity.Entity;
 import main.GamePanel;
-import object.OBJ_Coin_Bronze;
-import object.OBJ_Heart;
-import object.OBJ_ManaCrystal;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
-import java.util.Random;
 
 public class IT_DestructibleWall extends InteractiveTile {
-    GamePanel gp;
+
+    final GamePanel gp;
 
     public IT_DestructibleWall(GamePanel gp, int col, int row) {
-        super(gp, col, row);
+        super(gp);
         this.gp = gp;
 
         this.worldX = gp.tileSize * col;
@@ -21,62 +19,38 @@ public class IT_DestructibleWall extends InteractiveTile {
 
         down1 = setup("tiles_interactive/destructiblewall", gp.tileSize, gp.tileSize);
         destructible = true;
-        // TODO: Debugging reset life to 3
-        life = 1;
+        life = 3;
     }
 
-    public boolean isCorrectItem(Entity entity) {
-        boolean isCorrectItem = false;
+    @Override
+    public boolean isCorrectItem(@NotNull Entity entity) {
 
-        if (entity.currentWeapon.type == type_pickaxe) {
-            isCorrectItem = true;
-        }
-
-        return isCorrectItem;
+        return entity.currentWeapon.type == type_pickaxe;
     }
 
+    @Override
     public void playSE() {
         gp.playSE(20);
     }
 
-    public InteractiveTile getDestroyedForm() {
-        InteractiveTile tile = null;
-        return tile;
-    }
-
+    @Override
     public Color getParticleColor() {
-        Color color = new Color(65, 65, 65);
-        return color;
+        return new Color(65, 65, 65);
     }
 
+    @Override
     public int getParticleSize() {
-        int size = 6; // 6 Pixels
-        return size;
+        // 6 Pixels
+        return 6;
     }
 
+    @Override
     public int getParticleSpeed() {
-        int speed = 1;
-        return speed;
+        return 1;
     }
 
+    @Override
     public int getParticleMaxLife() {
-        int maxLife = 20;
-        return maxLife;
+        return 20;
     }
-
-    // If the wall is destroyed, prob wont add to the final game
-//    @Override
-//    public void checkDrop() {
-//        int i = new Random().nextInt(100) + 1;
-//
-//        if (i < 50) {
-//            dropItem(new OBJ_Coin_Bronze(gp));
-//        }
-//        if (i >= 50 && i < 75) {
-//            dropItem(new OBJ_Heart(gp));
-//        }
-//        if (i >= 75 && i < 100) {
-//            dropItem(new OBJ_ManaCrystal(gp));
-//        }
-//    }
 }

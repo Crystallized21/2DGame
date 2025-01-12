@@ -1,15 +1,15 @@
 package ai;
 
-import entity.Entity;
 import main.GamePanel;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
 public class PathFinder {
-    GamePanel gp;
+    final GamePanel gp;
     Node[][] node;
-    ArrayList<Node> openList = new ArrayList<>();
-    public ArrayList<Node> pathList = new ArrayList<>();
+    final ArrayList<Node> openList = new ArrayList<>();
+    public final ArrayList<Node> pathList = new ArrayList<>();
     Node startNode, goalNode, currentNode;
     boolean goalReached = false;
     int step = 0;
@@ -59,7 +59,7 @@ public class PathFinder {
         step = 0;
     }
 
-    public void setNodes(int startCol, int startRow, int goalCol, int goalRow, Entity entity) {
+    public void setNodes(int startCol, int startRow, int goalCol, int goalRow) {
         resetNodes();
 
         // Set start and goal nodes
@@ -98,7 +98,7 @@ public class PathFinder {
         }
     }
 
-    public void getCost(Node node) {
+    public void getCost(@NotNull Node node) {
         // G Cost
         int xDistance = Math.abs(node.col - startNode.col);
         int yDistance = Math.abs(node.row - startNode.row);
@@ -158,7 +158,7 @@ public class PathFinder {
             }
 
             // If there is no node with the lowest F cost, break the loop
-            if (openList.size() == 0) {
+            if (openList.isEmpty()) {
                 break;
             }
 
@@ -175,7 +175,7 @@ public class PathFinder {
         return goalReached;
     }
 
-    public void openNode(Node node) {
+    public void openNode(@NotNull Node node) {
         if (!node.open && !node.checked && !node.solid) {
             node.open = true;
             node.parent = currentNode;
@@ -187,7 +187,7 @@ public class PathFinder {
         Node current = goalNode;
 
         while (current != startNode) {
-            pathList.add(0, current);
+            pathList.addFirst(current);
             current = current.parent;
         }
     }

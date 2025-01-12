@@ -2,10 +2,11 @@ package object;
 
 import entity.Entity;
 import main.GamePanel;
+import org.jetbrains.annotations.NotNull;
 
 public class OBJ_Heart extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Heart";
 
     public OBJ_Heart(GamePanel gp) {
@@ -22,7 +23,8 @@ public class OBJ_Heart extends Entity {
         image3 = setup("objects/heart_blank", gp.tileSize, gp.tileSize);
     }
 
-    public boolean use(Entity entity) {
+    @Override
+    public boolean use(@NotNull Entity entity) {
         gp.playSE(2);
         gp.ui.addMessage("Life + " + value);
         entity.life += value;

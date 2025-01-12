@@ -1,16 +1,16 @@
 package entity;
 
-import main.EntityGenerator;
 import main.GamePanel;
 import main.KeyHandler;
 import object.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Player extends Entity {
 
-    KeyHandler keyH;
+    final KeyHandler keyH;
     public final int screenX;
     public final int screenY;
     int standCounter = 0;
@@ -37,9 +37,7 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 21;
-//        worldX = gp.tileSize * 12;
-//        worldY = gp.tileSize * 30;
+        worldY = gp.tileSize * 26;
         gp.currentMap = 0;
 
         defaultSpeed = 4;
@@ -57,7 +55,7 @@ public class Player extends Entity {
         dexterity = 1; // More dexterity = less damage received
         exp = 0;
         nextLevelExp = 5;
-        coin = 500;
+        coin = 250;
         currentWeapon = new OBJ_Sword_Normal(gp);
         currentShield = new OBJ_Shield_Wood(gp);
         currentLight = null;
@@ -83,8 +81,7 @@ public class Player extends Entity {
         dialogues[0][0] = "You've Leveled Up! \nYou are now Level " + level + "! \nYou feel stronger!";
     }
 
-    // TODO: rename this to something better
-    public void restoreStatus() {
+    public void resetPlayerStatus() {
         life = maxLife;
         mana = maxMana;
         speed = defaultSpeed;
@@ -99,11 +96,16 @@ public class Player extends Entity {
     public void setItems() {
         inventory.clear();
         inventory.add(currentWeapon);
-        inventory.add(new OBJ_Key(gp));
-        inventory.add(new OBJ_Key(gp));
+        inventory.add(currentShield);
+//        inventory.add(new OBJ_Key(gp));
+//        inventory.add(new OBJ_Key(gp));
+//        inventory.add(new OBJ_Key(gp));
         // TODO: Debugging purposes, remove the axe later
-        inventory.add(new OBJ_Axe(gp));
-        inventory.add(new OBJ_Pickaxe(gp));
+//        inventory.add(new OBJ_Axe(gp));
+//        inventory.add(new OBJ_Key_Dungeon(gp));
+//        inventory.add(new OBJ_Lantern(gp));
+//        inventory.add(new OBJ_Shield_Dungeon(gp));
+//        inventory.add(new OBJ_Sword_Dungeon(gp));
     }
 
     public int getAttack() {
@@ -199,6 +201,7 @@ public class Player extends Entity {
         guardRight = setup("player/boy_guard_right", gp.tileSize, gp.tileSize);
     }
 
+    @Override
     public void update() {
 
         if (knockBack) {
@@ -208,27 +211,27 @@ public class Player extends Entity {
             gp.cChecker.checkEntity(this, gp.npc);
             gp.cChecker.checkEntity(this, gp.monster);
             gp.cChecker.checkEntity(this, gp.iTile);
-            
+
             if (collisionOn) {
                 knockBackCounter = 0;
                 knockBack = false;
                 speed = defaultSpeed;
-            } else if (!collisionOn) {
-                switch (knockBackDirection) {
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
-                        break;
-                }
+            } else {
+            switch (knockBackDirection) {
+                case "up":
+                    worldY -= speed;
+                    break;
+                case "down":
+                    worldY += speed;
+                    break;
+                case "left":
+                    worldX -= speed;
+                    break;
+                case "right":
+                    worldX += speed;
+                    break;
             }
+        }
 
             knockBackCounter++;
             if (knockBackCounter == 10) {
@@ -269,7 +272,6 @@ public class Player extends Entity {
             contactMonster(monsterIndex);
 
             // Check Interactive Tile collision
-            // TODO: This is suspicious.
             gp.cChecker.checkEntity(this, gp.iTile);
             
             // Event Checker
@@ -367,7 +369,6 @@ public class Player extends Entity {
                 gp.gameState = gp.gameOverState;
                 gp.ui.commandNum = -1;
                 gp.stopMusic();
-                // gp.playMusic(index); This is for the game over music if I wanted to add it
                 gp.playSE(12);
             }
         }
@@ -393,7 +394,6 @@ public class Player extends Entity {
                 String text;
 
                 if (canObtainItem(gp.obj[gp.currentMap][i])) {
-                    // TODO: Optimise audio startup time as it causes a stutter
                     gp.playSE(1);
                     text = "Got a "  + gp.obj[gp.currentMap][i].name + "!";
                 }
@@ -417,7 +417,7 @@ public class Player extends Entity {
         }
     }
     
-    // Handle monster collision possibly rename
+    // Handle monster collision
     public void contactMonster(int i) {
         if (i != 999) {
             if (!invincible && !gp.monster[gp.currentMap][i].invincible) {
@@ -460,7 +460,7 @@ public class Player extends Entity {
                 if (gp.monster[gp.currentMap][i].life <= 0) {
                     gp.monster[gp.currentMap][i].dying = true;
                     gp.ui.addMessage("Killed " + gp.monster[gp.currentMap][i].name + "!");
-                    gp.ui.addMessage("Exp+ " + gp.monster[gp.currentMap][i].exp + "!");
+                    gp.ui.addMessage("Exp +" + gp.monster[gp.currentMap][i].exp + "!");
                     exp += gp.monster[gp.currentMap][i].exp;
                     checkLevelUp();
                 }
@@ -494,7 +494,7 @@ public class Player extends Entity {
     public void checkLevelUp() {
         if (exp >= nextLevelExp) {
             level++;
-            nextLevelExp = nextLevelExp * 2;
+            nextLevelExp = (int) (nextLevelExp * 2.5);
             maxLife += 2;
             strength++;
             dexterity++;
@@ -555,13 +555,13 @@ public class Player extends Entity {
         return itemIndex;
     }
 
-    public boolean canObtainItem(Entity item) {
+    public boolean canObtainItem(@NotNull Entity item) {
 
         boolean canObtain = false;
 
         Entity newItem = gp.eGenerator.getObject(item.name);
 
-        // Check if item is stackable
+        // Check if the item is stackable
         if (newItem.stackable) {
             int index = searchItemInInventory(newItem.name);
 
@@ -569,7 +569,7 @@ public class Player extends Entity {
                 inventory.get(index).amount++;
                 canObtain = true;
             } else {
-                // This is a new item so no need to check for stackable
+                // This is a new item, so no need to check for stackable
                 if (inventory.size() != maxInventorySize) {
                     inventory.add(newItem);
                     canObtain = true;
@@ -586,6 +586,7 @@ public class Player extends Entity {
         return canObtain;
     }
 
+    @Override
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
         int tempScreenX = screenX;
@@ -660,10 +661,5 @@ public class Player extends Entity {
 
         // Reset the composite
         g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1.0f));
-
-        // Debug
-//        g2.setFont(new Font("Arial", Font.PLAIN, 26));
-//        g2.setColor(Color.white);
-//        g2.drawString("Invincible " + invincibleCounter, 10, 400);
     }
 }

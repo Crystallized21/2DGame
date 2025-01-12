@@ -5,7 +5,7 @@ import main.GamePanel;
 
 public class OBJ_Key extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Key";
 
     public OBJ_Key(GamePanel gp) {
@@ -28,6 +28,7 @@ public class OBJ_Key extends Entity {
         dialogues[1][0] = "What are you trying to do?";
     }
 
+    @Override
     public boolean use(Entity entity) {
         int objIndex = getDetected(entity, gp.obj, "Door");
 

@@ -3,12 +3,13 @@ package object;
 import entity.Entity;
 import entity.Projectile;
 import main.GamePanel;
+import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 
 public class OBJ_Rock extends Projectile {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Rock";
 
     public OBJ_Rock(GamePanel gp) {
@@ -36,31 +37,19 @@ public class OBJ_Rock extends Projectile {
         right2 = setup("projectile/rock_down_1", gp.tileSize, gp.tileSize);
     }
 
-    public boolean haveResource(Entity user) {
+    @Override
+    public boolean haveResource(@NotNull Entity user) {
         return user.ammo >= useCost;
     }
 
-    public void subtractResource(Entity user) {
+    @Override
+    public void subtractResource(@NotNull Entity user) {
         user.ammo -= useCost;
     }
 
+    @Override
     public Color getParticleColor() {
-        Color color = new Color(40, 50, 0);
-        return color;
+        return new Color(40, 50, 0);
     }
 
-    public int getParticleSize() {
-        int size = 10;
-        return size;
-    }
-
-    public int getParticleSpeed() {
-        int speed = 1;
-        return speed;
-    }
-
-    public int getParticleMaxLife() {
-        int maxLife = 20;
-        return maxLife;
-    }
 }

@@ -21,13 +21,14 @@ public class Projectile extends Entity {
         this.life = this.maxLife;
     }
 
+    @Override
     public void update() {
 
         if (user == gp.player) {
             int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
 
             if (monsterIndex != 999) {
-                gp.player.damageMonster(monsterIndex, this, attack * (gp.player.level / 2), knockBackPower);
+                gp.player.damageMonster(monsterIndex, this, gp.player.attack / 2, knockBackPower);
                 generateParticle(user.projectile, gp.monster[gp.currentMap][monsterIndex]);
                 alive = false;
             }
@@ -78,23 +79,23 @@ public class Projectile extends Entity {
     }
     public void subtractResource(Entity user) {}
 
+    @Override
     public Color getParticleColor() {
-        Color color = new Color(240, 50, 0);
-        return color;
+        return new Color(240, 50, 0);
     }
 
+    @Override
     public int getParticleSize() {
-        int size = 10;
-        return size;
+        return 10;
     }
 
+    @Override
     public int getParticleSpeed() {
-        int speed = 1;
-        return speed;
+        return 1;
     }
 
+    @Override
     public int getParticleMaxLife() {
-        int maxLife = 20;
-        return maxLife;
+        return 20;
     }
 }

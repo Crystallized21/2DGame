@@ -1,11 +1,14 @@
 package main;
 
+import object.OBJ_Key_Dungeon;
+import org.jetbrains.annotations.NotNull;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-    GamePanel gp;
+    final GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed, shootKeyPressed, spacePressed;
 
     // Debugging
@@ -21,7 +24,7 @@ public class KeyHandler implements KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(@NotNull KeyEvent e) {
         int code = e.getKeyCode();
 
         // Title State
@@ -78,7 +81,8 @@ public class KeyHandler implements KeyListener {
             }
             if (code == KeyEvent.VK_ENTER) {
                 if (gp.ui.commandNum == 0) {
-                    gp.ui.titleScreenState = 1;
+                    gp.gameState = gp.playState;
+                    gp.playMusic(0);
                 }
                 if (gp.ui.commandNum == 1) {
                     gp.saveLoad.load();
@@ -90,42 +94,6 @@ public class KeyHandler implements KeyListener {
                 }
             }
         }
-        // Class System Screen
-        else if (gp.ui.titleScreenState == 1) {
-            if (code == KeyEvent.VK_W) {
-                gp.ui.commandNum--;
-                if (gp.ui.commandNum < 0) {
-                    gp.ui.commandNum = 3;
-                }
-            }
-            if (code == KeyEvent.VK_S) {
-                gp.ui.commandNum++;
-                if (gp.ui.commandNum > 3) {
-                    gp.ui.commandNum = 0;
-                }
-            }
-            if (code == KeyEvent.VK_ENTER) {
-                if (gp.ui.commandNum == 0) {
-                    System.out.println("Fighter Specs...");
-                    gp.gameState = gp.playState;
-                    gp.playMusic(0);
-                }
-                if (gp.ui.commandNum == 1) {
-                    System.out.println("Thief Specs...");
-                    gp.gameState = gp.playState;
-                    gp.playMusic(0);
-                }
-                if (gp.ui.commandNum == 2) {
-                    System.out.println("Sorcerer Specs...");
-                    gp.gameState = gp.playState;
-                    gp.playMusic(0);
-                }
-                if (gp.ui.commandNum == 3) {
-                    gp.ui.titleScreenState = 0;
-                }
-            }
-        }
-
     }
 
     public void playState(int code) {
@@ -160,11 +128,7 @@ public class KeyHandler implements KeyListener {
             gp.gameState = gp.mapState;
         }
         if (code == KeyEvent.VK_X) {
-            if (!gp.map.miniMapOn) {
-                gp.map.miniMapOn = true;
-            } else {
-                gp.map.miniMapOn = false;
-            } 
+            gp.map.miniMapOn = !gp.map.miniMapOn;
         }
         if (code == KeyEvent.VK_SPACE) {
             spacePressed = true;
@@ -172,11 +136,7 @@ public class KeyHandler implements KeyListener {
 
         // Debugging
         if (code == KeyEvent.VK_T) {
-            if (!showDebugText) {
-                showDebugText = true;
-            } else if (showDebugText) {
-                showDebugText = false;
-            }
+            showDebugText = !showDebugText;
         }
         if (code == KeyEvent.VK_R) {
             switch (gp.currentMap) {
@@ -189,11 +149,10 @@ public class KeyHandler implements KeyListener {
             }
         }
         if (code == KeyEvent.VK_G) {
-            if (!godMode) {
-                godMode = true;
-            } else if (godMode) {
-                godMode = false;
-            }
+            godMode = !godMode;
+        }
+        if (code == KeyEvent.VK_PLUS || code == KeyEvent.VK_ADD) {
+            gp.player.inventory.add(new OBJ_Key_Dungeon(gp));
         }
     }
 
@@ -227,11 +186,11 @@ public class KeyHandler implements KeyListener {
             enterPressed = true;
         }
 
-        int maxCommandNum = 0;
-        switch (gp.ui.subState) {
-            case 0: maxCommandNum = 5; break;
-            case 3: maxCommandNum = 1; break;
-        }
+        int maxCommandNum = switch (gp.ui.subState) {
+            case 0 -> 5;
+            case 3 -> 1;
+            default -> 0;
+        };
         if (code == KeyEvent.VK_W) {
             gp.ui.commandNum--;
             gp.playSE(9);
@@ -398,7 +357,7 @@ public class KeyHandler implements KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(@NotNull KeyEvent e) {
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_W) {

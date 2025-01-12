@@ -2,10 +2,11 @@ package object;
 
 import entity.Entity;
 import main.GamePanel;
+import org.jetbrains.annotations.NotNull;
 
 public class OBJ_Potion_Red extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String objName = "Red Potion";
 
     public OBJ_Potion_Red(GamePanel gp) {
@@ -18,7 +19,7 @@ public class OBJ_Potion_Red extends Entity {
         value = 5;
         down1 = setup("objects/potion_red", gp.tileSize, gp.tileSize);
         description = "[" + name + "]\nA red potion. It can\nrestore " + value + " HP.";
-        price = 25;
+        price = 20;
         stackable = true;
 
         setDialogue();
@@ -28,7 +29,8 @@ public class OBJ_Potion_Red extends Entity {
         dialogues[0][0] = "You drink the " + name + ".\nYour life has been restored by " + value + ".";
     }
 
-    public boolean use(Entity entity) {
+    @Override
+    public boolean use(@NotNull Entity entity) {
         startDialogue(this, 0);
         entity.life += value;
         gp.playSE(2);

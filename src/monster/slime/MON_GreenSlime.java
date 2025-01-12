@@ -1,8 +1,8 @@
-package monster;
+package monster.slime;
 
 import entity.Entity;
 import main.GamePanel;
-import object.OBJ_Coin_Bronze;
+import object.coin.*;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
 import object.OBJ_Rock;
@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class MON_GreenSlime extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
 
     public MON_GreenSlime(GamePanel gp) {
         super(gp);
@@ -50,41 +50,51 @@ public class MON_GreenSlime extends Entity {
         right1 = setup("monster/greenslime_down_1", gp.tileSize, gp.tileSize);
         right2 = setup("monster/greenslime_down_2", gp.tileSize, gp.tileSize);
     }
-    
+
+    @SuppressWarnings("GrazieInspection")
+    @Override
     public void setAction() {
         if (onPath) {
-            // If the monster is on the path and the player are far away, stop following the player
-            checkStopChasing(gp.player, 15, 100);
-            
+            // If the monster is on the path and the player is far away, stop following the player
+            stopChasingPlayer(gp.player, 15, 100);
+
             // Search a path to the player
             searchPath(getGoalCol(gp.player), getGoalRow(gp.player));
         } else {
             // Check if the player is near
-            checkStartChasing(gp.player, 5, 100);
+            startChasingPlayer(gp.player, 5, 100);
 
             // Get a random direction if the monster is not on the path
             getRandomDirection(120);
         }
     }
 
+    @Override
     public void damageReaction() {
         actionLockCounter = 0;
 //        direction = gp.player.direction;
         onPath = true;
     }
 
+    @Override
     public void checkDrop() {
-        // Cast monster dead drop
+        // Cast a monster dead drops
         int i = new Random().nextInt(100) + 1;
 
         // Set drops
-        if (i < 50) {
+        if (i < 40) {
             dropItem(new OBJ_Coin_Bronze(gp));
         }
-        if (i >= 50 && i < 75) {
+        if (i >= 40 && i < 60) {
+            dropItem(new OBJ_Coin_Sliver(gp));
+        }
+        if (i >= 60 && i < 80) {
+            dropItem(new OBJ_Coin_Gold(gp));
+        }
+        if (i >= 80 && i < 90) {
             dropItem(new OBJ_Heart(gp));
         }
-        if (i >= 75 && i < 100) {
+        if (i >= 90 && i < 100) {
             dropItem(new OBJ_ManaCrystal(gp));
         }
     }

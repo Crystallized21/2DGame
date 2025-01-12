@@ -1,14 +1,12 @@
 package data;
 
-import entity.Entity;
 import main.GamePanel;
-import object.*;
 
 import java.io.*;
 
 public class SaveLoad {
 
-    GamePanel gp;
+    final GamePanel gp;
 
     public SaveLoad(GamePanel gp) {
         this.gp = gp;
@@ -16,7 +14,7 @@ public class SaveLoad {
 
     public void save() {
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File("save.dat")));
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("save.dat"));
 
             DataStorage ds = new DataStorage();
 
@@ -76,7 +74,7 @@ public class SaveLoad {
 
     public void load() {
         try {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File("save.dat")));
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream("save.dat"));
 
             // Read the DataStorage object
             DataStorage ds = (DataStorage) ois.readObject();

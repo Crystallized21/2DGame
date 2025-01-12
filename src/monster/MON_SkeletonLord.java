@@ -3,16 +3,16 @@ package monster;
 import data.Progress;
 import entity.Entity;
 import main.GamePanel;
-import object.OBJ_Coin_Bronze;
 import object.OBJ_Door_Iron;
 import object.OBJ_Heart;
 import object.OBJ_ManaCrystal;
+import object.coin.OBJ_Coin_Gold;
 
 import java.util.Random;
 
 public class MON_SkeletonLord extends Entity {
 
-    GamePanel gp;
+    final GamePanel gp;
     public static final String monName = "Skeleton Lord";
 
     public MON_SkeletonLord(GamePanel gp) {
@@ -25,11 +25,11 @@ public class MON_SkeletonLord extends Entity {
         name = monName;
         defaultSpeed = 1;
         speed = defaultSpeed;
-        maxLife = 50;
+        maxLife = 350;
         life = maxLife;
-        attack = 10;
-        defense = 2;
-        exp = 50;
+        attack = 14;
+        defense = 6;
+        exp = 500;
         knockBackPower = 5;
         sleep = true;
 
@@ -134,7 +134,6 @@ public class MON_SkeletonLord extends Entity {
         actionLockCounter = 0;
     }
 
-    // TODO: Change the items
     @Override
     public void checkDrop() {
 
@@ -154,12 +153,12 @@ public class MON_SkeletonLord extends Entity {
             }
         }
 
-        // Cast monster dead drop
+        // Cast a monster dead drops
         int i = new Random().nextInt(100) + 1;
 
         // Set drops
         if (i < 50) {
-            dropItem(new OBJ_Coin_Bronze(gp));
+            dropItem(new OBJ_Coin_Gold(gp));
         }
         if (i >= 50 && i < 75) {
             dropItem(new OBJ_Heart(gp));

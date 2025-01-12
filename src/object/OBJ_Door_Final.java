@@ -3,18 +3,18 @@ package object;
 import entity.Entity;
 import main.GamePanel;
 
-public class OBJ_Door extends Entity {
+public class OBJ_Door_Final extends Entity {
 
     final GamePanel gp;
-    public static final String objName = "Door";
+    public static final String objName = "Final Door";
 
-    public OBJ_Door(GamePanel gp) {
+    public OBJ_Door_Final(GamePanel gp) {
         super(gp);
         this.gp = gp;
 
         type = type_obstacle;
         name = objName;
-        down1 = setup("objects/door", gp.tileSize, gp.tileSize);
+        down1 = setup("objects/door_final", gp.tileSize, gp.tileSize);
         collision = true;
 
         solidArea.x = 0;
@@ -27,8 +27,10 @@ public class OBJ_Door extends Entity {
         setDialogue();
     }
 
-    public void setDialogue() {
-        dialogues[0][0] = "You need a key to open this door.";
+    private void setDialogue() {
+        dialogues[0][0] = "You need the final key to open this door.";
+        dialogues[0][1] = "Tip: Explore the world and find the final key.";
+        dialogues[0][2] = "It's in the last dungeon.";
     }
 
     @Override
