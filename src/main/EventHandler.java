@@ -82,6 +82,9 @@ public class EventHandler {
             else if (hit(4, 23, 8, "any")) teleport(5, 3, 24, gp.dungeon);
             else if (hit(5, 2, 24, "any")) teleport(4, 23, 9, gp.outside);
 
+            else if (hit(6, 44, 29, "any")) teleport(7, 12, 13, gp.indoor);
+            else if (hit(7, 12, 13, "any")) teleport(6, 44, 29, gp.outside);
+
             else if (hit(3, 25, 27, "any")) skeletonLord(); // Boss Cutscene
         }
     }

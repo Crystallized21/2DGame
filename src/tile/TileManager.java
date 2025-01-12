@@ -16,7 +16,6 @@ public class TileManager {
     final GamePanel gp;
     public Tile[] tile;
     public int[][][] mapTileNum;
-    boolean drawPath = true;
     final ArrayList<String> fileNames = new ArrayList<>();
     final ArrayList<String> collisionStatus = new ArrayList<>();
 
@@ -70,6 +69,7 @@ public class TileManager {
         loadMap("/maps/worldmap2.txt", 4);
         loadMap("/maps/abandoned01.txt", 5);
         loadMap("/maps/worldmap3.txt", 6);
+        loadMap("/maps/indoor01.txt", 7);
     }
 
     public void getTileImage() {

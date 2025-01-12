@@ -11,6 +11,7 @@ import object.*;
 import object.OBJ_Door_Dungeon;
 import tile_interactive.*;
 
+import javax.crypto.interfaces.PBEKey;
 import java.security.Key;
 
 public class AssetSetter {
@@ -36,10 +37,10 @@ public class AssetSetter {
         i = 0;
 
         addChest(mapNum, i++, new OBJ_Chest(gp), 40, 41, new OBJ_Pickaxe(gp));
-        addChest(mapNum, i++, new OBJ_Chest(gp), 13, 16, new OBJ_Potion_Red(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 13, 16, new OBJ_Potion_Blue(gp));
         addChest(mapNum, i++, new OBJ_Chest(gp), 26, 34, new OBJ_Potion_Red(gp));
         addChest(mapNum, i++, new OBJ_Chest(gp), 27, 15, new OBJ_Potion_Red(gp));
-        addChest(mapNum, i++, new OBJ_Chest(gp), 27, 15, new OBJ_Potion_Red(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 27, 15, new OBJ_Potion_Blue(gp));
 
         addObject(mapNum, i++, new OBJ_Door_Iron(gp), 18, 23);
 
@@ -55,7 +56,7 @@ public class AssetSetter {
         addObject(mapNum, i++, new OBJ_Door_Dungeon(gp), 23 , 13);
 
         addChest(mapNum, i++, new OBJ_Chest(gp), 19, 48, new OBJ_Key(gp));
-        addChest(mapNum, i++, new OBJ_Chest(gp), 24, 47, new OBJ_Key(gp)); // For school door? LMAO
+        addChest(mapNum, i++, new OBJ_Chest(gp), 24, 47, new OBJ_Key(gp));
 
         mapNum = 5;
         i = 0;
@@ -69,6 +70,18 @@ public class AssetSetter {
 
         addChest(mapNum, i++, new OBJ_Chest(gp), 16, 45, new OBJ_Potion_Red(gp));
         addChest(mapNum, i++, new OBJ_Chest(gp), 31, 44, new OBJ_Key(gp));
+
+        mapNum = 6;
+        i = 0;
+
+        addChest(mapNum, i++, new OBJ_Chest(gp), 48, 1, new OBJ_Potion_Red(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 5, 36, new OBJ_Potion_Blue(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 11, 7, new OBJ_Potion_Red(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 12, 7, new OBJ_Potion_Blue(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 13, 7, new OBJ_Potion_Blue(gp));
+
+        addObject(mapNum, i++, new OBJ_Door_Dungeon(gp), 34, 5);
+        addObject(mapNum, i++, new OBJ_Door_Iron(gp), 15, 4);
     }
 
     public void setNPC() {
@@ -88,6 +101,11 @@ public class AssetSetter {
         addNPC(mapNum, i++, new NPC_BigRock(gp), 20, 25);
         addNPC(mapNum, i++, new NPC_BigRock(gp), 11, 18);
         addNPC(mapNum, i++, new NPC_BigRock(gp), 23, 14);
+
+        mapNum = 7;
+        i = 0;
+
+        addNPC(mapNum, i++, new NPC_Merchant(gp), 12, 7);
     }
 
     public void setMonster() {
@@ -158,6 +176,22 @@ public class AssetSetter {
         addMonster(mapNum, i++, new MON_PurpleSlime(gp), 35, 22);
         addMonster(mapNum, i++, new MON_PurpleSlime(gp), 43, 45);
         addMonster(mapNum, i++, new MON_PurpleSlime(gp), 43, 16);
+
+        mapNum = 6;
+        i = 0;
+
+        addMonster(mapNum, i++, new MON_Orc(gp), 5, 40);
+
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 38, 44);
+        addMonster(mapNum, i++, new MON_YellowSlime(gp), 43, 44);
+        addMonster(mapNum, i++, new MON_BlueSlime(gp), 41, 47);
+
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 38, 11);
+        addMonster(mapNum, i++, new MON_YellowSlime(gp), 42, 11);
+        addMonster(mapNum, i++, new MON_BlueSlime(gp), 44, 11);
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 44, 16);
+        addMonster(mapNum, i++, new MON_YellowSlime(gp), 41, 16);
+        addMonster(mapNum, i++, new MON_BlueSlime(gp), 38, 16);
     }
 
     public void setInteractiveTile() {
@@ -239,6 +273,14 @@ public class AssetSetter {
         addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 37, 47));
         addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 38, 47));
         addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 39, 47));
+
+        mapNum = 6;
+        i = 0;
+
+        addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 43, 7));
+        addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 43, 6));
+        addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 43, 5));
+        addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 43, 4));
     }
 
     private void addObject(int mapNum, int i, Entity object, int worldX, int worldY) {
