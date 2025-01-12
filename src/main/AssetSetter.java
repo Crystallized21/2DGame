@@ -185,7 +185,6 @@ public class AssetSetter {
         addMonster(mapNum, i++, new MON_Bat(gp), 26, 9);
         addMonster(mapNum, i++, new MON_Bat(gp), 26, 14);
 
-        // TODO: Add dungeon monster that drop a dungeon key to loots
         addMonster(mapNum, i++, new MON_Orc(gp), 37, 18);
         addMonster(mapNum, i++, new MON_Orc(gp), 43, 18);
         addMonster(mapNum, i++, new MON_Bat(gp), 32, 11);
@@ -222,6 +221,15 @@ public class AssetSetter {
         mapNum = 8;
         i = 0;
 
+        addMonster(mapNum, i++, new MON_Bat(gp), 26, 31);
+        addMonster(mapNum, i++, new MON_Bat(gp), 22, 37);
+        addMonster(mapNum, i++, new MON_Bat(gp), 41, 37);
+        addMonster(mapNum, i++, new MON_Bat(gp), 45, 34);
+        addMonster(mapNum, i++, new MON_Bat(gp), 15, 42);
+        addMonster(mapNum, i++, new MON_Bat(gp), 7, 40);
+        addMonster(mapNum, i++, new MON_Bat(gp), 5, 6);
+        addMonster(mapNum, i++, new MON_Bat(gp), 5, 3);
+
         addMonster(mapNum, i++, new MON_PurpleSlime(gp), 40, 45);
         addMonster(mapNum, i++, new MON_YellowSlime(gp), 42, 45);
         addMonster(mapNum, i++, new MON_BlueSlime(gp), 44, 45);
@@ -231,8 +239,7 @@ public class AssetSetter {
 
         addMonster(mapNum, i++, new MON_Orc(gp), 43, 26);
 
-        // TODO: make a desperate class for orc dungeon monster
-        addMonster(mapNum, i++, new MON_Orc(gp), 40, 7);
+        addMonster(mapNum, i++, new MON_Dungeon_Orc(gp), 40, 7);
 
         Random rand = new Random();
         Entity[] slimes = {

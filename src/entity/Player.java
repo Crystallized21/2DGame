@@ -45,7 +45,7 @@ public class Player extends Entity {
         direction = "down";
 
         // Player Status
-        level = 1;
+        level = 15;
         maxLife = 6;
         life = maxLife;
         maxMana = 4;
@@ -460,7 +460,7 @@ public class Player extends Entity {
                 if (gp.monster[gp.currentMap][i].life <= 0) {
                     gp.monster[gp.currentMap][i].dying = true;
                     gp.ui.addMessage("Killed " + gp.monster[gp.currentMap][i].name + "!");
-                    gp.ui.addMessage("Exp+ " + gp.monster[gp.currentMap][i].exp + "!");
+                    gp.ui.addMessage("Exp +" + gp.monster[gp.currentMap][i].exp + "!");
                     exp += gp.monster[gp.currentMap][i].exp;
                     checkLevelUp();
                 }
