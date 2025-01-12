@@ -17,7 +17,7 @@ public class Main {
 
         /*
             TODO: Future updates
-                - Add signs to the game (to help the player navigate) maybe?
+                - Add signs to the game to healing pools
                 - Game balance
                 - Redo monsters drops
                 - Rewrite the old man's dialogue maybe?

@@ -167,6 +167,10 @@ public class AssetSetter {
         mapNum = 4;
         i = 0;
 
+        addMonster(mapNum, i++, new MON_RedSlime(gp), 3, 33);
+        addMonster(mapNum, i++, new MON_RedSlime(gp), 5, 33);
+        addMonster(mapNum, i++, new MON_RedSlime(gp), 7, 33);
+
         addMonster(mapNum, i++, new MON_BlueSlime(gp), 28, 44);
         addMonster(mapNum, i++, new MON_BlueSlime(gp), 27, 44);
         addMonster(mapNum, i++, new MON_BlueSlime(gp), 29, 44);

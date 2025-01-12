@@ -23,9 +23,9 @@ public class MON_YellowSlime extends Entity {
         speed = defaultSpeed;
         maxLife = 14;
         life = maxLife;
-        attack = 1;
+        attack = 3;
         defense = 0;
-        exp = 15;
+        exp = 20;
 
         // Solid Area
         solidArea.x = 3;
