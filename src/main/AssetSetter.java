@@ -217,6 +217,15 @@ public class AssetSetter {
 
         // TODO: make a desperate class for orc dungeon monster
         addMonster(mapNum, i++, new MON_Orc(gp), 40, 7);
+
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 40, 45);
+        addMonster(mapNum, i++, new MON_YellowSlime(gp), 42, 45);
+        addMonster(mapNum, i++, new MON_BlueSlime(gp), 44, 45);
+        addMonster(mapNum, i++, new MON_PurpleSlime(gp), 42, 48);
+        addMonster(mapNum, i++, new MON_YellowSlime(gp), 44, 48);
+        addMonster(mapNum, i++, new MON_BlueSlime(gp), 46, 48);
+
+        addMonster(mapNum, i++, new MON_Orc(gp), 43, 26);
     }
 
     public void setInteractiveTile() {

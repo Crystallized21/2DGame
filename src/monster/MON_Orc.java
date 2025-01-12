@@ -18,14 +18,14 @@ public class MON_Orc extends Entity {
         this.gp = gp;
 
         type = type_monster;
-        name = "Green Slime";
+        name = "Orc";
         defaultSpeed = 1;
         speed = defaultSpeed;
-        maxLife = 10;
+        maxLife = 150;
         life = maxLife;
-        attack = 8;
-        defense = 2;
-        exp = 10;
+        attack = 12;
+        defense = 3;
+        exp = 80;
         knockBackPower = 5;
 
         // Solid Area
