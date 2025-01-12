@@ -17,10 +17,10 @@ public class Main {
 
         /*
             TODO: Future updates
-                - Add signs to the game (to help the player navigate)
+                - Add signs to the game (to help the player navigate) maybe?
                 - Game balance
                 - Redo monsters drops
-                - Rewrite the old man's dialogue
+                - Rewrite the old man's dialogue maybe?
         */
 
         initializeGraphics();
