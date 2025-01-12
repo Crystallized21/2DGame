@@ -21,11 +21,11 @@ public class MON_YellowSlime extends Entity {
         name = "Yellow Slime";
         defaultSpeed = 1;
         speed = defaultSpeed;
-        maxLife = 10;
+        maxLife = 14;
         life = maxLife;
         attack = 1;
         defense = 0;
-        exp = 10;
+        exp = 15;
 
         // Solid Area
         solidArea.x = 3;

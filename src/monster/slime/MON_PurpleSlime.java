@@ -19,14 +19,14 @@ public class MON_PurpleSlime extends Entity {
         this.gp = gp;
 
         type = type_monster;
-        name = "Red Slime";
+        name = "Purple Slime";
         defaultSpeed = 1;
         speed = defaultSpeed;
-        maxLife = 15;
+        maxLife = 25;
         life = maxLife;
         attack = 1;
         defense = 1;
-        exp = 15;
+        exp = 20;
         projectile = new OBJ_Rock(gp);
 
         solidArea.x = 3;

@@ -14,6 +14,6 @@ public class OBJ_Shield_Dungeon extends Entity {
         name = objName;
         description = "[" + name + "]\nShield from the\ndungeon. It's glowing.";
         down1 = setup("objects/shield_dungeon", gp.tileSize, gp.tileSize);
-        defenseValue = 4;
+        defenseValue = 3;
     }
 }

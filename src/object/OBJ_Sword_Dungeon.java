@@ -13,7 +13,7 @@ public class OBJ_Sword_Dungeon extends Entity {
         type = type_sword;
         name = objName;
         down1 = setup("objects/sword_dungeon", gp.tileSize, gp.tileSize);
-        attackValue = 6;
+        attackValue = 4;
         attackArea.width = 36;
         attackArea.height = 36;
         description = "[" + name + "]\nSword from the\ndungeon. It's glowing.";
