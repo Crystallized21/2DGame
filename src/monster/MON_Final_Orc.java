@@ -2,19 +2,19 @@ package monster;
 
 import entity.Entity;
 import main.GamePanel;
-import object.OBJ_Key_Dungeon;
+import object.OBJ_Key_Final;
 
-public class MON_Dungeon_Orc extends Entity {
+public class MON_Final_Orc extends Entity {
 
     final GamePanel gp;
 
-    public MON_Dungeon_Orc(GamePanel gp) {
+    public MON_Final_Orc(GamePanel gp) {
         super(gp);
 
         this.gp = gp;
 
         type = type_monster;
-        name = "Dungeon Orc";
+        name = "Final Orc";
         defaultSpeed = 1;
         speed = defaultSpeed;
         maxLife = 160;
@@ -85,6 +85,6 @@ public class MON_Dungeon_Orc extends Entity {
 
     @Override
     public void checkDrop() {
-        dropItem(new OBJ_Key_Dungeon(gp));
+        dropItem(new OBJ_Key_Final(gp));
     }
 }

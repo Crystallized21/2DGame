@@ -189,8 +189,9 @@ public class AssetSetter {
         addMonster(mapNum, i++, new MON_Bat(gp), 26, 9);
         addMonster(mapNum, i++, new MON_Bat(gp), 26, 14);
 
-        addMonster(mapNum, i++, new MON_Orc(gp), 37, 18);
-        addMonster(mapNum, i++, new MON_Orc(gp), 43, 18);
+        // TODO: Replace these with the orc that drops dungeon keys...
+        addMonster(mapNum, i++, new MON_Dungeon_Orc(gp), 37, 18);
+        addMonster(mapNum, i++, new MON_Dungeon_Orc(gp), 43, 18);
         addMonster(mapNum, i++, new MON_Bat(gp), 32, 11);
         addMonster(mapNum, i++, new MON_Bat(gp), 32, 27);
         addMonster(mapNum, i++, new MON_Bat(gp), 47, 27);
@@ -244,7 +245,7 @@ public class AssetSetter {
 
         addMonster(mapNum, i++, new MON_Orc(gp), 43, 26);
 
-        addMonster(mapNum, i++, new MON_Dungeon_Orc(gp), 40, 7);
+        addMonster(mapNum, i++, new MON_Final_Orc(gp), 40, 7);
 
         Random rand = new Random();
         Entity[] slimes = {

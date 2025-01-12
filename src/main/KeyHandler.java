@@ -1,5 +1,6 @@
 package main;
 
+import object.OBJ_Key_Dungeon;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.event.KeyEvent;
@@ -149,6 +150,9 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_G) {
             godMode = !godMode;
+        }
+        if (code == KeyEvent.VK_PLUS || code == KeyEvent.VK_ADD) {
+            gp.player.inventory.add(new OBJ_Key_Dungeon(gp));
         }
     }
 
