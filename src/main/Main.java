@@ -18,13 +18,9 @@ public class Main {
         /*
             TODO: Future updates
                 - Add signs to the game (to help the player navigate)
-                - ADD A IRON KEY TO OPEN THE FINAL BOSS DUNGEON
                 - Game balance
-                - In the dungeon, add dungeon specific items
                 - Redo monsters drops
                 - Rewrite the old man's dialogue
-                - Fix Projectile Calculation
-                - Fix Guarding giving hp?
         */
 
         initializeGraphics();
