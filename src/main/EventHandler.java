@@ -77,10 +77,19 @@ public class EventHandler {
             else if (hit(2, 8, 7, "any")) teleport(3, 26, 41, gp.dungeon); // b2
             else if (hit(3, 26, 41, "any")) teleport(2, 8, 7, gp.dungeon); // to dungeon
 
+            else if (hit(0, 37, 7, "any")) teleport(4, 1, 25, gp.outside);
+
             else if (hit(4, 37, 29, "any")) healingPool(gp.dialogueState);
 
             else if (hit(4, 23, 8, "any")) teleport(5, 3, 24, gp.dungeon);
             else if (hit(5, 2, 24, "any")) teleport(4, 23, 9, gp.outside);
+
+            else if (hit(4, 1, 23, "any")) teleport(0, 37, 7, gp.outside);
+            else if (hit(4, 1, 24, "any")) teleport(0, 37, 7, gp.outside);
+            else if (hit(4, 1, 25, "any")) teleport(0, 37, 7, gp.outside);
+            else if (hit(4, 1, 26, "any")) teleport(0, 37, 7, gp.outside);
+            else if (hit(4, 1, 27, "any")) teleport(0, 37, 7, gp.outside);
+
 
             else if (hit(4, 40, 1, "any")) teleport(6, 25, 48, gp.outside);
             else if (hit(4, 41, 1, "any")) teleport(6, 25, 48, gp.outside);

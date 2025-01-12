@@ -228,6 +228,8 @@ public class AssetSetter {
         addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 28, 31));
         addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 29, 31));
 
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 37, 7));
+
         // Dungeon
         mapNum = 2;
         i = 0;
@@ -274,6 +276,16 @@ public class AssetSetter {
         addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 38, 47));
         addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 39, 47));
 
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 1, 23));
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 1, 24));
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 1, 25));
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 1, 26));
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 1, 27));
+
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 40, 1));
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 41, 1));
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 42, 1));
+
         mapNum = 6;
         i = 0;
 
@@ -281,6 +293,13 @@ public class AssetSetter {
         addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 43, 6));
         addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 43, 5));
         addInteractiveTile(mapNum, i++, new IT_DryTree(gp, 43, 4));
+
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 22, 48));
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 23, 48));
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 24, 48));
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 25, 48));
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 26, 48));
+        addInteractiveTile(mapNum, i++, new IT_Teleport(gp, 27, 48));
     }
 
     private void addObject(int mapNum, int i, Entity object, int worldX, int worldY) {

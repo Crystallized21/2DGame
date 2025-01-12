@@ -17,15 +17,10 @@ public class Main {
 
         /*
             TODO: Future updates
-                - Add more maps -- in progress
-                - Add more enemies -- in progress
                 - Add signs to the game (to help the player navigate)
-                - Add more items?
                 - ADD A IRON KEY TO OPEN THE FINAL BOSS DUNGEON
                 - Game balance
-                - Add more game mechanics and flow?
                 - In the dungeon, add dungeon specific items
-                - Add a teleport sprite to the game
                 - Rewrite the old man's dialogue
         */
 
