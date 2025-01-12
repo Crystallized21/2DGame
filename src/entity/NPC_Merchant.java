@@ -53,6 +53,8 @@ public class NPC_Merchant extends Entity{
         inventory.add(new OBJ_Shield_Wood(gp));
         inventory.add(new OBJ_Shield_Blue(gp));
         inventory.add(new OBJ_Tent(gp));
+        inventory.add(new OBJ_Sword_Dungeon(gp));
+        inventory.add(new OBJ_Shield_Dungeon(gp));
     }
 
     @Override

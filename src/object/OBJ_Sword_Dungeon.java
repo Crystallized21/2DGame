@@ -20,5 +20,6 @@ public class OBJ_Sword_Dungeon extends Entity {
         knockBackPower = 4;
         motion1_duration = 5;
         motion2_duration = 20;
+        price = 1750;
     }
 }
