@@ -28,7 +28,7 @@ public class AssetSetter {
         addObject(mapNum, i++, new OBJ_Lantern(gp), 18, 20);
         addObject(mapNum, i++, new OBJ_Tent(gp), 19, 20);
         addObject(mapNum, i++, new OBJ_Door(gp), 14, 28);
-        addObject(mapNum, i++, new OBJ_Door(gp), 12, 12);
+        addObject(mapNum, i++, new OBJ_Door_Final(gp), 12, 12);
 
         addChest(mapNum, i++, new OBJ_Chest(gp), 30, 29, new OBJ_Key(gp));
 
@@ -224,6 +224,7 @@ public class AssetSetter {
         addMonster(mapNum, i++, new MON_Bat(gp), 26, 31);
         addMonster(mapNum, i++, new MON_Bat(gp), 22, 37);
         addMonster(mapNum, i++, new MON_Bat(gp), 41, 37);
+        addMonster(mapNum, i++, new MON_Bat(gp), 48, 42);
         addMonster(mapNum, i++, new MON_Bat(gp), 45, 34);
         addMonster(mapNum, i++, new MON_Bat(gp), 15, 42);
         addMonster(mapNum, i++, new MON_Bat(gp), 7, 40);

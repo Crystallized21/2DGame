@@ -23,6 +23,8 @@ public class Main {
                 - In the dungeon, add dungeon specific items
                 - Redo monsters drops
                 - Rewrite the old man's dialogue
+                - Fix Projectile Calculation
+                - Fix Guarding giving hp?
         */
 
         initializeGraphics();

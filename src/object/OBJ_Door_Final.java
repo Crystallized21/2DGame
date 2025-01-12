@@ -29,7 +29,7 @@ public class OBJ_Door_Final extends Entity {
 
     private void setDialogue() {
         dialogues[0][0] = "You need the final key to open this door.";
-        dialogues[0][1] = "Tip: Explore the world and find the\nfinal key.";
+        dialogues[0][1] = "Tip: Explore the world and find the final key.";
         dialogues[0][2] = "It's in the last dungeon.";
     }
 
