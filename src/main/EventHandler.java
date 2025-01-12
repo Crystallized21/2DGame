@@ -107,8 +107,8 @@ public class EventHandler {
             else if (hit(6, 44, 29, "any")) teleport(7, 12, 13, gp.indoor);
             else if (hit(7, 12, 13, "any")) teleport(6, 44, 29, gp.outside);
 
-            else if (hit(6, 24, 5, "any")) teleport(8, 15, 25, gp.outside);
-            else if (hit(6, 24, 6, "any")) teleport(8, 15, 26, gp.outside);
+            else if (hit(6, 24, 5, "any")) teleport(8, 15, 25, gp.dungeon);
+            else if (hit(6, 24, 6, "any")) teleport(8, 15, 26, gp.dungeon);
 
             else if (hit(8, 15, 25, "any")) teleport(6, 24, 5, gp.outside);
             else if (hit(8, 15, 26, "any")) teleport(6, 24, 6, gp.outside);

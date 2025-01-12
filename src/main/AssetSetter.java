@@ -11,6 +11,8 @@ import object.*;
 import object.OBJ_Door_Dungeon;
 import tile_interactive.*;
 
+import java.util.Random;
+
 public class AssetSetter {
     final GamePanel gp;
 
@@ -50,7 +52,7 @@ public class AssetSetter {
         i = 0;
         addObject(mapNum, i++, new OBJ_Door(gp), 19, 46);
 
-        addObject(mapNum, i++, new OBJ_Door_Dungeon(gp), 23 , 13);
+        addObject(mapNum, i++, new OBJ_Door_Dungeon(gp), 23, 13);
 
         addChest(mapNum, i++, new OBJ_Chest(gp), 19, 48, new OBJ_Key(gp));
         addChest(mapNum, i++, new OBJ_Chest(gp), 24, 47, new OBJ_Key(gp));
@@ -97,9 +99,14 @@ public class AssetSetter {
 
         addObject(mapNum, i++, new OBJ_Door_Iron(gp), 9, 22);
 
-        addObject(mapNum, i++, new OBJ_Door(gp), 3, 30);
+        addObject(mapNum, i++, new OBJ_Door(gp), 3, 31);
 
+        addChest(mapNum, i++, new OBJ_Chest(gp), 27, 2, new OBJ_Potion_Red(gp));
         addChest(mapNum, i++, new OBJ_Chest(gp), 27, 3, new OBJ_Potion_Red(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 27, 4, new OBJ_Potion_Red(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 28, 4, new OBJ_Potion_Blue(gp));
+        addChest(mapNum, i++, new OBJ_Chest(gp), 28, 2, new OBJ_Potion_Blue(gp));
+
         addChest(mapNum, i++, new OBJ_Chest(gp), 24, 17, new OBJ_Potion_Red(gp));
     }
 
@@ -215,9 +222,6 @@ public class AssetSetter {
         mapNum = 8;
         i = 0;
 
-        // TODO: make a desperate class for orc dungeon monster
-        addMonster(mapNum, i++, new MON_Orc(gp), 40, 7);
-
         addMonster(mapNum, i++, new MON_PurpleSlime(gp), 40, 45);
         addMonster(mapNum, i++, new MON_YellowSlime(gp), 42, 45);
         addMonster(mapNum, i++, new MON_BlueSlime(gp), 44, 45);
@@ -226,6 +230,22 @@ public class AssetSetter {
         addMonster(mapNum, i++, new MON_BlueSlime(gp), 46, 48);
 
         addMonster(mapNum, i++, new MON_Orc(gp), 43, 26);
+
+        // TODO: make a desperate class for orc dungeon monster
+        addMonster(mapNum, i++, new MON_Orc(gp), 40, 7);
+
+        Random rand = new Random();
+        Entity[] slimes = {
+                new MON_BlueSlime(gp),
+                new MON_PurpleSlime(gp),
+                new MON_GreenSlime(gp),
+                new MON_YellowSlime(gp),
+                new MON_RedSlime(gp)
+        };
+
+        for (int x = 18; x <= 24; x++) {
+            addMonster(mapNum, i++, slimes[rand.nextInt(slimes.length)], x, 2);
+        }
     }
 
     public void setInteractiveTile() {
