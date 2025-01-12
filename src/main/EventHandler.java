@@ -79,6 +79,8 @@ public class EventHandler {
 
             else if (hit(0, 37, 7, "any")) teleport(4, 1, 25, gp.outside);
 
+            else if (hit(3, 25, 27, "any")) skeletonLord(); // Boss Cutscene
+
             else if (hit(4, 37, 29, "any")) healingPool(gp.dialogueState);
 
             else if (hit(4, 23, 8, "any")) teleport(5, 3, 24, gp.dungeon);
@@ -105,7 +107,11 @@ public class EventHandler {
             else if (hit(6, 44, 29, "any")) teleport(7, 12, 13, gp.indoor);
             else if (hit(7, 12, 13, "any")) teleport(6, 44, 29, gp.outside);
 
-            else if (hit(3, 25, 27, "any")) skeletonLord(); // Boss Cutscene
+            else if (hit(6, 24, 5, "any")) teleport(8, 15, 25, gp.outside);
+            else if (hit(6, 24, 6, "any")) teleport(8, 15, 26, gp.outside);
+
+            else if (hit(8, 15, 25, "any")) teleport(6, 24, 5, gp.outside);
+            else if (hit(8, 15, 26, "any")) teleport(6, 24, 6, gp.outside);
         }
     }
 

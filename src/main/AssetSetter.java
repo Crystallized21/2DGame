@@ -11,7 +11,6 @@ import object.*;
 import object.OBJ_Door_Dungeon;
 import tile_interactive.*;
 
-
 public class AssetSetter {
     final GamePanel gp;
 

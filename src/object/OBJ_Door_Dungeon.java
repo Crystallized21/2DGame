@@ -28,7 +28,7 @@ public class OBJ_Door_Dungeon extends Entity {
     }
 
     private void setDialogue() {
-        dialogues[0][0] = "You need a dungeon key to open this door to the\ndungeon.";
+        dialogues[0][0] = "You need a dungeon key to open this door.";
     }
 
     @Override
