@@ -22,11 +22,11 @@ public class MON_Dungeon_Orc extends Entity {
         name = "Orc";
         defaultSpeed = 1;
         speed = defaultSpeed;
-        maxLife = 200;
+        maxLife = 160;
         life = maxLife;
-        attack = 12;
+        attack = 8;
         defense = 3;
-        exp = 120;
+        exp = 160;
         knockBackPower = 5;
 
         // Solid Area
