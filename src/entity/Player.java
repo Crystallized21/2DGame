@@ -40,7 +40,7 @@ public class Player extends Entity {
         worldY = gp.tileSize * 26;
         gp.currentMap = 0;
 
-        defaultSpeed = 8;
+        defaultSpeed = 4;
         speed = defaultSpeed;
         direction = "down";
 
